@@ -21,10 +21,19 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    // Create WhatsApp message
+    const message = `Hello, my name is ${formData.name}. ${formData.message}. You can reach me at ${formData.email} or ${formData.phone}.`;
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/919666655664?text=${encodedMessage}`;
+    
+    // Open WhatsApp in a new tab
+    window.open(whatsappUrl, '_blank');
+    
     toast({
-      title: "Message Sent",
-      description: "We'll get back to you as soon as possible!",
+      title: "Redirecting to WhatsApp",
+      description: "You'll be redirected to send your message via WhatsApp!",
     });
+    
     setFormData({
       name: '',
       email: '',
@@ -39,6 +48,9 @@ const Contact = () => {
     if (mapIframe) {
       mapIframe.setAttribute('src', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.1681559736227!2d78.57462787488545!3d17.458500100987806!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb9be8f7a4d3a9%3A0x3f95b03c9a276be5!2sECIL%2C%20Hyderabad%2C%20Telangana!5e0!3m2!1sen!2sin!4v1712091436937!5m2!1sen!2sin');
     }
+    
+    // Scroll to top on page load
+    window.scrollTo(0, 0);
   }, []);
 
   return (
@@ -133,6 +145,7 @@ const Contact = () => {
           
           <div className="glass p-8 rounded-lg">
             <h2 className="text-2xl font-bold mb-6">Send Us a Message</h2>
+            <p className="text-gray-300 mb-4">Fill out this form and click "Send Message" to connect with us directly via WhatsApp.</p>
             <form onSubmit={handleSubmit}>
               <div className="mb-4">
                 <label htmlFor="name" className="block mb-2 text-sm font-medium">Your Name</label>
@@ -186,8 +199,28 @@ const Contact = () => {
               </div>
               
               <Button type="submit" className="w-full text-lg px-8 py-6 glass hover:bg-primary/20 transition-all duration-300">
-                Send Message
+                Send Message via WhatsApp
               </Button>
+              
+              <div className="mt-4 text-center text-gray-400 text-sm">
+                <p>Or contact us directly:</p>
+                <div className="flex justify-center mt-2 space-x-4">
+                  <a 
+                    href="tel:+919666655664" 
+                    className="flex items-center text-primary hover:underline"
+                  >
+                    <Phone className="w-4 h-4 mr-1" /> Call Now
+                  </a>
+                  <a 
+                    href="https://wa.me/919666655664" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center text-primary hover:underline"
+                  >
+                    <MessageSquare className="w-4 h-4 mr-1" /> WhatsApp
+                  </a>
+                </div>
+              </div>
             </form>
           </div>
         </div>

@@ -17,17 +17,23 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleNavClick = () => {
+    setIsOpen(false);
+    // Scroll to top when navigating to new page
+    window.scrollTo(0, 0);
+  };
+
   return (
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'glass py-4' : 'bg-transparent py-6'
+        isScrolled ? 'glass py-4' : 'bg-background/90 backdrop-blur-lg py-6'
       }`}
     >
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center">
-          <Link to="/" className="text-2xl font-bold text-gradient">
+          <Link to="/" className="text-2xl font-bold text-gradient" onClick={handleNavClick}>
             Genzact
           </Link>
 
@@ -37,6 +43,7 @@ const Navbar = () => {
               <Link
                 key={item.path}
                 to={item.path}
+                onClick={handleNavClick}
                 className={`nav-link text-sm font-medium ${
                   location.pathname === item.path
                     ? 'text-primary'
@@ -70,7 +77,7 @@ const Navbar = () => {
                 key={item.path}
                 to={item.path}
                 className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/5"
-                onClick={() => setIsOpen(false)}
+                onClick={handleNavClick}
               >
                 {item.label}
               </Link>

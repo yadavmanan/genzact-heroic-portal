@@ -6,17 +6,6 @@ import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 
-// Define the spline-viewer as a custom JSX element to fix TypeScript errors
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      'spline-viewer': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
-        url?: string;
-      };
-    }
-  }
-}
-
 const Index = () => {
   const { toast } = useToast();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -34,7 +23,17 @@ const Index = () => {
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 w-full h-full">
-          <spline-viewer url="https://prod.spline.design/Nf4TAFWR06COkaca/scene.splinecode"></spline-viewer>
+          {/* Replace spline with image */}
+          <div 
+            className="w-full h-full bg-black bg-opacity-80"
+            style={{
+              backgroundImage: "url('https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80')",
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+              backgroundBlendMode: 'overlay'
+            }}
+          ></div>
         </div>
         <div className="container relative z-10">
           <motion.div
@@ -226,10 +225,10 @@ const Index = () => {
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 * index }}
-                className="glass p-4 rounded-lg w-32 h-32 flex items-center justify-center"
+                className="glass p-4 rounded-lg w-32 h-32 flex flex-col items-center justify-center"
               >
-                <Building className="w-12 h-12 text-gray-400" />
-                <span className="sr-only">Client Logo</span>
+                <Building className="w-12 h-12 text-gray-400 mb-2" />
+                <span className="text-gray-300 text-sm text-center">{logo.name}</span>
               </motion.div>
             ))}
           </div>
@@ -276,6 +275,13 @@ const benefits = [
   }
 ];
 
-const clientLogos = [1, 2, 3, 4, 5, 6];
+const clientLogos = [
+  { name: "TechNova" },
+  { name: "InnovateCorp" },
+  { name: "FutureSys" },
+  { name: "MetaStack" },
+  { name: "DataPulse" },
+  { name: "CloudVista" }
+];
 
 export default Index;
