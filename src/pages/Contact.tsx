@@ -1,7 +1,7 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Mail, Phone, Clock } from 'lucide-react';
+import { MapPin, Mail, Phone, Clock, ExternalLink, MessageSquare } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 
@@ -33,6 +33,14 @@ const Contact = () => {
     });
   };
 
+  useEffect(() => {
+    // Initialize Google Maps iframe after component mount
+    const mapIframe = document.getElementById('google-map-iframe');
+    if (mapIframe) {
+      mapIframe.setAttribute('src', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.1681559736227!2d78.57462787488545!3d17.458500100987806!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb9be8f7a4d3a9%3A0x3f95b03c9a276be5!2sECIL%2C%20Hyderabad%2C%20Telangana!5e0!3m2!1sen!2sin!4v1712091436937!5m2!1sen!2sin');
+    }
+  }, []);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -54,6 +62,14 @@ const Contact = () => {
                     <h3 className="text-lg font-medium">Address</h3>
                     <p className="text-gray-300">Plot no. 43, Sri Singi Reddy Swami Reddynagar,</p>
                     <p className="text-gray-300">ECIL, Hyderabad-500062, Telangana</p>
+                    <a 
+                      href="https://maps.google.com/?q=ECIL,+Hyderabad,+Telangana+500062" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-primary flex items-center mt-2 hover:underline"
+                    >
+                      View on Google Maps <ExternalLink className="w-4 h-4 ml-1" />
+                    </a>
                   </div>
                 </div>
                 
@@ -61,8 +77,10 @@ const Contact = () => {
                   <Mail className="w-6 h-6 text-primary mr-4 mt-1" />
                   <div>
                     <h3 className="text-lg font-medium">Email</h3>
-                    <p className="text-gray-300">babu@genzact.com</p>
-                    <p className="text-gray-300">info@genzact.com</p>
+                    <a href="mailto:babu@genzact.com" className="text-gray-300 hover:text-primary">babu@genzact.com</a>
+                    <p className="text-gray-300">
+                      <a href="mailto:info@genzact.com" className="hover:text-primary">info@genzact.com</a>
+                    </p>
                   </div>
                 </div>
                 
@@ -70,7 +88,23 @@ const Contact = () => {
                   <Phone className="w-6 h-6 text-primary mr-4 mt-1" />
                   <div>
                     <h3 className="text-lg font-medium">Phone</h3>
-                    <p className="text-gray-300">+91 9666655664</p>
+                    <a href="tel:+919666655664" className="text-gray-300 hover:text-primary">+91 9666655664</a>
+                    <div className="flex mt-2 space-x-4">
+                      <a 
+                        href="tel:+919666655664" 
+                        className="flex items-center text-primary hover:underline"
+                      >
+                        <Phone className="w-4 h-4 mr-1" /> Call Now
+                      </a>
+                      <a 
+                        href="https://wa.me/919666655664" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex items-center text-primary hover:underline"
+                      >
+                        <MessageSquare className="w-4 h-4 mr-1" /> WhatsApp
+                      </a>
+                    </div>
                   </div>
                 </div>
                 
@@ -83,6 +117,17 @@ const Contact = () => {
                   </div>
                 </div>
               </div>
+            </div>
+            
+            {/* Google Maps Embed */}
+            <div className="glass p-2 rounded-lg overflow-hidden h-[300px]">
+              <iframe 
+                id="google-map-iframe"
+                className="w-full h-full rounded-lg"
+                title="Genzact Office Location" 
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
             </div>
           </div>
           
@@ -146,9 +191,47 @@ const Contact = () => {
             </form>
           </div>
         </div>
+        
+        {/* FAQ Section */}
+        <div className="mt-20">
+          <h2 className="text-3xl font-bold mb-8 text-gradient">Frequently Asked Questions</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {faqs.map((faq, index) => (
+              <motion.div 
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 * index }}
+                className="glass p-6 rounded-lg"
+              >
+                <h3 className="text-xl font-bold mb-3">{faq.question}</h3>
+                <p className="text-gray-300">{faq.answer}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </div>
     </motion.div>
   );
 };
+
+const faqs = [
+  {
+    question: "What areas do you provide staffing services for?",
+    answer: "We specialize in IT and technology staffing across India, with a focus on software development, cloud engineering, data science, and IT infrastructure roles."
+  },
+  {
+    question: "How quickly can you find candidates for our open positions?",
+    answer: "Depending on the role complexity, we typically present qualified candidates within 48-72 hours of finalizing your requirements."
+  },
+  {
+    question: "Do you offer contract-to-hire options?",
+    answer: "Yes, we provide flexible engagement models including contract, contract-to-hire, and direct placement to suit your specific needs."
+  },
+  {
+    question: "What makes Genzact different from other staffing agencies?",
+    answer: "Our deep technical expertise, personalized approach, and extensive network in the tech industry allow us to find candidates that aren't just qualified on paper but are the right cultural fit."
+  }
+];
 
 export default Contact;
