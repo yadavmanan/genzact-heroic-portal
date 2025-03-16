@@ -1,5 +1,6 @@
+
 import { motion } from 'framer-motion';
-import { User, Mail, MapPin, Calendar, Award, Target, Users, Briefcase, CheckCircle } from 'lucide-react';
+import { User, Mail, MapPin, Calendar, Award, Target, Users, Briefcase, CheckCircle, PhoneCall } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 
@@ -175,7 +176,7 @@ const About = () => {
             </p>
             <div className="flex flex-col space-y-2">
               <div className="flex items-center">
-                <Phone className="w-5 h-5 text-primary mr-2" />
+                <PhoneCall className="w-5 h-5 text-primary mr-2" />
                 <a href="tel:+919666655664" className="hover:text-primary">9666655664</a>
               </div>
               <div className="flex items-center">
