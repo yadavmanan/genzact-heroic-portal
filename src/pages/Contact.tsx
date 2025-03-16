@@ -32,7 +32,7 @@ const Contact = () => {
     );
     
     // Open WhatsApp with the message
-    window.open(`https://wa.me/+919999999999?text=${whatsappMessage}`, '_blank');
+    window.open(`https://wa.me/+919666655664?text=${whatsappMessage}`, '_blank');
     
     toast({
       title: "Message sent via WhatsApp",
@@ -41,7 +41,7 @@ const Contact = () => {
   };
 
   const openDialer = () => {
-    window.location.href = 'tel:+919999999999';
+    window.location.href = 'tel:+919666655664';
   };
 
   return (
@@ -49,7 +49,7 @@ const Contact = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen pt-32 pb-20 px-4 bg-white"
+      className="min-h-screen pt-32 pb-20 px-4 bg-background"
     >
       <div className="container mx-auto">
         <div className="text-center mb-12">
@@ -154,7 +154,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-800">Office Location</h3>
-                    <p className="text-gray-600">123 Business Avenue, Tech Park, Bangalore, India</p>
+                    <p className="text-gray-600">Plot no. 43, Sri Singi Reddy Swami Reddynagar, ECIL, Hyderabad-500062, Telangana, India</p>
                   </div>
                 </div>
                 
@@ -180,7 +180,7 @@ const Contact = () => {
                       onClick={openDialer}
                       className="text-primary hover:underline focus:outline-none"
                     >
-                      +91 9999 999 999
+                      +91 9666 655 664
                     </button>
                   </div>
                 </div>
@@ -192,12 +192,12 @@ const Contact = () => {
                   <div>
                     <h3 className="text-lg font-semibold text-gray-800">WhatsApp</h3>
                     <a 
-                      href="https://wa.me/+919999999999" 
+                      href="https://wa.me/+919666655664" 
                       target="_blank" 
                       rel="noreferrer"
                       className="text-primary hover:underline"
                     >
-                      +91 9999 999 999
+                      +91 9666 655 664
                     </a>
                   </div>
                 </div>
@@ -218,7 +218,7 @@ const Contact = () => {
             {/* Google Map */}
             <div className="bg-white p-2 rounded-lg shadow-md overflow-hidden h-80">
               <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.9901772602224!2d77.64328401482183!3d12.978345490855802!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1681f363fcc1%3A0x1f3145cbf5dc7a66!2sIndiranagar%2C%20Bengaluru%2C%20Karnataka%20560038!5e0!3m2!1sen!2sin!4v1627285539221!5m2!1sen!2sin" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.1487886271765!2d78.57019087570605!3d17.455354800720595!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb9c7a6803c695%3A0xb29a5a0c1a8c66f6!2sECIL%2C%20Sri%20Singi%20Reddy%20Swami%20Reddynagar%2C%20Secunderabad%2C%20Telangana%20500062!5e0!3m2!1sen!2sin!4v1717075152379!5m2!1sen!2sin" 
                 width="100%" 
                 height="100%" 
                 style={{ border: 0 }} 

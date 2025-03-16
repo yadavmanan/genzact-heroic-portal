@@ -20,12 +20,12 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="min-h-screen flex flex-col bg-background">
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 w-full h-full">
           <div 
-            className="w-full h-full bg-white bg-opacity-50"
+            className="w-full h-full bg-gray-50 bg-opacity-50"
             style={{
               backgroundImage: "url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80')",
               backgroundSize: 'cover',
@@ -48,7 +48,7 @@ const Index = () => {
             <p className="text-xl md:text-2xl text-gray-700 mb-8 max-w-2xl mx-auto backdrop-blur-sm bg-white/60 p-3 rounded-lg">
               Your trusted partner in Manpower Consulting, Payroll Management, and RPO Services.
             </p>
-            <Link to="/services">
+            <Link to="/services" onClick={() => window.scrollTo(0, 0)}>
               <Button className="text-lg px-8 py-6 bg-primary hover:bg-primary/90 transition-all duration-300 shadow-md">
                 Explore Services <ArrowRight className="ml-2" />
               </Button>
@@ -61,7 +61,7 @@ const Index = () => {
       </section>
 
       {/* Services Overview Section */}
-      <section className="py-20 bg-gradient-to-b from-white to-secondary/20">
+      <section className="py-20 bg-gradient-to-b from-background to-secondary/20">
         <div className="container">
           <motion.div
             initial={{ opacity: 0 }}
@@ -92,7 +92,7 @@ const Index = () => {
                 <service.icon className="w-12 h-12 text-primary mb-4" />
                 <h3 className="text-xl font-bold mb-4">{service.title}</h3>
                 <p className="text-gray-600 mb-4">{service.description}</p>
-                <Link to="/services" className="flex items-center text-primary hover:underline">
+                <Link to="/services" onClick={() => window.scrollTo(0, 0)} className="flex items-center text-primary hover:underline">
                   Learn more <ArrowRight className="ml-2 w-4 h-4" />
                 </Link>
               </motion.div>
@@ -175,7 +175,7 @@ const Index = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-b from-secondary/30 to-white">
+      <section className="py-24 bg-gradient-to-b from-secondary/30 to-background">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -189,12 +189,12 @@ const Index = () => {
               perfect talent solutions for your unique needs.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Link to="/contact">
+              <Link to="/contact" onClick={() => window.scrollTo(0, 0)}>
                 <Button className="text-lg px-8 py-6 bg-primary hover:bg-primary/90 transition-all duration-300 shadow-md">
                   Get in Touch <ArrowRight className="ml-2" />
                 </Button>
               </Link>
-              <Link to="/services">
+              <Link to="/services" onClick={() => window.scrollTo(0, 0)}>
                 <Button className="text-lg px-8 py-6 bg-white hover:bg-gray-100 text-primary border border-primary transition-all duration-300">
                   Our Services <ArrowUpRight className="ml-2" />
                 </Button>
@@ -218,21 +218,16 @@ const Index = () => {
           </motion.div>
           
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
-            {clientLogos.map((logo, index) => (
+            {clientNames.map((client, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 * index }}
-                className="bg-white p-4 rounded-lg w-44 h-44 flex flex-col items-center justify-center shadow-md client-logo"
+                className="bg-white p-6 rounded-lg shadow-md text-center client-logo w-64"
               >
-                <img 
-                  src={logo.image} 
-                  alt={logo.name} 
-                  className="w-16 h-16 object-contain mb-2" 
-                />
-                <span className="text-gray-700 text-sm text-center font-medium">{logo.name}</span>
+                <h3 className="text-xl font-bold text-animate">{client}</h3>
               </motion.div>
             ))}
           </div>
@@ -279,15 +274,6 @@ const benefits = [
   }
 ];
 
-const clientLogos = [
-  { 
-    name: "Noratel",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Noratel_Logo.png/1200px-Noratel_Logo.png" 
-  },
-  { 
-    name: "Thefirms.in",
-    image: "https://cdn-icons-png.flaticon.com/512/5968/5968534.png" 
-  }
-];
+const clientNames = ["Noratel", "Thefirms.in"];
 
 export default Index;
