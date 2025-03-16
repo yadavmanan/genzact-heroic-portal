@@ -39,12 +39,12 @@ const Services = () => {
           animate={{ opacity: 1, y: 0 }}
           className="bg-secondary/50 p-8 rounded-lg mb-16 shadow-sm"
         >
-          <p className="text-xl text-gray-700 mb-6">
+          <p className="text-xl text-gray-900 mb-6">
             At Genzact, we provide comprehensive staffing and recruitment solutions designed to 
             meet the unique needs of businesses across various industries. Our deep industry 
             knowledge and personalized approach ensure that we deliver value at every step.
           </p>
-          <p className="text-xl text-gray-700">
+          <p className="text-xl text-gray-900">
             Whether you're looking for Manpower Consulting, Payroll Management, or comprehensive 
             RPO solutions, our team is here to help you succeed.
           </p>
@@ -63,11 +63,11 @@ const Services = () => {
               <Briefcase className="w-10 h-10 text-primary mr-4" />
               <h2 className="text-2xl font-bold">Manpower Consulting</h2>
             </div>
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-900 mb-6">
               We provide expert manpower consulting services to optimize your workforce and enhance 
               operational efficiency. Our solutions include:
             </p>
-            <ul className="text-gray-600 mb-6 space-y-2">
+            <ul className="text-gray-900 mb-6 space-y-2">
               <li className="flex items-start">
                 <Users className="w-5 h-5 text-primary mr-2 mt-1" />
                 <span>Workforce Planning & Analysis</span>
@@ -95,11 +95,11 @@ const Services = () => {
               <Calculator className="w-10 h-10 text-primary mr-4" />
               <h2 className="text-2xl font-bold">Payroll Management</h2>
             </div>
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-900 mb-6">
               Streamline your payroll operations with our comprehensive payroll management services 
               that ensure accuracy, compliance, and efficiency:
             </p>
-            <ul className="text-gray-600 mb-6 space-y-2">
+            <ul className="text-gray-900 mb-6 space-y-2">
               <li className="flex items-start">
                 <FileText className="w-5 h-5 text-primary mr-2 mt-1" />
                 <span>End-to-end payroll processing</span>
@@ -127,10 +127,10 @@ const Services = () => {
               <Search className="w-10 h-10 text-primary mr-4" />
               <h2 className="text-2xl font-bold">RPO Solutions</h2>
             </div>
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-900 mb-6">
               Our Recruitment Process Outsourcing (RPO) solutions for both IT and non-IT sectors deliver:
             </p>
-            <ul className="text-gray-600 mb-6 space-y-2">
+            <ul className="text-gray-900 mb-6 space-y-2">
               <li className="flex items-start">
                 <Building className="w-5 h-5 text-primary mr-2 mt-1" />
                 <span>End-to-end recruitment management</span>
@@ -162,12 +162,12 @@ const Services = () => {
           className="bg-secondary/50 p-10 rounded-lg text-center mt-16 shadow-sm"
         >
           <h2 className="text-3xl font-bold mb-6 text-gradient">Need a Custom Solution?</h2>
-          <p className="text-xl text-gray-700 mb-8 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-900 mb-8 max-w-3xl mx-auto">
             Our team can create tailored staffing and recruitment solutions designed specifically 
             for your organization's unique challenges and goals.
           </p>
           <Link to="/contact">
-            <Button className="text-lg px-8 py-6 bg-primary hover:bg-primary/90 transition-all duration-300">
+            <Button className="text-lg px-8 py-6 bg-primary hover:bg-primary/90 text-white transition-all duration-300">
               Contact Us Today
             </Button>
           </Link>

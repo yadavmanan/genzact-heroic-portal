@@ -1,6 +1,5 @@
-
 import { motion } from 'framer-motion';
-import { User, Mail, MapPin, Phone, Calendar, Award, Target, Users, Briefcase, CheckCircle } from 'lucide-react';
+import { User, Mail, MapPin, Calendar, Award, Target, Users, Briefcase, CheckCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 
@@ -35,12 +34,12 @@ const About = () => {
           transition={{ delay: 0.1 }}
           className="glass p-8 rounded-lg mb-12"
         >
-          <p className="text-xl text-gray-700 mb-6">
+          <p className="text-xl text-gray-900 mb-6">
             Genzact is a premier staffing and recruitment firm, connecting businesses 
             with top talent in the IT and technology sectors. With years of industry experience, 
             we understand the unique challenges companies face in finding and retaining skilled professionals.
           </p>
-          <p className="text-xl text-gray-700">
+          <p className="text-xl text-gray-900">
             Our mission is to simplify the recruitment process and provide solutions that matter 
             for both businesses and job seekers. We pride ourselves on our personalized approach 
             and commitment to excellence.
@@ -62,7 +61,7 @@ const About = () => {
                 <Target className="w-8 h-8 text-primary mr-3" />
                 <h3 className="text-2xl font-bold">Vision</h3>
               </div>
-              <p className="text-gray-700">
+              <p className="text-gray-900">
                 To become the most trusted partner in talent acquisition for technology companies, 
                 known for our integrity, quality of service, and the success of the professionals 
                 we place and the companies we serve.
@@ -73,7 +72,7 @@ const About = () => {
                 <Award className="w-8 h-8 text-primary mr-3" />
                 <h3 className="text-2xl font-bold">Mission</h3>
               </div>
-              <p className="text-gray-700">
+              <p className="text-gray-900">
                 To connect exceptional talent with innovative companies through a transparent and 
                 efficient recruitment process that values the needs and aspirations of both parties, 
                 creating lasting professional relationships.
@@ -102,7 +101,7 @@ const About = () => {
               >
                 <value.icon className="w-10 h-10 text-primary mx-auto mb-4" />
                 <h3 className="text-xl font-bold mb-3">{value.title}</h3>
-                <p className="text-gray-700">{value.description}</p>
+                <p className="text-gray-900">{value.description}</p>
               </motion.div>
             ))}
           </div>
@@ -140,7 +139,7 @@ const About = () => {
                     <h3 className="text-xl font-bold">{item.year}</h3>
                   </div>
                   <h4 className="text-lg font-medium mb-2">{item.title}</h4>
-                  <p className="text-gray-700">{item.description}</p>
+                  <p className="text-gray-900">{item.description}</p>
                 </div>
                 <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-primary"></div>
               </motion.div>
@@ -163,19 +162,12 @@ const About = () => {
           initial="hidden"
           animate="visible"
           transition={{ delay: 0.6 }}
-          className="glass p-8 rounded-lg flex flex-col md:flex-row items-center mb-12"
+          className="glass p-8 rounded-lg mb-12"
         >
-          <div className="w-48 h-48 rounded-full overflow-hidden mb-6 md:mb-0 md:mr-8">
-            <img 
-              src="https://placehold.co/400x400/002244/ffffff?text=BK" 
-              alt="Babu Karlapudi" 
-              className="w-full h-full object-cover"
-            />
-          </div>
           <div>
             <h3 className="text-2xl font-bold mb-2">Babu Karlapudi</h3>
             <p className="text-primary mb-4">CEO & Founder</p>
-            <p className="text-gray-700 mb-4">
+            <p className="text-gray-900 mb-4">
               With over 15 years of experience in the staffing industry, Babu has built Genzact 
               from the ground up, focusing on quality relationships and exceptional service. His vision
               and leadership have been instrumental in establishing Genzact as a trusted name in
@@ -213,7 +205,7 @@ const About = () => {
                 className="glass p-6 rounded-lg text-center"
               >
                 <h3 className="text-4xl font-bold text-primary mb-2">{achievement.number}</h3>
-                <p className="text-gray-700">{achievement.description}</p>
+                <p className="text-gray-900">{achievement.description}</p>
               </motion.div>
             ))}
           </div>
@@ -228,12 +220,12 @@ const About = () => {
           className="glass p-10 rounded-lg text-center"
         >
           <h2 className="text-3xl font-bold mb-6 text-gradient">Ready to Work With Us?</h2>
-          <p className="text-xl text-gray-700 mb-8 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-900 mb-8 max-w-3xl mx-auto">
             Whether you're looking for exceptional talent or your next career opportunity,
             we're here to help you succeed.
           </p>
           <Link to="/contact">
-            <Button className="text-lg px-8 py-6 glass hover:bg-primary/20 transition-all duration-300">
+            <Button className="text-lg px-8 py-6 bg-primary text-white hover:bg-primary/90 transition-all duration-300">
               Get in Touch
             </Button>
           </Link>
@@ -259,18 +251,18 @@ const About = () => {
           <div className="flex items-start mb-4">
             <MapPin className="w-6 h-6 text-primary mr-3 mt-1" />
             <div>
-              <p className="text-gray-700">Plot no. 43, Sri Singi Reddy Swami Reddynagar,</p>
-              <p className="text-gray-700">ECIL, Hyderabad-500062</p>
-              <p className="text-gray-700">Telangana, India</p>
+              <p className="text-gray-900">Plot no. 43, Sri Singi Reddy Swami Reddynagar,</p>
+              <p className="text-gray-900">ECIL, Hyderabad-500062</p>
+              <p className="text-gray-900">Telangana, India</p>
             </div>
           </div>
           <div className="flex items-center mb-4">
             <Mail className="w-6 h-6 text-primary mr-3" />
-            <a href="mailto:info@genzact.com" className="text-gray-700 hover:text-primary">info@genzact.com</a>
+            <a href="mailto:info@genzact.com" className="text-gray-900 hover:text-primary">info@genzact.com</a>
           </div>
           <div className="flex items-center">
             <User className="w-6 h-6 text-primary mr-3" />
-            <a href="https://www.genzact.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-primary">www.genzact.com</a>
+            <a href="https://www.genzact.com" target="_blank" rel="noopener noreferrer" className="text-gray-900 hover:text-primary">www.genzact.com</a>
           </div>
         </motion.div>
       </div>

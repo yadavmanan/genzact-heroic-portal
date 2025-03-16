@@ -8,9 +8,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const Contact = () => {
   const { toast } = useToast();
+  const isMobile = useIsMobile();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -54,23 +56,23 @@ const Contact = () => {
       <div className="container mx-auto">
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gradient">Get in Touch</h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-900 max-w-2xl mx-auto">
             Have questions about our services? Ready to get started? Our team is here to help.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+        <div className={`grid grid-cols-1 ${isMobile ? '' : 'lg:grid-cols-2'} gap-8 mb-16`}>
           {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
-            className="bg-white p-8 rounded-lg shadow-md"
+            className="bg-white p-6 sm:p-8 rounded-lg shadow-md"
           >
-            <h2 className="text-2xl font-bold mb-6 text-gray-800">Send Us a Message</h2>
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <h2 className="text-2xl font-bold mb-6 text-gray-900">Send Us a Message</h2>
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="name" className="block text-sm font-medium text-gray-900 mb-1">
                   Your Name
                 </label>
                 <Input 
@@ -85,7 +87,7 @@ const Contact = () => {
               </div>
               
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="email" className="block text-sm font-medium text-gray-900 mb-1">
                   Email Address
                 </label>
                 <Input 
@@ -101,7 +103,7 @@ const Contact = () => {
               </div>
               
               <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="phone" className="block text-sm font-medium text-gray-900 mb-1">
                   Phone Number
                 </label>
                 <Input 
@@ -109,14 +111,14 @@ const Contact = () => {
                   name="phone" 
                   value={formData.phone}
                   onChange={handleChange}
-                  placeholder="+1 (555) 000-0000" 
+                  placeholder="+91 9000000000" 
                   required 
                   className="w-full border-gray-300"
                 />
               </div>
               
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="message" className="block text-sm font-medium text-gray-900 mb-1">
                   Your Message
                 </label>
                 <Textarea 
@@ -125,7 +127,7 @@ const Contact = () => {
                   value={formData.message}
                   onChange={handleChange}
                   placeholder="Tell us about your needs..." 
-                  rows={4} 
+                  rows={isMobile ? 3 : 4} 
                   required 
                   className="w-full border-gray-300"
                 />
@@ -142,28 +144,28 @@ const Contact = () => {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4 }}
-            className="space-y-8"
+            className="space-y-6"
           >
-            <div className="bg-white p-8 rounded-lg shadow-md mb-8">
-              <h2 className="text-2xl font-bold mb-6 text-gray-800">Contact Information</h2>
+            <div className="bg-white p-6 sm:p-8 rounded-lg shadow-md mb-6">
+              <h2 className="text-2xl font-bold mb-6 text-gray-900">Contact Information</h2>
               
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 <div className="flex items-start">
-                  <div className="bg-primary/10 p-3 rounded-full mr-4">
-                    <MapPin className="h-6 w-6 text-primary" />
+                  <div className="bg-primary/10 p-3 rounded-full mr-4 shrink-0">
+                    <MapPin className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-800">Office Location</h3>
-                    <p className="text-gray-600">Plot no. 43, Sri Singi Reddy Swami Reddynagar, ECIL, Hyderabad-500062, Telangana, India</p>
+                    <h3 className="text-lg font-semibold text-gray-900">Office Location</h3>
+                    <p className="text-gray-900">Plot no. 43, Sri Singi Reddy Swami Reddynagar, ECIL, Hyderabad-500062, Telangana, India</p>
                   </div>
                 </div>
                 
                 <div className="flex items-start">
-                  <div className="bg-primary/10 p-3 rounded-full mr-4">
-                    <Mail className="h-6 w-6 text-primary" />
+                  <div className="bg-primary/10 p-3 rounded-full mr-4 shrink-0">
+                    <Mail className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-800">Email Us</h3>
+                    <h3 className="text-lg font-semibold text-gray-900">Email Us</h3>
                     <a href="mailto:info@genzact.com" className="text-primary hover:underline">
                       info@genzact.com
                     </a>
@@ -171,11 +173,11 @@ const Contact = () => {
                 </div>
                 
                 <div className="flex items-start">
-                  <div className="bg-primary/10 p-3 rounded-full mr-4">
-                    <Phone className="h-6 w-6 text-primary" />
+                  <div className="bg-primary/10 p-3 rounded-full mr-4 shrink-0">
+                    <Phone className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-800">Call Us</h3>
+                    <h3 className="text-lg font-semibold text-gray-900">Call Us</h3>
                     <button 
                       onClick={openDialer}
                       className="text-primary hover:underline focus:outline-none"
@@ -186,11 +188,11 @@ const Contact = () => {
                 </div>
                 
                 <div className="flex items-start">
-                  <div className="bg-primary/10 p-3 rounded-full mr-4">
-                    <MessageSquare className="h-6 w-6 text-primary" />
+                  <div className="bg-primary/10 p-3 rounded-full mr-4 shrink-0">
+                    <MessageSquare className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-800">WhatsApp</h3>
+                    <h3 className="text-lg font-semibold text-gray-900">WhatsApp</h3>
                     <a 
                       href="https://wa.me/+919666655664" 
                       target="_blank" 
@@ -203,20 +205,20 @@ const Contact = () => {
                 </div>
                 
                 <div className="flex items-start">
-                  <div className="bg-primary/10 p-3 rounded-full mr-4">
-                    <Clock className="h-6 w-6 text-primary" />
+                  <div className="bg-primary/10 p-3 rounded-full mr-4 shrink-0">
+                    <Clock className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-800">Business Hours</h3>
-                    <p className="text-gray-600">Monday - Friday: 9:00 AM - 6:00 PM</p>
-                    <p className="text-gray-600">Saturday: 10:00 AM - 2:00 PM</p>
+                    <h3 className="text-lg font-semibold text-gray-900">Business Hours</h3>
+                    <p className="text-gray-900">Monday - Friday: 9:00 AM - 6:00 PM</p>
+                    <p className="text-gray-900">Saturday: 10:00 AM - 2:00 PM</p>
                   </div>
                 </div>
               </div>
             </div>
             
             {/* Google Map */}
-            <div className="bg-white p-2 rounded-lg shadow-md overflow-hidden h-80">
+            <div className="bg-white p-2 rounded-lg shadow-md overflow-hidden h-64 sm:h-80">
               <iframe 
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.1487886271765!2d78.57019087570605!3d17.455354800720595!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb9c7a6803c695%3A0xb29a5a0c1a8c66f6!2sECIL%2C%20Sri%20Singi%20Reddy%20Swami%20Reddynagar%2C%20Secunderabad%2C%20Telangana%20500062!5e0!3m2!1sen!2sin!4v1717075152379!5m2!1sen!2sin" 
                 width="100%" 
