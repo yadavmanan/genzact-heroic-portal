@@ -28,7 +28,7 @@ const Navbar = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'glass py-4' : 'bg-background/90 backdrop-blur-lg py-6'
+        isScrolled ? 'bg-white/90 shadow-md py-4' : 'bg-white/70 backdrop-blur-lg py-6'
       }`}
     >
       <div className="container mx-auto px-4">
@@ -47,7 +47,7 @@ const Navbar = () => {
                 className={`nav-link text-sm font-medium ${
                   location.pathname === item.path
                     ? 'text-primary'
-                    : 'text-gray-300 hover:text-white'
+                    : 'text-gray-600 hover:text-primary'
                 }`}
               >
                 {item.label}
@@ -57,7 +57,7 @@ const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-white"
+            className="md:hidden text-gray-600"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -70,13 +70,13 @@ const Navbar = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="md:hidden absolute top-full left-0 w-full glass py-4"
+            className="md:hidden absolute top-full left-0 w-full bg-white py-4 shadow-md"
           >
             {navItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
-                className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/5"
+                className="block px-4 py-2 text-gray-600 hover:text-primary hover:bg-gray-50"
                 onClick={handleNavClick}
               >
                 {item.label}

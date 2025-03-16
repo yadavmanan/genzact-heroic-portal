@@ -5,30 +5,30 @@
 
 @layer base {
   :root {
-    --background: 0 0% 0%;
-    --foreground: 0 0% 100%;
-    --card: 0 0% 3%;
-    --card-foreground: 0 0% 100%;
-    --popover: 0 0% 3%;
-    --popover-foreground: 0 0% 100%;
-    --primary: 160 100% 50%;
+    --background: 0 0% 100%;
+    --foreground: 220 10% 20%;
+    --card: 0 0% 98%;
+    --card-foreground: 220 10% 20%;
+    --popover: 0 0% 98%;
+    --popover-foreground: 220 10% 20%;
+    --primary: 230 60% 50%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 220 100% 20%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 63%;
-    --accent: 160 100% 50%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 220 10% 20%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 220 10% 45%;
+    --accent: 230 60% 50%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 100% 50%;
     --destructive-foreground: 0 0% 100%;
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 160 100% 50%;
+    --border: 220 13% 90%;
+    --input: 220 13% 90%;
+    --ring: 230 60% 50%;
     --radius: 0.5rem;
   }
 
   * {
-    @apply border-border selection:bg-primary/20 selection:text-white;
+    @apply border-border selection:bg-primary/20 selection:text-primary;
   }
   
   body {
@@ -43,11 +43,11 @@
 
 @layer utilities {
   .glass {
-    @apply bg-white/5 backdrop-blur-xl border border-white/10;
+    @apply bg-white/80 backdrop-blur-sm border border-white/30 shadow-md;
   }
   
   .text-gradient {
-    @apply bg-gradient-to-r from-primary/80 to-secondary bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-primary/80 to-primary/60 bg-clip-text text-transparent;
   }
 }
 
@@ -70,3 +70,14 @@
   @apply relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-primary 
          after:transition-all after:duration-300 hover:after:w-full;
 }
+
+.client-logo {
+  animation: pulse 3s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+

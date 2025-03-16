@@ -1,8 +1,12 @@
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Mail, Phone, Clock, ExternalLink, MessageSquare } from 'lucide-react';
+import { 
+  MapPin, Phone, Mail, Send, MessageSquare, Clock
+} from 'lucide-react';
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 
 const Contact = () => {
@@ -21,250 +25,213 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Create WhatsApp message
-    const message = `Hello, my name is ${formData.name}. ${formData.message}. You can reach me at ${formData.email} or ${formData.phone}.`;
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/919666655664?text=${encodedMessage}`;
     
-    // Open WhatsApp in a new tab
-    window.open(whatsappUrl, '_blank');
+    // Create WhatsApp message
+    const whatsappMessage = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nMessage: ${formData.message}`
+    );
+    
+    // Open WhatsApp with the message
+    window.open(`https://wa.me/+919999999999?text=${whatsappMessage}`, '_blank');
     
     toast({
-      title: "Redirecting to WhatsApp",
-      description: "You'll be redirected to send your message via WhatsApp!",
-    });
-    
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      message: ''
+      title: "Message sent via WhatsApp",
+      description: "We'll get back to you as soon as possible!",
     });
   };
 
-  useEffect(() => {
-    // Initialize Google Maps iframe after component mount
-    const mapIframe = document.getElementById('google-map-iframe');
-    if (mapIframe) {
-      mapIframe.setAttribute('src', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.1681559736227!2d78.57462787488545!3d17.458500100987806!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb9be8f7a4d3a9%3A0x3f95b03c9a276be5!2sECIL%2C%20Hyderabad%2C%20Telangana!5e0!3m2!1sen!2sin!4v1712091436937!5m2!1sen!2sin');
-    }
-    
-    // Scroll to top on page load
-    window.scrollTo(0, 0);
-  }, []);
+  const openDialer = () => {
+    window.location.href = 'tel:+919999999999';
+  };
 
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen py-24 px-4"
+      className="min-h-screen pt-32 pb-20 px-4 bg-white"
     >
-      <div className="container mx-auto mt-20">
-        <h1 className="text-4xl md:text-5xl font-bold mb-8 text-gradient">Contact Us</h1>
-        
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-12">
-          <div>
-            <div className="glass p-8 rounded-lg mb-8">
-              <h2 className="text-2xl font-bold mb-6">Get In Touch</h2>
+      <div className="container mx-auto">
+        <div className="text-center mb-12">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gradient">Get in Touch</h1>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            Have questions about our services? Ready to get started? Our team is here to help.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+          {/* Contact Form */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.2 }}
+            className="bg-white p-8 rounded-lg shadow-md"
+          >
+            <h2 className="text-2xl font-bold mb-6 text-gray-800">Send Us a Message</h2>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                  Your Name
+                </label>
+                <Input 
+                  id="name" 
+                  name="name" 
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder="John Doe" 
+                  required 
+                  className="w-full border-gray-300"
+                />
+              </div>
+              
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                  Email Address
+                </label>
+                <Input 
+                  id="email" 
+                  name="email" 
+                  type="email" 
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="john@example.com" 
+                  required 
+                  className="w-full border-gray-300"
+                />
+              </div>
+              
+              <div>
+                <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+                  Phone Number
+                </label>
+                <Input 
+                  id="phone" 
+                  name="phone" 
+                  value={formData.phone}
+                  onChange={handleChange}
+                  placeholder="+1 (555) 000-0000" 
+                  required 
+                  className="w-full border-gray-300"
+                />
+              </div>
+              
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+                  Your Message
+                </label>
+                <Textarea 
+                  id="message" 
+                  name="message" 
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder="Tell us about your needs..." 
+                  rows={4} 
+                  required 
+                  className="w-full border-gray-300"
+                />
+              </div>
+              
+              <Button type="submit" className="w-full bg-primary hover:bg-primary/90">
+                <Send className="mr-2 h-5 w-5" /> Send via WhatsApp
+              </Button>
+            </form>
+          </motion.div>
+          
+          {/* Contact Information */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.4 }}
+            className="space-y-8"
+          >
+            <div className="bg-white p-8 rounded-lg shadow-md mb-8">
+              <h2 className="text-2xl font-bold mb-6 text-gray-800">Contact Information</h2>
+              
               <div className="space-y-6">
                 <div className="flex items-start">
-                  <MapPin className="w-6 h-6 text-primary mr-4 mt-1" />
+                  <div className="bg-primary/10 p-3 rounded-full mr-4">
+                    <MapPin className="h-6 w-6 text-primary" />
+                  </div>
                   <div>
-                    <h3 className="text-lg font-medium">Address</h3>
-                    <p className="text-gray-300">Plot no. 43, Sri Singi Reddy Swami Reddynagar,</p>
-                    <p className="text-gray-300">ECIL, Hyderabad-500062, Telangana</p>
-                    <a 
-                      href="https://maps.google.com/?q=ECIL,+Hyderabad,+Telangana+500062" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="text-primary flex items-center mt-2 hover:underline"
-                    >
-                      View on Google Maps <ExternalLink className="w-4 h-4 ml-1" />
+                    <h3 className="text-lg font-semibold text-gray-800">Office Location</h3>
+                    <p className="text-gray-600">123 Business Avenue, Tech Park, Bangalore, India</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start">
+                  <div className="bg-primary/10 p-3 rounded-full mr-4">
+                    <Mail className="h-6 w-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-800">Email Us</h3>
+                    <a href="mailto:info@genzact.com" className="text-primary hover:underline">
+                      info@genzact.com
                     </a>
                   </div>
                 </div>
                 
                 <div className="flex items-start">
-                  <Mail className="w-6 h-6 text-primary mr-4 mt-1" />
+                  <div className="bg-primary/10 p-3 rounded-full mr-4">
+                    <Phone className="h-6 w-6 text-primary" />
+                  </div>
                   <div>
-                    <h3 className="text-lg font-medium">Email</h3>
-                    <a href="mailto:babu@genzact.com" className="text-gray-300 hover:text-primary">babu@genzact.com</a>
-                    <p className="text-gray-300">
-                      <a href="mailto:info@genzact.com" className="hover:text-primary">info@genzact.com</a>
-                    </p>
+                    <h3 className="text-lg font-semibold text-gray-800">Call Us</h3>
+                    <button 
+                      onClick={openDialer}
+                      className="text-primary hover:underline focus:outline-none"
+                    >
+                      +91 9999 999 999
+                    </button>
                   </div>
                 </div>
                 
                 <div className="flex items-start">
-                  <Phone className="w-6 h-6 text-primary mr-4 mt-1" />
+                  <div className="bg-primary/10 p-3 rounded-full mr-4">
+                    <MessageSquare className="h-6 w-6 text-primary" />
+                  </div>
                   <div>
-                    <h3 className="text-lg font-medium">Phone</h3>
-                    <a href="tel:+919666655664" className="text-gray-300 hover:text-primary">+91 9666655664</a>
-                    <div className="flex mt-2 space-x-4">
-                      <a 
-                        href="tel:+919666655664" 
-                        className="flex items-center text-primary hover:underline"
-                      >
-                        <Phone className="w-4 h-4 mr-1" /> Call Now
-                      </a>
-                      <a 
-                        href="https://wa.me/919666655664" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="flex items-center text-primary hover:underline"
-                      >
-                        <MessageSquare className="w-4 h-4 mr-1" /> WhatsApp
-                      </a>
-                    </div>
+                    <h3 className="text-lg font-semibold text-gray-800">WhatsApp</h3>
+                    <a 
+                      href="https://wa.me/+919999999999" 
+                      target="_blank" 
+                      rel="noreferrer"
+                      className="text-primary hover:underline"
+                    >
+                      +91 9999 999 999
+                    </a>
                   </div>
                 </div>
                 
                 <div className="flex items-start">
-                  <Clock className="w-6 h-6 text-primary mr-4 mt-1" />
+                  <div className="bg-primary/10 p-3 rounded-full mr-4">
+                    <Clock className="h-6 w-6 text-primary" />
+                  </div>
                   <div>
-                    <h3 className="text-lg font-medium">Business Hours</h3>
-                    <p className="text-gray-300">Monday - Friday: 9am - 6pm</p>
-                    <p className="text-gray-300">Saturday: 10am - 2pm</p>
+                    <h3 className="text-lg font-semibold text-gray-800">Business Hours</h3>
+                    <p className="text-gray-600">Monday - Friday: 9:00 AM - 6:00 PM</p>
+                    <p className="text-gray-600">Saturday: 10:00 AM - 2:00 PM</p>
                   </div>
                 </div>
               </div>
             </div>
             
-            {/* Google Maps Embed */}
-            <div className="glass p-2 rounded-lg overflow-hidden h-[300px]">
+            {/* Google Map */}
+            <div className="bg-white p-2 rounded-lg shadow-md overflow-hidden h-80">
               <iframe 
-                id="google-map-iframe"
-                className="w-full h-full rounded-lg"
-                title="Genzact Office Location" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.9901772602224!2d77.64328401482183!3d12.978345490855802!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1681f363fcc1%3A0x1f3145cbf5dc7a66!2sIndiranagar%2C%20Bengaluru%2C%20Karnataka%20560038!5e0!3m2!1sen!2sin!4v1627285539221!5m2!1sen!2sin" 
+                width="100%" 
+                height="100%" 
+                style={{ border: 0 }} 
+                allowFullScreen={false} 
                 loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
+                title="Office Location"
               ></iframe>
             </div>
-          </div>
-          
-          <div className="glass p-8 rounded-lg">
-            <h2 className="text-2xl font-bold mb-6">Send Us a Message</h2>
-            <p className="text-gray-300 mb-4">Fill out this form and click "Send Message" to connect with us directly via WhatsApp.</p>
-            <form onSubmit={handleSubmit}>
-              <div className="mb-4">
-                <label htmlFor="name" className="block mb-2 text-sm font-medium">Your Name</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  className="bg-white/5 border border-white/10 text-white rounded-lg block w-full p-3"
-                  required
-                />
-              </div>
-              
-              <div className="mb-4">
-                <label htmlFor="email" className="block mb-2 text-sm font-medium">Your Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="bg-white/5 border border-white/10 text-white rounded-lg block w-full p-3"
-                  required
-                />
-              </div>
-              
-              <div className="mb-4">
-                <label htmlFor="phone" className="block mb-2 text-sm font-medium">Phone Number</label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  className="bg-white/5 border border-white/10 text-white rounded-lg block w-full p-3"
-                />
-              </div>
-              
-              <div className="mb-6">
-                <label htmlFor="message" className="block mb-2 text-sm font-medium">Your Message</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  rows={4}
-                  className="bg-white/5 border border-white/10 text-white rounded-lg block w-full p-3"
-                  required
-                ></textarea>
-              </div>
-              
-              <Button type="submit" className="w-full text-lg px-8 py-6 glass hover:bg-primary/20 transition-all duration-300">
-                Send Message via WhatsApp
-              </Button>
-              
-              <div className="mt-4 text-center text-gray-400 text-sm">
-                <p>Or contact us directly:</p>
-                <div className="flex justify-center mt-2 space-x-4">
-                  <a 
-                    href="tel:+919666655664" 
-                    className="flex items-center text-primary hover:underline"
-                  >
-                    <Phone className="w-4 h-4 mr-1" /> Call Now
-                  </a>
-                  <a 
-                    href="https://wa.me/919666655664" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="flex items-center text-primary hover:underline"
-                  >
-                    <MessageSquare className="w-4 h-4 mr-1" /> WhatsApp
-                  </a>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-        
-        {/* FAQ Section */}
-        <div className="mt-20">
-          <h2 className="text-3xl font-bold mb-8 text-gradient">Frequently Asked Questions</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {faqs.map((faq, index) => (
-              <motion.div 
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 * index }}
-                className="glass p-6 rounded-lg"
-              >
-                <h3 className="text-xl font-bold mb-3">{faq.question}</h3>
-                <p className="text-gray-300">{faq.answer}</p>
-              </motion.div>
-            ))}
-          </div>
+          </motion.div>
         </div>
       </div>
     </motion.div>
   );
 };
-
-const faqs = [
-  {
-    question: "What areas do you provide staffing services for?",
-    answer: "We specialize in IT and technology staffing across India, with a focus on software development, cloud engineering, data science, and IT infrastructure roles."
-  },
-  {
-    question: "How quickly can you find candidates for our open positions?",
-    answer: "Depending on the role complexity, we typically present qualified candidates within 48-72 hours of finalizing your requirements."
-  },
-  {
-    question: "Do you offer contract-to-hire options?",
-    answer: "Yes, we provide flexible engagement models including contract, contract-to-hire, and direct placement to suit your specific needs."
-  },
-  {
-    question: "What makes Genzact different from other staffing agencies?",
-    answer: "Our deep technical expertise, personalized approach, and extensive network in the tech industry allow us to find candidates that aren't just qualified on paper but are the right cultural fit."
-  }
-];
 
 export default Contact;
