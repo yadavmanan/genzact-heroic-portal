@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { 
   Users, Search, BarChart, Building, Shield, Clock, 
-  FileText, Briefcase, Calculator, Database, UserCheck, HeartHandshake 
+  FileText, Briefcase, Calculator, Database, UserCheck, HeartHandshake,
+  Laptop, Computer, Phone, HardHat, Factory, PhoneCall
 } from 'lucide-react';
 
 const Services = () => {
@@ -21,6 +22,12 @@ const Services = () => {
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 }
+  };
+
+  // Function to handle "Contact Us" button clicks
+  const handleContactClick = () => {
+    // Navigate to the top of the contact page
+    window.scrollTo(0, 0);
   };
 
   return (
@@ -85,7 +92,7 @@ const Services = () => {
                 <span>Performance Management Systems</span>
               </li>
             </ul>
-            <Link to="/contact">
+            <Link to="/contact" onClick={handleContactClick}>
               <Button className="bg-primary hover:bg-primary/90">Request Consultation</Button>
             </Link>
           </motion.div>
@@ -117,7 +124,7 @@ const Services = () => {
                 <span>Employee self-service portal</span>
               </li>
             </ul>
-            <Link to="/contact">
+            <Link to="/contact" onClick={handleContactClick}>
               <Button className="bg-primary hover:bg-primary/90">Learn More</Button>
             </Link>
           </motion.div>
@@ -148,8 +155,72 @@ const Services = () => {
                 <span>Employer branding and candidate experience</span>
               </li>
             </ul>
-            <Link to="/contact">
+            <Link to="/contact" onClick={handleContactClick}>
               <Button className="bg-primary hover:bg-primary/90">Get Started</Button>
+            </Link>
+          </motion.div>
+          
+          {/* New Service: Domestic IT Requirements */}
+          <motion.div variants={itemVariants} className="bg-white p-8 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg">
+            <div className="flex items-center mb-4">
+              <Laptop className="w-10 h-10 text-primary mr-4" />
+              <h2 className="text-2xl font-bold">Domestic IT Requirements</h2>
+            </div>
+            <p className="text-gray-900 mb-6">
+              Fulfill your IT staffing needs with our specialized recruitment services for technology roles:
+            </p>
+            <ul className="text-gray-900 mb-6 space-y-2">
+              <li className="flex items-start">
+                <Computer className="w-5 h-5 text-primary mr-2 mt-1" />
+                <span>Software Development Professionals</span>
+              </li>
+              <li className="flex items-start">
+                <Database className="w-5 h-5 text-primary mr-2 mt-1" />
+                <span>Data Science & Analytics Experts</span>
+              </li>
+              <li className="flex items-start">
+                <Shield className="w-5 h-5 text-primary mr-2 mt-1" />
+                <span>Cybersecurity Specialists</span>
+              </li>
+              <li className="flex items-start">
+                <Users className="w-5 h-5 text-primary mr-2 mt-1" />
+                <span>IT Project Management Teams</span>
+              </li>
+            </ul>
+            <Link to="/contact" onClick={handleContactClick}>
+              <Button className="bg-primary hover:bg-primary/90">Get IT Solutions</Button>
+            </Link>
+          </motion.div>
+          
+          {/* New Service: On-Call Services for Industrial Sectors */}
+          <motion.div variants={itemVariants} className="bg-white p-8 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg">
+            <div className="flex items-center mb-4">
+              <Factory className="w-10 h-10 text-primary mr-4" />
+              <h2 className="text-2xl font-bold">On-Call Services for Industrial Sectors</h2>
+            </div>
+            <p className="text-gray-900 mb-6">
+              Immediate staffing solutions for urgent industrial requirements with our on-demand workforce:
+            </p>
+            <ul className="text-gray-900 mb-6 space-y-2">
+              <li className="flex items-start">
+                <HardHat className="w-5 h-5 text-primary mr-2 mt-1" />
+                <span>Manufacturing & Production Staff</span>
+              </li>
+              <li className="flex items-start">
+                <PhoneCall className="w-5 h-5 text-primary mr-2 mt-1" />
+                <span>24/7 Emergency Response Teams</span>
+              </li>
+              <li className="flex items-start">
+                <Clock className="w-5 h-5 text-primary mr-2 mt-1" />
+                <span>Temporary Project-Based Workforce</span>
+              </li>
+              <li className="flex items-start">
+                <UserCheck className="w-5 h-5 text-primary mr-2 mt-1" />
+                <span>Specialized Technical Operators</span>
+              </li>
+            </ul>
+            <Link to="/contact" onClick={handleContactClick}>
+              <Button className="bg-primary hover:bg-primary/90">Request On-Call Staff</Button>
             </Link>
           </motion.div>
         </motion.div>
@@ -166,7 +237,7 @@ const Services = () => {
             Our team can create tailored staffing and recruitment solutions designed specifically 
             for your organization's unique challenges and goals.
           </p>
-          <Link to="/contact">
+          <Link to="/contact" onClick={handleContactClick}>
             <Button className="text-lg px-8 py-6 bg-primary hover:bg-primary/90 text-white transition-all duration-300">
               Contact Us Today
             </Button>
