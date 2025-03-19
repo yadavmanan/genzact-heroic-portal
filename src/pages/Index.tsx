@@ -1,7 +1,6 @@
-
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, ChevronDown, Briefcase, Calculator, Search, Check, Star, ArrowUpRight } from 'lucide-react';
+import { ArrowRight, ChevronDown, Briefcase, Calculator, Search, Check, Star, ArrowUpRight, Laptop, Factory } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
@@ -18,6 +17,10 @@ const Index = () => {
       description: "Discover innovative staffing solutions for your business",
     });
   }, []);
+
+  const handleContactClick = () => {
+    window.scrollTo(0, 0);
+  };
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -79,7 +82,7 @@ const Index = () => {
             initial={{ opacity: 0 }}
             animate={isLoaded ? { opacity: 1 } : {}}
             transition={{ delay: 0.5 }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8"
           >
             {services.map((service, index) => (
               <motion.div
@@ -87,12 +90,12 @@ const Index = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={isLoaded ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.2 * index }}
-                className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-all duration-300"
+                className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 flex flex-col h-full"
               >
                 <service.icon className="w-12 h-12 text-primary mb-4" />
                 <h3 className="text-xl font-bold mb-4">{service.title}</h3>
-                <p className="text-gray-600 mb-4">{service.description}</p>
-                <Link to="/services" onClick={() => window.scrollTo(0, 0)} className="flex items-center text-primary hover:underline">
+                <p className="text-gray-600 mb-4 flex-grow">{service.description}</p>
+                <Link to="/services" onClick={() => window.scrollTo(0, 0)} className="flex items-center text-primary hover:underline mt-auto">
                   Learn more <ArrowRight className="ml-2 w-4 h-4" />
                 </Link>
               </motion.div>
@@ -189,7 +192,7 @@ const Index = () => {
               perfect talent solutions for your unique needs.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Link to="/contact" onClick={() => window.scrollTo(0, 0)}>
+              <Link to="/contact" onClick={handleContactClick}>
                 <Button className="text-lg px-8 py-6 bg-primary hover:bg-primary/90 transition-all duration-300 shadow-md">
                   Get in Touch <ArrowRight className="ml-2" />
                 </Button>
@@ -252,6 +255,16 @@ const services = [
     title: "RPO Solutions",
     description: "End-to-end recruitment process outsourcing for IT and non-IT sectors.",
     icon: Search
+  },
+  {
+    title: "Domestic IT Requirements",
+    description: "Specialized IT staffing solutions for technology roles and projects.",
+    icon: Laptop
+  },
+  {
+    title: "On-Call Services",
+    description: "Immediate staffing solutions for urgent industrial requirements.",
+    icon: Factory
   }
 ];
 

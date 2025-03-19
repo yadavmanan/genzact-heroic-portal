@@ -65,164 +65,32 @@ const Services = () => {
           animate="visible"
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12 mb-16"
         >
-          <motion.div variants={itemVariants} className="bg-white p-8 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg">
-            <div className="flex items-center mb-4">
-              <Briefcase className="w-10 h-10 text-primary mr-4" />
-              <h2 className="text-2xl font-bold">Manpower Consulting</h2>
-            </div>
-            <p className="text-gray-900 mb-6">
-              We provide expert manpower consulting services to optimize your workforce and enhance 
-              operational efficiency. Our solutions include:
-            </p>
-            <ul className="text-gray-900 mb-6 space-y-2">
-              <li className="flex items-start">
-                <Users className="w-5 h-5 text-primary mr-2 mt-1" />
-                <span>Workforce Planning & Analysis</span>
-              </li>
-              <li className="flex items-start">
-                <UserCheck className="w-5 h-5 text-primary mr-2 mt-1" />
-                <span>Talent Acquisition Strategy</span>
-              </li>
-              <li className="flex items-start">
-                <Building className="w-5 h-5 text-primary mr-2 mt-1" />
-                <span>Organizational Development</span>
-              </li>
-              <li className="flex items-start">
-                <BarChart className="w-5 h-5 text-primary mr-2 mt-1" />
-                <span>Performance Management Systems</span>
-              </li>
-            </ul>
-            <Link to="/contact" onClick={handleContactClick}>
-              <Button className="bg-primary hover:bg-primary/90">Request Consultation</Button>
-            </Link>
-          </motion.div>
-          
-          <motion.div variants={itemVariants} className="bg-white p-8 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg">
-            <div className="flex items-center mb-4">
-              <Calculator className="w-10 h-10 text-primary mr-4" />
-              <h2 className="text-2xl font-bold">Payroll Management</h2>
-            </div>
-            <p className="text-gray-900 mb-6">
-              Streamline your payroll operations with our comprehensive payroll management services 
-              that ensure accuracy, compliance, and efficiency:
-            </p>
-            <ul className="text-gray-900 mb-6 space-y-2">
-              <li className="flex items-start">
-                <FileText className="w-5 h-5 text-primary mr-2 mt-1" />
-                <span>End-to-end payroll processing</span>
-              </li>
-              <li className="flex items-start">
-                <Shield className="w-5 h-5 text-primary mr-2 mt-1" />
-                <span>Tax compliance and reporting</span>
-              </li>
-              <li className="flex items-start">
-                <Clock className="w-5 h-5 text-primary mr-2 mt-1" />
-                <span>Attendance and leave management</span>
-              </li>
-              <li className="flex items-start">
-                <Database className="w-5 h-5 text-primary mr-2 mt-1" />
-                <span>Employee self-service portal</span>
-              </li>
-            </ul>
-            <Link to="/contact" onClick={handleContactClick}>
-              <Button className="bg-primary hover:bg-primary/90">Learn More</Button>
-            </Link>
-          </motion.div>
-          
-          <motion.div variants={itemVariants} className="bg-white p-8 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg">
-            <div className="flex items-center mb-4">
-              <Search className="w-10 h-10 text-primary mr-4" />
-              <h2 className="text-2xl font-bold">RPO Solutions</h2>
-            </div>
-            <p className="text-gray-900 mb-6">
-              Our Recruitment Process Outsourcing (RPO) solutions for both IT and non-IT sectors deliver:
-            </p>
-            <ul className="text-gray-900 mb-6 space-y-2">
-              <li className="flex items-start">
-                <Building className="w-5 h-5 text-primary mr-2 mt-1" />
-                <span>End-to-end recruitment management</span>
-              </li>
-              <li className="flex items-start">
-                <Users className="w-5 h-5 text-primary mr-2 mt-1" />
-                <span>Industry-specific talent acquisition</span>
-              </li>
-              <li className="flex items-start">
-                <Clock className="w-5 h-5 text-primary mr-2 mt-1" />
-                <span>Scalable hiring solutions</span>
-              </li>
-              <li className="flex items-start">
-                <HeartHandshake className="w-5 h-5 text-primary mr-2 mt-1" />
-                <span>Employer branding and candidate experience</span>
-              </li>
-            </ul>
-            <Link to="/contact" onClick={handleContactClick}>
-              <Button className="bg-primary hover:bg-primary/90">Get Started</Button>
-            </Link>
-          </motion.div>
-          
-          {/* New Service: Domestic IT Requirements */}
-          <motion.div variants={itemVariants} className="bg-white p-8 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg">
-            <div className="flex items-center mb-4">
-              <Laptop className="w-10 h-10 text-primary mr-4" />
-              <h2 className="text-2xl font-bold">Domestic IT Requirements</h2>
-            </div>
-            <p className="text-gray-900 mb-6">
-              Fulfill your IT staffing needs with our specialized recruitment services for technology roles:
-            </p>
-            <ul className="text-gray-900 mb-6 space-y-2">
-              <li className="flex items-start">
-                <Computer className="w-5 h-5 text-primary mr-2 mt-1" />
-                <span>Software Development Professionals</span>
-              </li>
-              <li className="flex items-start">
-                <Database className="w-5 h-5 text-primary mr-2 mt-1" />
-                <span>Data Science & Analytics Experts</span>
-              </li>
-              <li className="flex items-start">
-                <Shield className="w-5 h-5 text-primary mr-2 mt-1" />
-                <span>Cybersecurity Specialists</span>
-              </li>
-              <li className="flex items-start">
-                <Users className="w-5 h-5 text-primary mr-2 mt-1" />
-                <span>IT Project Management Teams</span>
-              </li>
-            </ul>
-            <Link to="/contact" onClick={handleContactClick}>
-              <Button className="bg-primary hover:bg-primary/90">Get IT Solutions</Button>
-            </Link>
-          </motion.div>
-          
-          {/* New Service: On-Call Services for Industrial Sectors */}
-          <motion.div variants={itemVariants} className="bg-white p-8 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg">
-            <div className="flex items-center mb-4">
-              <Factory className="w-10 h-10 text-primary mr-4" />
-              <h2 className="text-2xl font-bold">On-Call Services for Industrial Sectors</h2>
-            </div>
-            <p className="text-gray-900 mb-6">
-              Immediate staffing solutions for urgent industrial requirements with our on-demand workforce:
-            </p>
-            <ul className="text-gray-900 mb-6 space-y-2">
-              <li className="flex items-start">
-                <HardHat className="w-5 h-5 text-primary mr-2 mt-1" />
-                <span>Manufacturing & Production Staff</span>
-              </li>
-              <li className="flex items-start">
-                <PhoneCall className="w-5 h-5 text-primary mr-2 mt-1" />
-                <span>24/7 Emergency Response Teams</span>
-              </li>
-              <li className="flex items-start">
-                <Clock className="w-5 h-5 text-primary mr-2 mt-1" />
-                <span>Temporary Project-Based Workforce</span>
-              </li>
-              <li className="flex items-start">
-                <UserCheck className="w-5 h-5 text-primary mr-2 mt-1" />
-                <span>Specialized Technical Operators</span>
-              </li>
-            </ul>
-            <Link to="/contact" onClick={handleContactClick}>
-              <Button className="bg-primary hover:bg-primary/90">Request On-Call Staff</Button>
-            </Link>
-          </motion.div>
+          {coreServices.map((service, index) => (
+            <motion.div 
+              key={index} 
+              variants={itemVariants} 
+              className="bg-white p-8 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg h-full flex flex-col"
+            >
+              <div className="flex items-center mb-4">
+                <service.icon className="w-10 h-10 text-primary mr-4" />
+                <h2 className="text-2xl font-bold">{service.title}</h2>
+              </div>
+              <p className="text-gray-900 mb-6">
+                {service.description}
+              </p>
+              <ul className="text-gray-900 mb-6 space-y-2 flex-grow">
+                {service.features.map((feature, i) => (
+                  <li key={i} className="flex items-start">
+                    <feature.icon className="w-5 h-5 text-primary mr-2 mt-1" />
+                    <span>{feature.text}</span>
+                  </li>
+                ))}
+              </ul>
+              <Link to="/contact" onClick={handleContactClick} className="mt-auto">
+                <Button className="bg-primary hover:bg-primary/90">{service.buttonText}</Button>
+              </Link>
+            </motion.div>
+          ))}
         </motion.div>
         
         {/* Call to Action */}
@@ -247,5 +115,69 @@ const Services = () => {
     </motion.div>
   );
 };
+
+// Define services data for better organization and consistency
+const coreServices = [
+  {
+    title: "Manpower Consulting",
+    description: "We provide expert manpower consulting services to optimize your workforce and enhance operational efficiency. Our solutions include:",
+    icon: Briefcase,
+    features: [
+      { icon: Users, text: "Workforce Planning & Analysis" },
+      { icon: UserCheck, text: "Talent Acquisition Strategy" },
+      { icon: Building, text: "Organizational Development" },
+      { icon: BarChart, text: "Performance Management Systems" }
+    ],
+    buttonText: "Request Consultation"
+  },
+  {
+    title: "Payroll Management",
+    description: "Streamline your payroll operations with our comprehensive payroll management services that ensure accuracy, compliance, and efficiency:",
+    icon: Calculator,
+    features: [
+      { icon: FileText, text: "End-to-end payroll processing" },
+      { icon: Shield, text: "Tax compliance and reporting" },
+      { icon: Clock, text: "Attendance and leave management" },
+      { icon: Database, text: "Employee self-service portal" }
+    ],
+    buttonText: "Learn More"
+  },
+  {
+    title: "RPO Solutions",
+    description: "Our Recruitment Process Outsourcing (RPO) solutions for both IT and non-IT sectors deliver:",
+    icon: Search,
+    features: [
+      { icon: Building, text: "End-to-end recruitment management" },
+      { icon: Users, text: "Industry-specific talent acquisition" },
+      { icon: Clock, text: "Scalable hiring solutions" },
+      { icon: HeartHandshake, text: "Employer branding and candidate experience" }
+    ],
+    buttonText: "Get Started"
+  },
+  {
+    title: "Domestic IT Requirements",
+    description: "Fulfill your IT staffing needs with our specialized recruitment services for technology roles:",
+    icon: Laptop,
+    features: [
+      { icon: Computer, text: "Software Development Professionals" },
+      { icon: Database, text: "Data Science & Analytics Experts" },
+      { icon: Shield, text: "Cybersecurity Specialists" },
+      { icon: Users, text: "IT Project Management Teams" }
+    ],
+    buttonText: "Get IT Solutions"
+  },
+  {
+    title: "On-Call Services for Industrial Sectors",
+    description: "Immediate staffing solutions for urgent industrial requirements with our on-demand workforce:",
+    icon: Factory,
+    features: [
+      { icon: HardHat, text: "Manufacturing & Production Staff" },
+      { icon: PhoneCall, text: "24/7 Emergency Response Teams" },
+      { icon: Clock, text: "Temporary Project-Based Workforce" },
+      { icon: UserCheck, text: "Specialized Technical Operators" }
+    ],
+    buttonText: "Request On-Call Staff"
+  }
+];
 
 export default Services;
