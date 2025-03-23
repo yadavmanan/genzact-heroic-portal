@@ -43,12 +43,17 @@
         }
         #babu-pdf-content, #babu-pdf-content * {
           visibility: visible;
+          color-adjust: exact !important;
+          -webkit-print-color-adjust: exact !important;
+          print-color-adjust: exact !important;
         }
         #babu-pdf-content {
           position: absolute;
           left: 0;
           top: 0;
           width: 100%;
+          margin: 0;
+          padding: 0;
         }
       }
       
@@ -61,6 +66,7 @@
         background-color: white;
         overflow: visible !important;
         height: auto !important;
+        color: #000 !important;
       }
       
       /* Fix for PDF content */
@@ -72,15 +78,32 @@
       #babu-pdf-content h2, 
       #babu-pdf-content h3 {
         page-break-after: avoid;
+        color: #000 !important;
       }
       
       #babu-pdf-content p, 
       #babu-pdf-content li {
         page-break-inside: avoid;
+        color: #000 !important;
       }
       
       #babu-pdf-content div.card {
         page-break-inside: avoid;
+      }
+      
+      /* Force colors in PDF */
+      #babu-pdf-content .text-primary {
+        color: #3060ff !important;
+      }
+      
+      #babu-pdf-content .text-gray-700,
+      #babu-pdf-content .text-gray-800,
+      #babu-pdf-content .text-gray-900 {
+        color: #000 !important;
+      }
+      
+      #babu-pdf-content .bg-primary {
+        background-color: #3060ff !important;
       }
     </style>
   </head>

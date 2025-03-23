@@ -14,7 +14,7 @@ interface PDFDownloadLinkProps {
 
 const PDFDownloadLink: React.FC<PDFDownloadLinkProps> = ({ 
   className = "", 
-  text = "Download Company Profile", 
+  text = "See Profile", 
   showIcon = true,
   size = "default",
   variant = "default"
