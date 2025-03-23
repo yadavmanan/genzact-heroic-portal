@@ -10,6 +10,16 @@ const About = () => {
     visible: { opacity: 1, y: 0 }
   };
 
+  const slideIn = {
+    hidden: { opacity: 0, x: -30 },
+    visible: { opacity: 1, x: 0 }
+  };
+
+  const scaleIn = {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: { opacity: 1, scale: 1 }
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -159,22 +169,76 @@ const About = () => {
           Leadership
         </motion.h2>
         <motion.div 
-          variants={fadeIn}
+          variants={scaleIn}
           initial="hidden"
           animate="visible"
           transition={{ delay: 0.6 }}
           className="glass p-8 rounded-lg mb-12"
         >
           <div>
-            <h3 className="text-2xl font-bold mb-2">Babu Karlapudi</h3>
-            <p className="text-primary mb-4">CEO & Founder</p>
-            <p className="text-gray-900 mb-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7, duration: 0.5 }}
+            >
+              <h3 className="text-2xl font-bold mb-2">Babu Karlapudi</h3>
+              <p className="text-primary mb-4">CEO & Founder</p>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8, duration: 0.7 }}
+              className="relative pl-4 border-l-4 border-primary mb-6"
+            >
+              <p className="text-gray-900 mb-4 italic">
+                "My journey in the IT staffing industry has been driven by a passion to bridge the gap between exceptional talent and innovative companies. At Genzact, we're not just filling positions—we're building careers and helping businesses thrive."
+              </p>
+            </motion.div>
+            
+            <motion.p 
+              variants={slideIn}
+              initial="hidden"
+              animate="visible"
+              transition={{ delay: 0.9, duration: 0.5 }}
+              className="text-gray-900 mb-4"
+            >
               With over 15 years of experience in the staffing industry, Babu has built Genzact 
               from the ground up, focusing on quality relationships and exceptional service. His vision
               and leadership have been instrumental in establishing Genzact as a trusted name in
               the IT staffing sector.
-            </p>
-            <div className="flex flex-col space-y-2">
+            </motion.p>
+            
+            <motion.p 
+              variants={slideIn}
+              initial="hidden"
+              animate="visible"
+              transition={{ delay: 1.0, duration: 0.5 }}
+              className="text-gray-900 mb-4"
+            >
+              Under his guidance, Genzact has expanded into diverse technology domains, creating a robust network
+              of professionals and clients throughout India. Babu's innovative approach to recruitment and deep
+              understanding of industry trends has positioned the company at the forefront of IT staffing solutions.
+            </motion.p>
+            
+            <motion.p 
+              variants={slideIn}
+              initial="hidden"
+              animate="visible"
+              transition={{ delay: 1.1, duration: 0.5 }}
+              className="text-gray-900 mb-6"
+            >
+              Babu believes in maintaining direct relationships with both clients and candidates, ensuring
+              a personalized touch that has become Genzact's hallmark. His commitment to ethical business practices
+              and transparent communication continues to drive the company's success and growth.
+            </motion.p>
+            
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.2 }}
+              className="flex flex-col space-y-2"
+            >
               <div className="flex items-center">
                 <PhoneCall className="w-5 h-5 text-primary mr-2" />
                 <a href="tel:+919666655664" className="hover:text-primary">9666655664</a>
@@ -183,7 +247,7 @@ const About = () => {
                 <Mail className="w-5 h-5 text-primary mr-2" />
                 <a href="mailto:babu@genzact.com" className="hover:text-primary">babu@genzact.com</a>
               </div>
-            </div>
+            </motion.div>
           </div>
         </motion.div>
         
@@ -203,6 +267,7 @@ const About = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
+                transition={{ delay: 0.2 * index, duration: 0.5 }}
                 className="glass p-6 rounded-lg text-center"
               >
                 <h3 className="text-4xl font-bold text-primary mb-2">{achievement.number}</h3>
