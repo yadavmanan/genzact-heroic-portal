@@ -3,6 +3,7 @@ import { User, Mail, MapPin, Calendar, Award, Target, Users, Briefcase, CheckCir
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { useState } from 'react';
+import PDFDownloadLink from '@/components/PDFDownloadLink';
 
 const About = () => {
   const [expandedSection, setExpandedSection] = useState<string | null>(null);
@@ -198,6 +199,13 @@ const About = () => {
                 <p className="text-gray-700 mb-4">
                   <span className="font-medium">20+ Years Experience in US IT Staffing</span>
                 </p>
+                <div className="mt-2">
+                  <PDFDownloadLink 
+                    text="Download Babu's Profile" 
+                    variant="outline"
+                    className="border-primary text-primary hover:bg-primary/10"
+                  />
+                </div>
               </div>
               <div className="mt-4 md:mt-0">
                 <div className="flex items-center space-x-3">
@@ -542,3 +550,4 @@ const leadershipSections = [
 ];
 
 export default About;
+

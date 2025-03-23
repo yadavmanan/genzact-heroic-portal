@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { 
   Award, 
@@ -19,34 +18,100 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas";
+import { useToast } from "@/components/ui/use-toast";
 
 const BabuPdfProfile = () => {
+  const { toast } = useToast();
+
   const generatePdf = async () => {
     const pdfContent = document.getElementById('babu-pdf-content');
     if (!pdfContent) return;
 
     try {
-      const canvas = await html2canvas(pdfContent, {
-        scale: 2,
-        useCORS: true,
-        logging: false,
-        backgroundColor: '#ffffff'
+      toast({
+        title: "Generating PDF",
+        description: "Please wait while we prepare your download...",
+        duration: 3000,
       });
+
+      // Set a temporary class to apply styles for PDF generation
+      document.body.classList.add('generating-pdf');
       
-      const imgData = canvas.toDataURL('image/png');
       const pdf = new jsPDF({
         orientation: 'portrait',
         unit: 'mm',
         format: 'a4'
       });
       
-      const imgWidth = 210;
-      const imgHeight = canvas.height * imgWidth / canvas.width;
+      // Get the height and width of the a4 page
+      const pageWidth = pdf.internal.pageSize.getWidth();
+      const pageHeight = pdf.internal.pageSize.getHeight();
       
-      pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+      // Calculate the number of canvas elements needed based on content height
+      const contentHeight = pdfContent.offsetHeight;
+      const totalParts = Math.ceil(contentHeight / 1000); // Split into parts of max 1000px height
+      
+      // Process each part
+      for (let i = 0; i < totalParts; i++) {
+        // Set the position for capturing this segment
+        const position = -i * 1000;
+        
+        // Create a clone of the element to manipulate without affecting the view
+        const clone = pdfContent.cloneNode(true) as HTMLElement;
+        clone.style.position = 'absolute';
+        clone.style.top = position + 'px';
+        clone.style.width = pdfContent.offsetWidth + 'px';
+        clone.style.transform = 'none';
+        clone.style.visibility = 'hidden';
+        document.body.appendChild(clone);
+        
+        // Capture this segment
+        const canvas = await html2canvas(clone, {
+          scale: 2,
+          useCORS: true,
+          logging: false,
+          backgroundColor: '#ffffff',
+          windowHeight: 1000,
+          height: Math.min(1000, contentHeight - (i * 1000)),
+          y: i * 1000
+        });
+        
+        document.body.removeChild(clone);
+        
+        // Add a new page if this isn't the first section
+        if (i > 0) {
+          pdf.addPage();
+        }
+        
+        // Add this segment to the PDF
+        const imgData = canvas.toDataURL('image/png');
+        const imgWidth = pageWidth;
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+        
+        pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, Math.min(imgHeight, pageHeight));
+      }
+      
+      // Remove temporary class
+      document.body.classList.remove('generating-pdf');
+      
+      // Save the complete PDF
       pdf.save('Babu_Karlapudi_Profile.pdf');
+      
+      toast({
+        title: "PDF Generated",
+        description: "Your PDF has been successfully downloaded!",
+        duration: 3000,
+      });
     } catch (error) {
       console.error('Error generating PDF:', error);
+      document.body.classList.remove('generating-pdf');
+      
+      toast({
+        title: "Error",
+        description: "Failed to generate PDF. Please try again.",
+        variant: "destructive",
+        duration: 5000,
+      });
     }
   };
 
@@ -210,7 +275,6 @@ const BabuPdfProfile = () => {
   );
 };
 
-// Define expertise areas data
 const expertiseAreas = [
   {
     title: "Strategic Leadership & Integration",
@@ -268,7 +332,6 @@ const expertiseAreas = [
   }
 ];
 
-// Define services data
 const services = [
   {
     title: "IT Staffing Solutions",

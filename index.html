@@ -51,6 +51,37 @@
           width: 100%;
         }
       }
+      
+      /* Styles for PDF generation */
+      body.generating-pdf {
+        overflow: hidden;
+      }
+      
+      body.generating-pdf #babu-pdf-content {
+        background-color: white;
+        overflow: visible !important;
+        height: auto !important;
+      }
+      
+      /* Fix for PDF content */
+      #babu-pdf-content {
+        page-break-inside: auto;
+      }
+      
+      #babu-pdf-content h1, 
+      #babu-pdf-content h2, 
+      #babu-pdf-content h3 {
+        page-break-after: avoid;
+      }
+      
+      #babu-pdf-content p, 
+      #babu-pdf-content li {
+        page-break-inside: avoid;
+      }
+      
+      #babu-pdf-content div.card {
+        page-break-inside: avoid;
+      }
     </style>
   </head>
   <body>
