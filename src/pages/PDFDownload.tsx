@@ -23,9 +23,9 @@ const PDFDownload = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen pt-32 pb-16" // Increased padding to avoid overlap
+      className="min-h-screen pt-20 pb-16" // Adjusted padding to fix navbar positioning
     >
-      <div className="container mx-auto">
+      <div className="container mx-auto mt-10"> {/* Added margin-top for better spacing */}
         <BabuPdfProfile />
       </div>
     </motion.div>

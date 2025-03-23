@@ -14,7 +14,7 @@ interface PDFDownloadLinkProps {
 
 const PDFDownloadLink: React.FC<PDFDownloadLinkProps> = ({ 
   className = "", 
-  text = "See Profile", 
+  text = "See More", // Changed default text to "See More"
   showIcon = true,
   size = "default",
   variant = "default"
@@ -24,7 +24,7 @@ const PDFDownloadLink: React.FC<PDFDownloadLinkProps> = ({
       <Button 
         variant={variant}
         size={size}
-        className={`bg-primary text-white hover:bg-primary/90 ${className}`}
+        className={`bg-primary hover:bg-primary/90 text-white ${className}`} // Ensuring text is white
       >
         {showIcon && <FileText className="w-4 h-4 mr-2" />}
         {text}
