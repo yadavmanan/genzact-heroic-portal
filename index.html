@@ -35,14 +35,19 @@
       })();
     </script>
     
-    <!-- Add print styles for PDF generation -->
+    <!-- Add improved print styles for PDF generation -->
     <style>
+      /* PDF page specific styles */
+      body.pdf-page {
+        padding-top: 60px; /* Add space for navbar */
+      }
+      
       @media print {
         body * {
           visibility: hidden;
         }
         #babu-pdf-content, #babu-pdf-content * {
-          visibility: visible;
+          visibility: visible !important;
           color-adjust: exact !important;
           -webkit-print-color-adjust: exact !important;
           print-color-adjust: exact !important;
@@ -57,53 +62,55 @@
         }
       }
       
-      /* Styles for PDF generation */
+      /* Improved styles for PDF generation */
       body.generating-pdf {
         overflow: hidden;
       }
       
       body.generating-pdf #babu-pdf-content {
-        background-color: white;
+        background-color: white !important;
         overflow: visible !important;
         height: auto !important;
-        color: #000 !important;
       }
       
-      /* Fix for PDF content */
+      /* Text color fixes for PDF content */
       #babu-pdf-content {
         page-break-inside: auto;
+        color: #000000 !important;
       }
       
       #babu-pdf-content h1, 
       #babu-pdf-content h2, 
-      #babu-pdf-content h3 {
-        page-break-after: avoid;
-        color: #000 !important;
-      }
-      
-      #babu-pdf-content p, 
+      #babu-pdf-content h3,
+      #babu-pdf-content p,
+      #babu-pdf-content span,
       #babu-pdf-content li {
+        color: #000000 !important;
         page-break-inside: avoid;
-        color: #000 !important;
-      }
-      
-      #babu-pdf-content div.card {
-        page-break-inside: avoid;
-      }
-      
-      /* Force colors in PDF */
-      #babu-pdf-content .text-primary {
-        color: #3060ff !important;
       }
       
       #babu-pdf-content .text-gray-700,
       #babu-pdf-content .text-gray-800,
-      #babu-pdf-content .text-gray-900 {
-        color: #000 !important;
+      #babu-pdf-content .text-gray-900,
+      #babu-pdf-content .text-gray-600 {
+        color: #000000 !important;
+      }
+      
+      #babu-pdf-content .text-primary {
+        color: #3060ff !important;
+      }
+      
+      #babu-pdf-content div.card {
+        page-break-inside: avoid;
+        border: 1px solid #e2e8f0 !important;
       }
       
       #babu-pdf-content .bg-primary {
         background-color: #3060ff !important;
+      }
+      
+      #babu-pdf-content .bg-gray-50 {
+        background-color: #f9fafb !important;
       }
     </style>
   </head>

@@ -31,7 +31,7 @@ const BabuPdfProfile = () => {
       toast({
         title: "Generating PDF",
         description: "Please wait while we prepare your download...",
-        duration: 3000,
+        duration: 5000,
       });
 
       // Set a temporary class to apply styles for PDF generation
@@ -40,61 +40,69 @@ const BabuPdfProfile = () => {
       const pdf = new jsPDF({
         orientation: 'portrait',
         unit: 'mm',
-        format: 'a4'
+        format: 'a4',
+        compress: true
       });
       
-      // Get the height and width of the a4 page
+      // Get dimensions
       const pageWidth = pdf.internal.pageSize.getWidth();
       const pageHeight = pdf.internal.pageSize.getHeight();
       
-      // Calculate the number of canvas elements needed based on content height
-      const contentHeight = pdfContent.offsetHeight;
-      const totalParts = Math.ceil(contentHeight / 1000); // Split into parts of max 1000px height
+      // Improved approach to capture long content
+      const contentWidth = pdfContent.offsetWidth;
+      const contentHeight = pdfContent.scrollHeight;
       
-      // Process each part
-      for (let i = 0; i < totalParts; i++) {
-        // Set the position for capturing this segment
-        const position = -i * 1000;
-        
-        // Create a clone of the element to manipulate without affecting the view
-        const clone = pdfContent.cloneNode(true) as HTMLElement;
-        clone.style.position = 'absolute';
-        clone.style.top = position + 'px';
-        clone.style.width = pdfContent.offsetWidth + 'px';
-        clone.style.transform = 'none';
-        clone.style.visibility = 'hidden';
-        document.body.appendChild(clone);
-        
-        // Capture this segment
-        const canvas = await html2canvas(clone, {
-          scale: 2,
+      // Calculate scaling
+      const scale = 2; // Higher scale for better quality
+      const pdfContentClone = pdfContent.cloneNode(true) as HTMLElement;
+      
+      // Prepare clone for capturing
+      pdfContentClone.style.transform = 'none';
+      pdfContentClone.style.position = 'absolute';
+      pdfContentClone.style.left = '-9999px';
+      pdfContentClone.style.top = '0';
+      pdfContentClone.style.width = contentWidth + 'px';
+      pdfContentClone.style.height = 'auto';
+      document.body.appendChild(pdfContentClone);
+      
+      // Calculate how many canvas elements we need
+      const piecesCount = Math.ceil(contentHeight / 1000);
+      let currentHeight = 0;
+      
+      // Process each section
+      for (let i = 0; i < piecesCount; i++) {
+        const canvas = await html2canvas(pdfContentClone, {
+          scale: scale,
           useCORS: true,
-          logging: false,
+          allowTaint: true,
           backgroundColor: '#ffffff',
-          windowHeight: 1000,
-          height: Math.min(1000, contentHeight - (i * 1000)),
-          y: i * 1000
+          logging: false,
+          height: Math.min(1000, contentHeight - currentHeight),
+          y: currentHeight,
+          windowHeight: contentHeight
         });
         
-        document.body.removeChild(clone);
-        
-        // Add a new page if this isn't the first section
+        // Add page for sections after the first
         if (i > 0) {
           pdf.addPage();
         }
         
-        // Add this segment to the PDF
-        const imgData = canvas.toDataURL('image/png');
+        // Add this segment to PDF
+        const imgData = canvas.toDataURL('image/png', 1.0);
         const imgWidth = pageWidth;
-        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+        const imgHeight = Math.min((canvas.height * imgWidth) / canvas.width, pageHeight);
         
-        pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, Math.min(imgHeight, pageHeight));
+        pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight, undefined, 'FAST');
+        
+        // Update current height for next section
+        currentHeight += 1000;
       }
       
-      // Remove temporary class
+      // Remove clone and temporary class
+      document.body.removeChild(pdfContentClone);
       document.body.classList.remove('generating-pdf');
       
-      // Save the complete PDF
+      // Save PDF
       pdf.save('Babu_Karlapudi_Profile.pdf');
       
       toast({
