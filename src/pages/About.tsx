@@ -1,10 +1,12 @@
-
 import { motion } from 'framer-motion';
-import { User, Mail, MapPin, Calendar, Award, Target, Users, Briefcase, CheckCircle, PhoneCall } from 'lucide-react';
+import { User, Mail, MapPin, Calendar, Award, Target, Users, Briefcase, CheckCircle, PhoneCall, BarChart, Globe, BarChart2, Layers, LineChart, Landmark, TrendingUp, UserCheck, Zap, Book } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
+import { useState } from 'react';
 
 const About = () => {
+  const [expandedSection, setExpandedSection] = useState<string | null>(null);
+
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 }
@@ -18,6 +20,14 @@ const About = () => {
   const scaleIn = {
     hidden: { opacity: 0, scale: 0.9 },
     visible: { opacity: 1, scale: 1 }
+  };
+
+  const toggleSection = (section: string) => {
+    if (expandedSection === section) {
+      setExpandedSection(null);
+    } else {
+      setExpandedSection(section);
+    }
   };
 
   return (
@@ -180,9 +190,28 @@ const About = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7, duration: 0.5 }}
+              className="flex flex-col md:flex-row items-start md:items-center justify-between mb-6"
             >
-              <h3 className="text-2xl font-bold mb-2">Babu Karlapudi</h3>
-              <p className="text-primary mb-4">CEO & Founder</p>
+              <div>
+                <h3 className="text-2xl font-bold mb-1">Babu Karlapudi</h3>
+                <p className="text-primary mb-2">CEO & Founder</p>
+                <p className="text-gray-700 mb-4">
+                  <span className="font-medium">20+ Years Experience in US IT Staffing</span>
+                </p>
+              </div>
+              <div className="mt-4 md:mt-0">
+                <div className="flex items-center space-x-3">
+                  <span className="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 text-primary text-sm">
+                    <Globe className="w-4 h-4 mr-1" /> USA
+                  </span>
+                  <span className="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 text-primary text-sm">
+                    <Globe className="w-4 h-4 mr-1" /> Canada
+                  </span>
+                  <span className="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 text-primary text-sm">
+                    <Globe className="w-4 h-4 mr-1" /> Mexico
+                  </span>
+                </div>
+              </div>
             </motion.div>
             
             <motion.div
@@ -201,37 +230,67 @@ const About = () => {
               initial="hidden"
               animate="visible"
               transition={{ delay: 0.9, duration: 0.5 }}
-              className="text-gray-900 mb-4"
+              className="text-gray-900 mb-6 leading-relaxed"
             >
-              With over 15 years of experience in the staffing industry, Babu has built Genzact 
-              from the ground up, focusing on quality relationships and exceptional service. His vision
-              and leadership have been instrumental in establishing Genzact as a trusted name in
-              the IT staffing sector.
+              As a results-driven Business Head with over 20 years of experience in the US IT Staffing industry, 
+              Babu has led multiple IT Staffing divisions and ODCs, demonstrating deep expertise in the U.S. market. 
+              His impressive track record spans multiple geographical regions including the USA, Canada, and Mexico. 
+              With a strategic mindset, operational expertise, and P&L responsibility, he has consistently integrated 
+              and optimized operations across regions, elevating revenue generation processes.
             </motion.p>
             
-            <motion.p 
-              variants={slideIn}
-              initial="hidden"
-              animate="visible"
-              transition={{ delay: 1.0, duration: 0.5 }}
-              className="text-gray-900 mb-4"
-            >
-              Under his guidance, Genzact has expanded into diverse technology domains, creating a robust network
-              of professionals and clients throughout India. Babu's innovative approach to recruitment and deep
-              understanding of industry trends has positioned the company at the forefront of IT staffing solutions.
-            </motion.p>
-            
-            <motion.p 
-              variants={slideIn}
-              initial="hidden"
-              animate="visible"
-              transition={{ delay: 1.1, duration: 0.5 }}
-              className="text-gray-900 mb-6"
-            >
-              Babu believes in maintaining direct relationships with both clients and candidates, ensuring
-              a personalized touch that has become Genzact's hallmark. His commitment to ethical business practices
-              and transparent communication continues to drive the company's success and growth.
-            </motion.p>
+            {/* Expertise Sections */}
+            <div className="space-y-4 mb-8">
+              {leadershipSections.map((section, index) => (
+                <motion.div
+                  key={section.id}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1 + (index * 0.1) }}
+                  className="glass rounded-lg overflow-hidden"
+                >
+                  <button
+                    onClick={() => toggleSection(section.id)}
+                    className="w-full px-6 py-4 flex items-center justify-between bg-primary/5 hover:bg-primary/10 transition-colors"
+                  >
+                    <div className="flex items-center">
+                      <section.icon className="w-5 h-5 text-primary mr-3" />
+                      <h4 className="text-lg font-medium">{section.title}</h4>
+                    </div>
+                    <div className={`transform transition-transform ${expandedSection === section.id ? 'rotate-180' : ''}`}>
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                  </button>
+                  
+                  {expandedSection === section.id && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="px-6 py-4"
+                    >
+                      <ul className="space-y-3">
+                        {section.points.map((point, i) => (
+                          <motion.li
+                            key={i}
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.1 * i }}
+                            className="flex items-start"
+                          >
+                            <CheckCircle className="w-5 h-5 text-primary mt-0.5 mr-3 flex-shrink-0" />
+                            <p className="text-gray-900">{point}</p>
+                          </motion.li>
+                        ))}
+                      </ul>
+                    </motion.div>
+                  )}
+                </motion.div>
+              ))}
+            </div>
             
             <motion.div 
               initial={{ opacity: 0, y: 10 }}
@@ -408,6 +467,77 @@ const achievements = [
   {
     number: "8+",
     description: "Years of Excellence"
+  }
+];
+
+const leadershipSections = [
+  {
+    id: "strategic",
+    title: "Strategic Leadership & Integration",
+    icon: Target,
+    points: [
+      "Regional Integration: Lead the integration and alignment of operations across all geographic regions, ensuring seamless collaboration and sharing of best practices.",
+      "Strategic Planning: Develop, execute, and iterate on comprehensive business strategies for US IT staffing divisions.",
+      "Expansion Strategy: Identify new market opportunities and grow the company's presence across different U.S. states and cities."
+    ]
+  },
+  {
+    id: "revenue",
+    title: "Revenue Growth & Business Development",
+    icon: TrendingUp,
+    points: [
+      "Client Acquisition & Retention: Spearhead business development efforts, building strong relationships with key clients.",
+      "Revenue Optimization: Analyze revenue streams and optimize pricing strategies, staffing models, and service offerings.",
+      "Market Leadership: Position the company as a thought leader in the IT staffing industry through strategic partnerships."
+    ]
+  },
+  {
+    id: "financial",
+    title: "P&L Management & Financial Stewardship",
+    icon: Landmark,
+    points: [
+      "Financial Ownership: Manage the P&L for the US IT staffing business, setting and meeting financial targets.",
+      "Cost Management: Optimize staffing costs, operational expenditures, and overhead while maintaining high-quality service delivery.",
+      "Forecasting & Reporting: Provide detailed forecasts, reports, and analyses of financial performance to the CEO."
+    ]
+  },
+  {
+    id: "operational",
+    title: "Operational Excellence & Process Improvement",
+    icon: Layers,
+    points: [
+      "End-to-End Staffing Process: Oversee the entire staffing process, from talent sourcing and recruitment to placement and client servicing.",
+      "Automation & Innovation: Introduce technological solutions and data-driven processes to improve operational efficiency.",
+      "Best Practices & Compliance: Ensure high standards of compliance, ethical staffing practices, and quality assurance."
+    ]
+  },
+  {
+    id: "team",
+    title: "Team Leadership & Development",
+    icon: Users,
+    points: [
+      "High-Performance Culture: Lead, motivate, and mentor a diverse team of professionals across multiple regions.",
+      "Talent Development: Identify skill gaps and development opportunities within the team.",
+      "Cross-Functional Collaboration: Work closely with other departments to ensure smooth execution of business strategies."
+    ]
+  },
+  {
+    id: "stakeholder",
+    title: "Stakeholder Engagement & Communication",
+    icon: UserCheck,
+    points: [
+      "Client & Stakeholder Relations: Build and nurture relationships with key external stakeholders.",
+      "Internal Communication: Foster clear, transparent communication between regions, ensuring teams are aligned."
+    ]
+  },
+  {
+    id: "data",
+    title: "Data-Driven Decision Making & Analysis",
+    icon: BarChart,
+    points: [
+      "Analytics & Insights: Leverage data and analytics to drive decision-making across all regions.",
+      "Market Research: Regularly evaluate staffing trends, client feedback, competitor performance, and market conditions."
+    ]
   }
 ];
 
