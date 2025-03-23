@@ -39,7 +39,7 @@
     <style>
       /* PDF page specific styles */
       body.pdf-page {
-        padding-top: 60px; /* Add space for navbar */
+        /* Remove fixed padding-top to allow navbar to position naturally */
       }
       
       @media print {
@@ -58,7 +58,7 @@
           top: 0;
           width: 100%;
           margin: 0;
-          padding: 0;
+          padding: 20px;
         }
       }
       
