@@ -34,6 +34,24 @@
         }
       })();
     </script>
+    
+    <!-- Add print styles for PDF generation -->
+    <style>
+      @media print {
+        body * {
+          visibility: hidden;
+        }
+        #babu-pdf-content, #babu-pdf-content * {
+          visibility: visible;
+        }
+        #babu-pdf-content {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+        }
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>
