@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -57,7 +58,7 @@
           top: 0;
           width: 100%;
           margin: 0;
-          padding: 20px;
+          padding: 10px;
         }
       }
       
@@ -71,6 +72,10 @@
         overflow: visible !important;
         height: auto !important;
         font-size: 90% !important; /* Slightly reduce font size globally for PDF */
+        width: 210mm !important; /* A4 width */
+        max-height: 297mm !important; /* A4 height */
+        margin: 0 auto !important;
+        box-sizing: border-box !important;
       }
       
       /* Text color fixes for PDF content */
@@ -81,39 +86,39 @@
       }
       
       #babu-pdf-content h1 {
-        font-size: 1.5rem !important;
-        margin-bottom: 0.5rem !important;
+        font-size: 1.4rem !important;
+        margin-bottom: 0.3rem !important;
       }
       
       #babu-pdf-content h2 {
-        font-size: 1.25rem !important;
-        margin-bottom: 0.5rem !important;
+        font-size: 1.1rem !important;
+        margin-bottom: 0.3rem !important;
       }
       
       #babu-pdf-content h3 {
-        font-size: 1rem !important;
-        margin-bottom: 0.25rem !important;
+        font-size: 0.95rem !important;
+        margin-bottom: 0.2rem !important;
       }
       
       #babu-pdf-content p {
-        margin-bottom: 0.25rem !important;
-        line-height: 1.3 !important;
+        margin-bottom: 0.2rem !important;
+        line-height: 1.2 !important;
       }
       
       #babu-pdf-content .mb-8 {
-        margin-bottom: 1rem !important;
+        margin-bottom: 0.8rem !important;
       }
       
       #babu-pdf-content .mb-4 {
-        margin-bottom: 0.75rem !important;
+        margin-bottom: 0.5rem !important;
       }
       
       #babu-pdf-content .p-6 {
-        padding: 1rem !important;
+        padding: 0.8rem !important;
       }
       
       #babu-pdf-content .p-4 {
-        padding: 0.75rem !important;
+        padding: 0.6rem !important;
       }
 
       #babu-pdf-content h1, 
@@ -148,6 +153,25 @@
       
       #babu-pdf-content .bg-gray-50 {
         background-color: #f9fafb !important;
+      }
+      
+      /* Additional optimizations for PDF output */
+      body.generating-pdf #babu-pdf-content .grid {
+        display: grid !important;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)) !important;
+      }
+      
+      body.generating-pdf #babu-pdf-content .border {
+        border: 1px solid #e2e8f0 !important;
+      }
+      
+      body.generating-pdf #babu-pdf-content .rounded,
+      body.generating-pdf #babu-pdf-content .rounded-lg {
+        border-radius: 0.25rem !important;
+      }
+      
+      body.generating-pdf #babu-pdf-content .shadow-lg {
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
       }
     </style>
   </head>
