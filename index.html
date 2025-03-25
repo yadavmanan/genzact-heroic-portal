@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -13,21 +14,24 @@
     <meta property="og:url" content="https://genzact.com" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap">
     
-    <!-- Add a script for handling 404 redirect -->
+    <!-- Enhanced routing support for SPA -->
     <script>
-      // Redirect all 404s to index.html for client-side routing
+      // Detect and handle routing issues
       (function() {
-        // Only run on the server, not during development
+        // Check if we're on a production domain (not localhost)
         if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
-          // Check if the page throws a 404
+          // Log navigation for debugging
+          console.log('Page loaded at path:', window.location.pathname);
+          
+          // Set up error handling for resources that fail to load
           window.addEventListener('error', function(e) {
-            if (e.target.tagName.toLowerCase() === 'link' || e.target.tagName.toLowerCase() === 'script') {
-              // If we get a 404 on resource loading, redirect to home
-              setTimeout(function() {
-                if (window.location.pathname !== '/' && !window.location.pathname.includes('.')) {
-                  window.location.href = '/';
-                }
-              }, 1000);
+            if (e.target.tagName && (e.target.tagName.toLowerCase() === 'link' || e.target.tagName.toLowerCase() === 'script')) {
+              console.error('Resource failed to load:', e.target.src || e.target.href);
+              
+              // If we get a 404 on resource loading, check if we need to redirect
+              if (window.location.pathname !== '/' && !window.location.pathname.includes('.')) {
+                console.warn('Possible routing issue detected, may redirect to home');
+              }
             }
           }, true);
         }
