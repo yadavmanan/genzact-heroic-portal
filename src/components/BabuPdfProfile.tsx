@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { 
   Award, 
@@ -21,7 +22,11 @@ import html2canvas from "html2canvas";
 import { useToast } from "@/components/ui/use-toast";
 import { Table, TableBody, TableCell, TableHeader, TableHead, TableRow } from "@/components/ui/table";
 
-const BabuPdfProfile = () => {
+interface BabuPdfProfileProps {
+  showDownloadButton?: boolean;
+}
+
+const BabuPdfProfile: React.FC<BabuPdfProfileProps> = ({ showDownloadButton = true }) => {
   const { toast } = useToast();
 
   const generatePdf = async () => {
@@ -116,13 +121,15 @@ const BabuPdfProfile = () => {
     <div className="container mx-auto py-8 px-4">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold text-gradient">Babu Karlapudi - Professional Profile</h1>
-        <Button 
-          onClick={generatePdf} 
-          className="bg-primary hover:bg-primary/90 text-white flex items-center gap-2"
-        >
-          <Download size={16} />
-          Download PDF
-        </Button>
+        {showDownloadButton && (
+          <Button 
+            onClick={generatePdf} 
+            className="bg-primary hover:bg-primary/90 text-white flex items-center gap-2"
+          >
+            <Download size={16} />
+            Download PDF
+          </Button>
+        )}
       </div>
 
       <div id="babu-pdf-content" className="bg-white p-6 rounded-lg shadow-lg">
@@ -352,4 +359,3 @@ const services = [
 ];
 
 export default BabuPdfProfile;
-

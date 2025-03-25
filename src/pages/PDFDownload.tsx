@@ -26,7 +26,7 @@ const PDFDownload = () => {
       className="min-h-screen"
     >
       <div className="container mx-auto py-20"> {/* Reduced padding */}
-        <BabuPdfProfile />
+        <BabuPdfProfile showDownloadButton={false} />
       </div>
     </motion.div>
   );
