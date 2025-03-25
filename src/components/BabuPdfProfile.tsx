@@ -19,6 +19,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas";
 import { useToast } from "@/components/ui/use-toast";
+import { Table, TableBody, TableCell, TableHeader, TableHead, TableRow } from "@/components/ui/table";
 
 const BabuPdfProfile = () => {
   const { toast } = useToast();
@@ -34,7 +35,6 @@ const BabuPdfProfile = () => {
         duration: 5000,
       });
 
-      // Set a temporary class to apply styles for PDF generation
       document.body.classList.add('generating-pdf');
       
       const pdf = new jsPDF({
@@ -44,19 +44,15 @@ const BabuPdfProfile = () => {
         compress: true
       });
       
-      // Get dimensions
       const pageWidth = pdf.internal.pageSize.getWidth();
       const pageHeight = pdf.internal.pageSize.getHeight();
       
-      // Improved approach to capture long content
       const contentWidth = pdfContent.offsetWidth;
       const contentHeight = pdfContent.scrollHeight;
       
-      // Calculate scaling
-      const scale = 2; // Higher scale for better quality
+      const scale = 2;
       const pdfContentClone = pdfContent.cloneNode(true) as HTMLElement;
       
-      // Prepare clone for capturing
       pdfContentClone.style.transform = 'none';
       pdfContentClone.style.position = 'absolute';
       pdfContentClone.style.left = '-9999px';
@@ -65,11 +61,9 @@ const BabuPdfProfile = () => {
       pdfContentClone.style.height = 'auto';
       document.body.appendChild(pdfContentClone);
       
-      // Calculate how many canvas elements we need
       const piecesCount = Math.ceil(contentHeight / 1000);
       let currentHeight = 0;
       
-      // Process each section
       for (let i = 0; i < piecesCount; i++) {
         const canvas = await html2canvas(pdfContentClone, {
           scale: scale,
@@ -82,27 +76,22 @@ const BabuPdfProfile = () => {
           windowHeight: contentHeight
         });
         
-        // Add page for sections after the first
         if (i > 0) {
           pdf.addPage();
         }
         
-        // Add this segment to PDF
         const imgData = canvas.toDataURL('image/png', 1.0);
         const imgWidth = pageWidth;
         const imgHeight = Math.min((canvas.height * imgWidth) / canvas.width, pageHeight);
         
         pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight, undefined, 'FAST');
         
-        // Update current height for next section
         currentHeight += 1000;
       }
       
-      // Remove clone and temporary class
       document.body.removeChild(pdfContentClone);
       document.body.classList.remove('generating-pdf');
       
-      // Save PDF
       pdf.save('Babu_Karlapudi_Profile.pdf');
       
       toast({
@@ -124,9 +113,9 @@ const BabuPdfProfile = () => {
   };
 
   return (
-    <div className="container mx-auto py-12 px-4">
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold text-gradient">Babu Karlapudi - Professional Profile</h1>
+    <div className="container mx-auto py-8 px-4">
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-2xl font-bold text-gradient">Babu Karlapudi - Professional Profile</h1>
         <Button 
           onClick={generatePdf} 
           className="bg-primary hover:bg-primary/90 text-white flex items-center gap-2"
@@ -136,142 +125,125 @@ const BabuPdfProfile = () => {
         </Button>
       </div>
 
-      <div id="babu-pdf-content" className="bg-white p-8 rounded-lg shadow-lg">
-        {/* Header with company logo and title */}
-        <div className="flex justify-between items-center mb-8 border-b pb-6">
+      <div id="babu-pdf-content" className="bg-white p-6 rounded-lg shadow-lg">
+        <div className="flex justify-between items-center mb-4 border-b pb-4">
           <div>
-            <h1 className="text-3xl font-bold text-primary mb-2">Babu Karlapudi</h1>
-            <p className="text-xl text-gray-700">CEO & Founder, Genzact</p>
-            <p className="text-md text-gray-600 mt-2">20+ Years Experience in US IT Staffing</p>
+            <h1 className="text-2xl font-bold text-primary mb-1">Babu Karlapudi</h1>
+            <p className="text-base text-gray-700">CEO & Founder, Genzact</p>
+            <p className="text-sm text-gray-600">20+ Years Experience in US IT Staffing</p>
           </div>
           <div className="text-right">
-            <h2 className="text-2xl font-bold text-gray-800">Genzact</h2>
-            <p className="text-sm text-gray-600">Premium Manpower Solutions</p>
+            <h2 className="text-xl font-bold text-gray-800">Genzact</h2>
+            <p className="text-xs text-gray-600">Premium Manpower Solutions</p>
           </div>
         </div>
 
-        {/* Professional Summary */}
-        <div className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4 flex items-center">
-            <FileText className="w-6 h-6 text-primary mr-2" />
+        <div className="mb-4">
+          <h2 className="text-xl font-bold text-gray-800 mb-2 flex items-center">
+            <FileText className="w-5 h-5 text-primary mr-2" />
             Professional Summary
           </h2>
-          <p className="text-gray-700 mb-4">
+          <p className="text-sm text-gray-700 mb-2">
             As a results-driven Business Head with over 20 years of experience in the US IT Staffing industry, 
             Babu has led multiple IT Staffing divisions and ODCs, demonstrating deep expertise in the U.S. market. 
             His impressive track record spans multiple geographical regions including the USA, Canada, and Mexico.
           </p>
-          <p className="text-gray-700">
+          <p className="text-sm text-gray-700">
             With a strategic mindset, operational expertise, and P&L responsibility, he has consistently integrated 
             and optimized operations across regions, elevating revenue generation processes and driving business success.
           </p>
         </div>
 
-        {/* Areas of Expertise */}
-        <div className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">Areas of Expertise</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {expertiseAreas.map((area, index) => (
-              <Card key={index} className="border border-gray-200">
-                <CardHeader className="pb-2">
-                  <div className="flex items-center">
-                    <area.icon className="w-5 h-5 text-primary mr-3" />
-                    <CardTitle className="text-lg">{area.title}</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-2">
-                    {area.points.map((point, i) => (
-                      <li key={i} className="flex items-start text-sm">
-                        <span className="text-primary mr-2">•</span>
-                        <span>{point}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            ))}
+        <div className="mb-4">
+          <h2 className="text-xl font-bold text-gray-800 mb-2">Areas of Expertise</h2>
+          <Table className="border border-gray-200 text-sm">
+            <TableHeader>
+              <TableRow>
+                <TableHead className="py-2">Expertise Area</TableHead>
+                <TableHead className="py-2">Key Points</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {expertiseAreas.map((area, index) => (
+                <TableRow key={index}>
+                  <TableCell className="py-1">
+                    <div className="flex items-center">
+                      <area.icon className="w-4 h-4 text-primary mr-2" />
+                      <span className="font-medium">{area.title}</span>
+                    </div>
+                  </TableCell>
+                  <TableCell className="py-1">
+                    <ul className="list-disc pl-4 text-xs space-y-1">
+                      {area.points.map((point, i) => (
+                        <li key={i}>{point}</li>
+                      ))}
+                    </ul>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+
+        <div className="mb-4">
+          <h2 className="text-xl font-bold text-gray-800 mb-2">Key Achievements</h2>
+          <div className="grid grid-cols-2 gap-3">
+            <div className="border border-gray-200 rounded p-2">
+              <h3 className="text-base font-medium text-primary mb-1">Business Growth</h3>
+              <p className="text-xs text-gray-700">
+                Successfully expanded operations across multiple regions in North America, increasing client 
+                base by 200% and achieving consistent year-over-year revenue growth.
+              </p>
+            </div>
+            <div className="border border-gray-200 rounded p-2">
+              <h3 className="text-base font-medium text-primary mb-1">Team Development</h3>
+              <p className="text-xs text-gray-700">
+                Built and mentored high-performing teams across different regions, implementing training 
+                programs that improved productivity by 35% and reduced turnover.
+              </p>
+            </div>
+            <div className="border border-gray-200 rounded p-2">
+              <h3 className="text-base font-medium text-primary mb-1">Process Innovation</h3>
+              <p className="text-xs text-gray-700">
+                Introduced data-driven recruitment processes and technology solutions that reduced time-to-fill 
+                positions by 40% while maintaining quality standards.
+              </p>
+            </div>
+            <div className="border border-gray-200 rounded p-2">
+              <h3 className="text-base font-medium text-primary mb-1">Client Satisfaction</h3>
+              <p className="text-xs text-gray-700">
+                Maintained 95% client retention rate through strategic relationship management and responsive 
+                service delivery across all operational regions.
+              </p>
+            </div>
           </div>
         </div>
 
-        {/* Achievements */}
-        <div className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">Key Achievements</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">Business Growth</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-700">
-                  Successfully expanded operations across multiple regions in North America, increasing client 
-                  base by 200% and achieving consistent year-over-year revenue growth.
-                </p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">Team Development</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-700">
-                  Built and mentored high-performing teams across different regions, implementing training 
-                  programs that improved productivity by 35% and reduced turnover.
-                </p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">Process Innovation</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-700">
-                  Introduced data-driven recruitment processes and technology solutions that reduced time-to-fill 
-                  positions by 40% while maintaining quality standards.
-                </p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">Client Satisfaction</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-700">
-                  Maintained 95% client retention rate through strategic relationship management and responsive 
-                  service delivery across all operational regions.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-
-        {/* Company Services */}
-        <div className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">Our Services</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="mb-4">
+          <h2 className="text-xl font-bold text-gray-800 mb-2">Our Services</h2>
+          <div className="grid grid-cols-3 gap-2">
             {services.map((service, index) => (
-              <div key={index} className="p-4 border border-gray-200 rounded-lg">
-                <h3 className="text-lg font-bold text-primary mb-2">{service.title}</h3>
-                <p className="text-sm text-gray-700">{service.description}</p>
+              <div key={index} className="p-2 border border-gray-200 rounded-lg">
+                <h3 className="text-sm font-bold text-primary mb-1">{service.title}</h3>
+                <p className="text-xs text-gray-700">{service.description}</p>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Contact Information */}
-        <div className="bg-gray-50 p-6 rounded-lg">
-          <h2 className="text-xl font-bold text-gray-800 mb-4">Contact Information</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="bg-gray-50 p-3 rounded-lg">
+          <h2 className="text-lg font-bold text-gray-800 mb-2">Contact Information</h2>
+          <div className="grid grid-cols-3 gap-2 text-sm">
             <div className="flex items-center">
-              <Mail className="w-5 h-5 text-primary mr-2" />
+              <Mail className="w-4 h-4 text-primary mr-1" />
               <a href="mailto:babu@genzact.com" className="text-primary hover:underline">babu@genzact.com</a>
             </div>
             <div className="flex items-center">
-              <Phone className="w-5 h-5 text-primary mr-2" />
+              <Phone className="w-4 h-4 text-primary mr-1" />
               <a href="tel:+919666655664" className="text-primary hover:underline">+91 9666655664</a>
             </div>
             <div className="flex items-center">
-              <Globe className="w-5 h-5 text-primary mr-2" />
+              <Globe className="w-4 h-4 text-primary mr-1" />
               <a href="https://www.genzact.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
                 www.genzact.com
               </a>
@@ -380,3 +352,4 @@ const services = [
 ];
 
 export default BabuPdfProfile;
+
