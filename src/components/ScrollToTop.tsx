@@ -13,11 +13,16 @@ const ScrollToTop = () => {
       behavior: 'smooth'
     });
 
-    // Trigger page transition animations
-    document.body.classList.add('page-transition-active');
+    // Add a small delay before triggering animations to ensure smoother page transitions
     setTimeout(() => {
-      document.body.classList.remove('page-transition-active');
-    }, 500);
+      // Trigger page transition animations
+      document.body.classList.add('page-transition-active');
+      
+      // Remove the class after animation completes
+      setTimeout(() => {
+        document.body.classList.remove('page-transition-active');
+      }, 800);
+    }, 100);
   }, [pathname]);
 
   return null;

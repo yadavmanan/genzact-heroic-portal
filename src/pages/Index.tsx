@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { 
@@ -19,7 +18,8 @@ import {
   CheckCircle,
   BarChart,
   Globe,
-  CircleUser
+  CircleUser,
+  HardHat
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -32,6 +32,7 @@ import {
   CarouselPrevious
 } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 const Index = () => {
   const { toast } = useToast();
@@ -46,6 +47,7 @@ const Index = () => {
   const heroTextY = useTransform(scrollYProgress, [0, 1], [0, -100]);
   const heroImageScale = useTransform(scrollYProgress, [0, 1], [1, 1.2]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const workersImageY = useTransform(scrollYProgress, [0, 1], [0, 50]);
 
   // Animated counter state
   const [projectsCount, setProjectsCount] = useState(0);
@@ -93,7 +95,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-background overflow-hidden">
-      {/* Hero Section with Parallax */}
+      {/* Hero Section with Parallax and Worker Images */}
       <section ref={heroRef} className="relative h-screen flex items-center justify-center overflow-hidden">
         <motion.div 
           style={{ scale: heroImageScale }}
@@ -110,14 +112,58 @@ const Index = () => {
             }}
           ></div>
         </motion.div>
+        
+        {/* Worker with Yellow Safety Hat - Floating Element */}
+        <motion.div 
+          className="absolute z-20 right-10 top-1/3 md:right-32 md:top-1/4 w-40 md:w-72 shadow-2xl rounded-lg overflow-hidden border-4 border-white"
+          style={{ y: workersImageY }}
+          initial={{ opacity: 0, x: 100 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.5, duration: 0.8 }}
+        >
+          <AspectRatio ratio={1/1}>
+            <img 
+              src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+              alt="Construction worker with yellow safety hat" 
+              className="w-full h-full object-cover"
+            />
+          </AspectRatio>
+        </motion.div>
+        
+        {/* Additional Worker Image - Left Side */}
+        <motion.div 
+          className="absolute z-20 left-10 bottom-1/3 md:left-32 md:bottom-1/4 w-40 md:w-60 shadow-2xl rounded-lg overflow-hidden border-4 border-white rotate-3"
+          initial={{ opacity: 0, x: -100 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.8, duration: 0.8 }}
+        >
+          <AspectRatio ratio={4/3}>
+            <img 
+              src="https://images.unsplash.com/photo-1529178232277-91597c325b13?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+              alt="Team of construction workers with white safety hats" 
+              className="w-full h-full object-cover"
+            />
+          </AspectRatio>
+        </motion.div>
+        
         <div className="container relative z-10">
           <motion.div
             style={{ y: heroTextY, opacity: heroOpacity }}
             className="text-center"
           >
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 text-gray-800">
-              Solutions That <span className="text-gradient">Matter</span>
-            </h1>
+            <div className="flex items-center justify-center mb-4">
+              <motion.div 
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: 0.3, duration: 0.5 }}
+                className="bg-primary/10 p-3 rounded-full mr-2"
+              >
+                <HardHat className="w-8 h-8 text-primary" />
+              </motion.div>
+              <h1 className="text-5xl md:text-7xl font-bold text-gray-800">
+                Manpower <span className="text-gradient">Solutions</span>
+              </h1>
+            </div>
             <p className="text-xl md:text-2xl text-gray-700 mb-8 max-w-2xl mx-auto backdrop-blur-sm bg-white/60 p-3 rounded-lg">
               Your trusted partner in Manpower Consulting, Payroll Management, and RPO Services.
             </p>
