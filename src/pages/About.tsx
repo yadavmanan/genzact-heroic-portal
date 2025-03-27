@@ -1,3 +1,4 @@
+
 import { motion } from 'framer-motion';
 import { User, Mail, MapPin, Calendar, Award, Target, Users, Briefcase, CheckCircle, PhoneCall, BarChart, Globe, BarChart2, Layers, LineChart, Landmark, TrendingUp, UserCheck, Zap, Book } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -56,16 +57,27 @@ const About = () => {
           transition={{ delay: 0.1 }}
           className="glass p-8 rounded-lg mb-12"
         >
-          <p className="text-xl text-gray-900 mb-6">
-            Genzact is a premier staffing and recruitment firm, connecting businesses 
-            with top talent in the IT and technology sectors. With years of industry experience, 
-            we understand the unique challenges companies face in finding and retaining skilled professionals.
-          </p>
-          <p className="text-xl text-gray-900">
-            Our mission is to simplify the recruitment process and provide solutions that matter 
-            for both businesses and job seekers. We pride ourselves on our personalized approach 
-            and commitment to excellence.
-          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <p className="text-xl text-gray-900 mb-6">
+                Genzact is a premier staffing and recruitment firm, connecting businesses 
+                with top talent in the IT and technology sectors. With years of industry experience, 
+                we understand the unique challenges companies face in finding and retaining skilled professionals.
+              </p>
+              <p className="text-xl text-gray-900">
+                Our mission is to simplify the recruitment process and provide solutions that matter 
+                for both businesses and job seekers. We pride ourselves on our personalized approach 
+                and commitment to excellence.
+              </p>
+            </div>
+            <div>
+              <img 
+                src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81" 
+                alt="Team collaboration" 
+                className="rounded-lg shadow-md w-full h-full object-cover"
+              />
+            </div>
+          </div>
         </motion.div>
         
         {/* Our Vision & Mission */}
@@ -126,6 +138,23 @@ const About = () => {
                 <p className="text-gray-900">{value.description}</p>
               </motion.div>
             ))}
+          </div>
+        </motion.div>
+        
+        {/* Team Image Section */}
+        <motion.div 
+          variants={fadeIn}
+          initial="hidden"
+          animate="visible"
+          transition={{ delay: 0.35 }}
+          className="mb-16"
+        >
+          <div className="rounded-lg overflow-hidden shadow-lg">
+            <img 
+              src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158" 
+              alt="IT Professionals working together" 
+              className="w-full h-80 object-cover"
+            />
           </div>
         </motion.div>
         
@@ -337,6 +366,23 @@ const About = () => {
           </div>
         </motion.div>
         
+        {/* Tech Image */}
+        <motion.div 
+          variants={fadeIn}
+          initial="hidden"
+          animate="visible"
+          transition={{ delay: 0.75 }}
+          className="mb-16"
+        >
+          <div className="rounded-lg overflow-hidden shadow-lg">
+            <img 
+              src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6" 
+              alt="Technology and programming" 
+              className="w-full h-64 object-cover"
+            />
+          </div>
+        </motion.div>
+        
         {/* CTA Section */}
         <motion.div 
           variants={fadeIn}
@@ -543,4 +589,3 @@ const leadershipSections = [
 ];
 
 export default About;
-

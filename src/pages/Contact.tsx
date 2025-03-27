@@ -217,6 +217,15 @@ const Contact = () => {
               </div>
             </div>
             
+            {/* Contact Image */}
+            <div className="bg-white p-4 rounded-lg shadow-md overflow-hidden">
+              <img 
+                src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d" 
+                alt="IT Professional at work" 
+                className="w-full h-64 sm:h-80 object-cover rounded"
+              />
+            </div>
+            
             {/* Google Map */}
             <div className="bg-white p-2 rounded-lg shadow-md overflow-hidden h-64 sm:h-80">
               <iframe 
