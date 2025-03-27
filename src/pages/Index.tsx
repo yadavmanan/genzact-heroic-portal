@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { 
@@ -19,7 +18,9 @@ import {
   CheckCircle,
   BarChart,
   Globe,
-  CircleUser
+  CircleUser,
+  HardHat,
+  Construction
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -32,6 +33,7 @@ import {
   CarouselPrevious
 } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 const Index = () => {
   const { toast } = useToast();
@@ -46,6 +48,10 @@ const Index = () => {
   const heroTextY = useTransform(scrollYProgress, [0, 1], [0, -100]);
   const heroImageScale = useTransform(scrollYProgress, [0, 1], [1, 1.2]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  
+  // New parallax values for worker images
+  const workerImage1Y = useTransform(scrollYProgress, [0, 1], [0, 150]);
+  const workerImage2Y = useTransform(scrollYProgress, [0, 1], [0, -100]);
 
   // Animated counter state
   const [projectsCount, setProjectsCount] = useState(0);
@@ -110,6 +116,19 @@ const Index = () => {
             }}
           ></div>
         </motion.div>
+        
+        {/* Worker with yellow hard hat - positioned in bottom right of hero */}
+        <motion.div 
+          style={{ y: workerImage1Y }}
+          className="absolute bottom-5 right-10 w-48 h-48 z-0 hidden md:block"
+        >
+          <img 
+            src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80" 
+            alt="Construction worker with yellow hard hat" 
+            className="w-full h-full object-contain opacity-80"
+          />
+        </motion.div>
+        
         <div className="container relative z-10">
           <motion.div
             style={{ y: heroTextY, opacity: heroOpacity }}
@@ -141,7 +160,16 @@ const Index = () => {
       </section>
 
       {/* Animated Stats Section */}
-      <section className="py-12 bg-gradient-to-b from-primary/5 to-background">
+      <section className="py-12 bg-gradient-to-b from-primary/5 to-background relative">
+        {/* Worker with white hard hat - positioned to left of stats */}
+        <div className="absolute -left-10 top-1/2 transform -translate-y-1/2 w-48 h-48 opacity-30 hidden lg:block">
+          <img 
+            src="https://images.unsplash.com/photo-1581338834647-b0fb40704e21?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80" 
+            alt="Engineer with white hard hat" 
+            className="w-full h-full object-contain"
+          />
+        </div>
+        
         <div className="container">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -184,7 +212,16 @@ const Index = () => {
       </section>
 
       {/* 3D Carousel Services Section */}
-      <section className="py-20 bg-gradient-to-b from-background to-secondary/20">
+      <section className="py-20 bg-gradient-to-b from-background to-secondary/20 relative">
+        {/* Blueprint with construction worker - positioned in bottom right */}
+        <div className="absolute bottom-0 right-0 w-72 h-72 opacity-10">
+          <img 
+            src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80" 
+            alt="Construction blueprint with workers" 
+            className="w-full h-full object-cover"
+          />
+        </div>
+        
         <div className="container">
           <motion.div
             initial={{ opacity: 0 }}
@@ -239,7 +276,16 @@ const Index = () => {
       </section>
 
       {/* How We Work Section */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-white relative">
+        {/* Group of construction workers - positioned behind the workflow */}
+        <div className="absolute top-1/2 right-0 transform -translate-y-1/2 w-64 h-64 opacity-10 hidden lg:block">
+          <img 
+            src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80" 
+            alt="Group of construction workers" 
+            className="w-full h-full object-cover"
+          />
+        </div>
+        
         <div className="container">
           <motion.div
             initial={{ opacity: 0 }}
@@ -253,7 +299,7 @@ const Index = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-16">
             {workflowSteps.map((step, index) => (
               <motion.div
                 key={step.title}
@@ -285,7 +331,21 @@ const Index = () => {
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="py-20 bg-gradient-to-b from-secondary/30 to-background">
+      <section className="py-20 bg-gradient-to-b from-secondary/30 to-background relative">
+        {/* Construction site with workers - positioned to the left */}
+        <motion.div 
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 0.15, x: 0 }}
+          transition={{ delay: 0.5 }}
+          className="absolute left-0 top-1/2 transform -translate-y-1/2 w-56 h-56 hidden xl:block"
+        >
+          <img 
+            src="https://images.unsplash.com/photo-1529517456809-7b95663513fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80" 
+            alt="Construction worker at site" 
+            className="w-full h-full object-cover rounded-tr-3xl"
+          />
+        </motion.div>
+        
         <div className="container">
           <motion.div
             initial={{ opacity: 0 }}
@@ -369,8 +429,12 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="py-20 bg-white">
+      {/* Testimonials Section with Hard Hat Icon */}
+      <section className="py-20 bg-white relative">
+        <div className="absolute top-10 right-10 text-primary/10 hidden lg:block">
+          <HardHat size={120} />
+        </div>
+        
         <div className="container">
           <motion.div
             initial={{ opacity: 0 }}
@@ -428,8 +492,12 @@ const Index = () => {
         </div>
       </section>
 
-      {/* CTA Section with 3D Animation */}
-      <section className="py-24 bg-gradient-to-b from-secondary/30 to-background overflow-hidden">
+      {/* CTA Section with Construction Icon */}
+      <section className="py-24 bg-gradient-to-b from-secondary/30 to-background overflow-hidden relative">
+        <div className="absolute bottom-10 left-10 text-primary/10 hidden lg:block">
+          <Construction size={100} />
+        </div>
+        
         <div className="container relative">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
