@@ -95,7 +95,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-background overflow-hidden">
-      {/* Hero Section with Parallax and Worker Images */}
+      {/* Hero Section with Parallax and Worker Images in separate positions */}
       <section ref={heroRef} className="relative h-screen flex items-center justify-center overflow-hidden">
         <motion.div 
           style={{ scale: heroImageScale }}
@@ -113,9 +113,9 @@ const Index = () => {
           ></div>
         </motion.div>
         
-        {/* Worker with Yellow Safety Hat - Floating Element */}
+        {/* Worker with Yellow Safety Hat - Right Side */}
         <motion.div 
-          className="absolute z-20 right-10 top-1/3 md:right-32 md:top-1/4 w-40 md:w-72 shadow-2xl rounded-lg overflow-hidden border-4 border-white"
+          className="absolute z-20 right-10 bottom-16 md:right-32 md:bottom-24 w-40 md:w-72 shadow-2xl rounded-lg overflow-hidden border-4 border-white"
           style={{ y: workersImageY }}
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
@@ -132,7 +132,7 @@ const Index = () => {
         
         {/* Additional Worker Image - Left Side */}
         <motion.div 
-          className="absolute z-20 left-10 bottom-1/3 md:left-32 md:bottom-1/4 w-40 md:w-60 shadow-2xl rounded-lg overflow-hidden border-4 border-white rotate-3"
+          className="absolute z-20 left-10 top-16 md:left-32 md:top-24 w-40 md:w-60 shadow-2xl rounded-lg overflow-hidden border-4 border-white rotate-3"
           initial={{ opacity: 0, x: -100 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.8, duration: 0.8 }}
@@ -186,9 +186,26 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Animated Stats Section */}
-      <section className="py-12 bg-gradient-to-b from-primary/5 to-background">
+      {/* Animated Stats Section - Adding worker image here too */}
+      <section className="py-12 bg-gradient-to-b from-primary/5 to-background relative">
         <div className="container">
+          {/* New Worker Image - Center Right */}
+          <motion.div 
+            className="absolute z-10 right-4 md:right-12 top-1/2 transform -translate-y-1/2 w-32 md:w-48 shadow-xl rounded-lg overflow-hidden border-2 border-white -rotate-2 hidden md:block"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+          >
+            <AspectRatio ratio={3/4}>
+              <img 
+                src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                alt="Construction worker analyzing plans" 
+                className="w-full h-full object-cover"
+              />
+            </AspectRatio>
+          </motion.div>
+          
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -229,8 +246,25 @@ const Index = () => {
         </div>
       </section>
 
-      {/* 3D Carousel Services Section */}
-      <section className="py-20 bg-gradient-to-b from-background to-secondary/20">
+      {/* 3D Carousel Services Section with worker image */}
+      <section className="py-20 bg-gradient-to-b from-background to-secondary/20 relative">
+        {/* New Worker Image - Left side */}
+        <motion.div 
+          className="absolute z-10 left-4 md:left-12 top-1/3 w-32 md:w-56 shadow-xl rounded-lg overflow-hidden border-3 border-white rotate-3 hidden md:block"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4, duration: 0.8 }}
+        >
+          <AspectRatio ratio={3/4}>
+            <img 
+              src="https://images.unsplash.com/photo-1574009439308-9608847ce433?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+              alt="Construction worker with safety equipment" 
+              className="w-full h-full object-cover"
+            />
+          </AspectRatio>
+        </motion.div>
+        
         <div className="container">
           <motion.div
             initial={{ opacity: 0 }}
@@ -284,8 +318,25 @@ const Index = () => {
         </div>
       </section>
 
-      {/* How We Work Section */}
-      <section className="py-24 bg-white">
+      {/* How We Work Section with worker image */}
+      <section className="py-24 bg-white relative">
+        {/* New Construction Worker Image - Bottom right */}
+        <motion.div 
+          className="absolute z-10 right-8 md:right-24 bottom-12 w-36 md:w-64 shadow-xl rounded-lg overflow-hidden border-2 border-white rotate-6 hidden md:block"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3, duration: 0.8 }}
+        >
+          <AspectRatio ratio={1/1}>
+            <img 
+              src="https://images.unsplash.com/photo-1591955506264-3f5a6834570a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+              alt="Construction workers collaborating on site" 
+              className="w-full h-full object-cover"
+            />
+          </AspectRatio>
+        </motion.div>
+        
         <div className="container">
           <motion.div
             initial={{ opacity: 0 }}

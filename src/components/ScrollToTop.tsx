@@ -21,7 +21,7 @@ const ScrollToTop = () => {
       // Remove the class after animation completes
       setTimeout(() => {
         document.body.classList.remove('page-transition-active');
-      }, 800);
+      }, 1000); // Increased animation duration
     }, 100);
   }, [pathname]);
 
