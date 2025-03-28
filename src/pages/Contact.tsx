@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
@@ -156,6 +157,7 @@ const Contact = () => {
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900">Office Location</h3>
                     <p className="text-gray-900">Hyderabad, Telangana, India</p>
+                    <p className="text-gray-900">ECIL, Sri Singi Reddy Swami Reddynagar, Secunderabad, Telangana 500062</p>
                   </div>
                 </div>
                 

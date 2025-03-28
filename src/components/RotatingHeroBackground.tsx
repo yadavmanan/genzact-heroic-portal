@@ -35,13 +35,12 @@ const RotatingHeroBackground = ({
           className="absolute inset-0 w-full h-full"
         >
           <div 
-            className="w-full h-full bg-gray-50 bg-opacity-50"
+            className="w-full h-full"
             style={{
-              backgroundImage: `url('${images[currentImageIndex]}')`,
+              backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('${images[currentImageIndex]}')`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
-              backgroundBlendMode: 'overlay'
             }}
           ></div>
         </motion.div>
