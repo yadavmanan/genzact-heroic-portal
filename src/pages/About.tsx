@@ -177,7 +177,7 @@ const About = () => {
               
               <div className="order-1 md:order-2 flex justify-center">
                 <img 
-                  src="/babu.png" 
+                  src="/lovable-uploads/8fd68a69-a4e7-43b8-96d2-571043d90c07.png" 
                   alt="Babu - Founder & CEO" 
                   className="rounded-xl shadow-md max-w-full h-auto max-h-[400px]" 
                 />
