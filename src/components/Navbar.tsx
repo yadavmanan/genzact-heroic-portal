@@ -59,14 +59,16 @@ const Navbar = () => {
                 {item.label}
               </Link>
             ))}
-            <Link
-              to="/profile-pdf"
-              onClick={handleNavClick}
-              className="nav-link text-sm font-medium flex items-center text-primary"
-            >
-              <FileText className="w-4 h-4 mr-1" />
-              See More
-            </Link>
+            {!isMobile && (
+              <Link
+                to="/profile-pdf"
+                onClick={handleNavClick}
+                className="nav-link text-sm font-medium flex items-center text-primary"
+              >
+                <FileText className="w-4 h-4 mr-1" />
+                See More
+              </Link>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -101,14 +103,6 @@ const Navbar = () => {
                 {item.label}
               </Link>
             ))}
-            <Link
-              to="/profile-pdf"
-              className="block px-4 py-3 text-primary hover:bg-gray-50 flex items-center text-base"
-              onClick={handleNavClick}
-            >
-              <FileText className="w-4 h-4 mr-2" />
-              See More
-            </Link>
           </motion.div>
         )}
       </div>
