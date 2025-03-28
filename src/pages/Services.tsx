@@ -1,3 +1,4 @@
+
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -10,7 +11,7 @@ import {
 } from 'lucide-react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { useIsMobile } from '@/hooks/use-mobile';
+import { useIsMobile, useIsDesktop } from '@/hooks/use-mobile';
 import { 
   Accordion, 
   AccordionContent, 
@@ -18,148 +19,172 @@ import {
   AccordionTrigger 
 } from "@/components/ui/accordion";
 
-const Services = () => {
-  const isMobile = useIsMobile();
-  
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
+// Mobile Services Page Component
+const MobileServicesPage = () => {
+  // Function to handle "Contact Us" button clicks
+  const handleContactClick = () => {
+    window.scrollTo(0, 0);
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
-  };
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="min-h-screen pt-16 pb-8 bg-white"
+    >
+      <div className="px-4">
+        <h1 className="text-3xl font-bold mb-4 text-gradient">Our Services</h1>
+        
+        {/* Brief Intro */}
+        <p className="text-sm text-gray-700 mb-6">
+          Comprehensive staffing and recruitment solutions tailored for your business needs.
+        </p>
+        
+        {/* Services Cards */}
+        <div className="mb-8">
+          <h2 className="text-xl font-bold mb-3">Core Services</h2>
+          
+          <div className="space-y-3">
+            {coreServices.map((service, index) => (
+              <motion.div
+                key={index}
+                whileTap={{ scale: 0.98 }}
+                className="bg-white border border-gray-100 rounded-lg shadow-sm overflow-hidden"
+              >
+                <Accordion type="single" collapsible className="w-full">
+                  <AccordionItem value={`service-${index}`} className="border-none">
+                    <AccordionTrigger className="px-4 py-3 hover:no-underline">
+                      <div className="flex items-center">
+                        <div className="bg-primary/10 p-2 rounded-md mr-3">
+                          <service.icon className="w-5 h-5 text-primary" />
+                        </div>
+                        <h3 className="font-bold text-left text-base">{service.title}</h3>
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent className="px-4 pb-4">
+                      <p className="text-sm text-gray-700 mb-3 ml-10">
+                        {service.description}
+                      </p>
+                      <ul className="space-y-2 mb-4 ml-10">
+                        {service.features.map((feature, i) => (
+                          <li key={i} className="flex items-start text-sm">
+                            <feature.icon className="w-4 h-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
+                            <span className="text-gray-700">{feature.text}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      <div className="ml-10">
+                        <Link to="/contact" onClick={handleContactClick}>
+                          <Button size="sm" className="bg-primary hover:bg-primary/90 text-sm">
+                            {service.buttonText}
+                          </Button>
+                        </Link>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+        
+        {/* Industries Section */}
+        <div className="mb-8">
+          <h2 className="text-xl font-bold mb-3">Industries We Serve</h2>
+          <div className="grid grid-cols-2 gap-2">
+            {industries.slice(0, 6).map((industry, index) => (
+              <div key={index} className="bg-white border border-gray-100 p-3 rounded-lg shadow-sm flex flex-col items-center">
+                <industry.icon className="w-6 h-6 text-primary mb-2" />
+                <span className="text-xs text-center font-medium">{industry.name}</span>
+              </div>
+            ))}
+          </div>
+          
+          <Accordion type="single" collapsible className="mt-2">
+            <AccordionItem value="more-industries">
+              <AccordionTrigger className="text-sm text-primary hover:no-underline">
+                View More Industries
+              </AccordionTrigger>
+              <AccordionContent>
+                <div className="grid grid-cols-2 gap-2 pt-2">
+                  {industries.slice(6).map((industry, index) => (
+                    <div key={index} className="bg-white border border-gray-100 p-3 rounded-lg shadow-sm flex flex-col items-center">
+                      <industry.icon className="w-6 h-6 text-primary mb-2" />
+                      <span className="text-xs text-center font-medium">{industry.name}</span>
+                    </div>
+                  ))}
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </div>
+        
+        {/* Process Section */}
+        <div className="mb-8">
+          <h2 className="text-xl font-bold mb-3">Our Process</h2>
+          <div className="space-y-4">
+            {serviceProcess.map((step, index) => (
+              <div key={index} className="flex">
+                <div className="flex-shrink-0 mr-3">
+                  <div className="bg-primary text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">
+                    {index + 1}
+                  </div>
+                  {index < serviceProcess.length - 1 && (
+                    <div className="w-0.5 h-full bg-gray-200 mx-auto mt-1"></div>
+                  )}
+                </div>
+                <div className="pt-1 pb-6">
+                  <h3 className="text-base font-bold">{step.title}</h3>
+                  <p className="text-sm text-gray-700 mt-1">{step.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        {/* FAQ Accordion */}
+        <div className="mb-8">
+          <h2 className="text-xl font-bold mb-3">Frequently Asked Questions</h2>
+          <Accordion type="single" collapsible className="w-full">
+            {faqs.map((faq, index) => (
+              <AccordionItem key={index} value={`faq-${index}`} className="border-b border-gray-200">
+                <AccordionTrigger className="text-sm font-semibold py-3 hover:no-underline">
+                  {faq.question}
+                </AccordionTrigger>
+                <AccordionContent>
+                  <p className="text-sm text-gray-700">{faq.answer}</p>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+        
+        {/* Call to Action */}
+        <div className="bg-secondary/40 p-5 rounded-lg text-center">
+          <h2 className="text-lg font-bold mb-2">Need a Custom Solution?</h2>
+          <p className="text-sm text-gray-700 mb-4">
+            Get tailored staffing solutions for your business needs.
+          </p>
+          <Link to="/contact" onClick={handleContactClick}>
+            <Button className="bg-primary hover:bg-primary/90 text-white">
+              Contact Us Today
+            </Button>
+          </Link>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
 
+// Desktop version - original implementation
+const DesktopServicesPage = () => {
   // Function to handle "Contact Us" button clicks
   const handleContactClick = () => {
     // Navigate to the top of the contact page
     window.scrollTo(0, 0);
   };
-
-  // Mobile version with accordions
-  if (isMobile) {
-    return (
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        className="min-h-screen pt-20 px-4 pb-8 bg-white"
-      >
-        <div className="container mx-auto">
-          <h1 className="text-3xl font-bold mb-5 text-gradient">Our Services</h1>
-          
-          {/* Brief Introduction */}
-          <p className="text-base text-gray-900 mb-6">
-            Comprehensive staffing and recruitment solutions across various industries.
-          </p>
-          
-          {/* Core Services Accordions */}
-          <Accordion type="single" collapsible className="mb-6 w-full">
-            {coreServices.map((service, index) => (
-              <AccordionItem key={index} value={`service-${index}`} className="border-b border-gray-200">
-                <AccordionTrigger className="py-3">
-                  <div className="flex items-center">
-                    <service.icon className="w-5 h-5 text-primary mr-3" />
-                    <span className="font-bold text-left">{service.title}</span>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent>
-                  <div className="pl-8 pt-2 pb-1">
-                    <p className="text-sm text-gray-900 mb-3">
-                      {service.description}
-                    </p>
-                    <ul className="text-sm text-gray-900 mb-4 space-y-2">
-                      {service.features.map((feature, i) => (
-                        <li key={i} className="flex items-start">
-                          <feature.icon className="w-4 h-4 text-primary mr-2 mt-1 flex-shrink-0" />
-                          <span>{feature.text}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <Link to="/contact" onClick={handleContactClick}>
-                      <Button size="sm" className="bg-primary hover:bg-primary/90 mb-2">{service.buttonText}</Button>
-                    </Link>
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-          
-          {/* Industry Accordions */}
-          <h2 className="text-2xl font-bold mb-3 text-gradient">Industries</h2>
-          <Accordion type="single" collapsible className="mb-6 w-full">
-            <AccordionItem value="industries" className="border-b border-gray-200">
-              <AccordionTrigger className="py-3">Industries We Serve</AccordionTrigger>
-              <AccordionContent>
-                <div className="grid grid-cols-2 gap-2 pt-2 pb-1">
-                  {industries.map((industry, index) => (
-                    <div key={index} className="flex items-center p-2 bg-white rounded-lg shadow-sm">
-                      <industry.icon className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
-                      <span className="text-sm">{industry.name}</span>
-                    </div>
-                  ))}
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
-          
-          {/* Process Accordion */}
-          <h2 className="text-2xl font-bold mb-3 text-gradient">Our Process</h2>
-          <Accordion type="single" collapsible className="mb-6 w-full">
-            <AccordionItem value="process" className="border-b border-gray-200">
-              <AccordionTrigger className="py-3">Service Process</AccordionTrigger>
-              <AccordionContent>
-                <div className="space-y-4 pt-2 pb-1">
-                  {serviceProcess.map((step, index) => (
-                    <div key={index} className="flex items-start">
-                      <div className="bg-primary text-white w-6 h-6 rounded-full flex items-center justify-center mr-3 flex-shrink-0 text-sm">
-                        {index + 1}
-                      </div>
-                      <div>
-                        <h3 className="font-bold text-sm">{step.title}</h3>
-                        <p className="text-xs text-gray-700">{step.description}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
-          
-          {/* FAQ Accordion */}
-          <h2 className="text-2xl font-bold mb-3 text-gradient">FAQs</h2>
-          <Accordion type="single" collapsible className="mb-6 w-full">
-            {faqs.map((faq, index) => (
-              <AccordionItem key={index} value={`faq-${index}`} className="border-b border-gray-200">
-                <AccordionTrigger className="py-3">{faq.question}</AccordionTrigger>
-                <AccordionContent>
-                  <p className="text-sm text-gray-700 pt-2 pb-1">{faq.answer}</p>
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-          
-          {/* Call to Action */}
-          <div className="bg-secondary/50 p-5 rounded-lg text-center mt-6">
-            <h2 className="text-xl font-bold mb-3 text-gradient">Need a Custom Solution?</h2>
-            <Link to="/contact" onClick={handleContactClick}>
-              <Button className="bg-primary hover:bg-primary/90 text-white">
-                Contact Us Today
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </motion.div>
-    );
-  }
   
-  // Desktop version - keep original layout
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -409,6 +434,30 @@ const Services = () => {
       </div>
     </motion.div>
   );
+};
+
+// Main Services component that conditionally renders based on screen size
+const Services = () => {
+  const isMobile = useIsMobile();
+  const isDesktop = useIsDesktop();
+  
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 }
+  };
+
+  // Render appropriate view based on screen size
+  return isMobile ? <MobileServicesPage /> : <DesktopServicesPage />;
 };
 
 // Define services data for better organization and consistency
