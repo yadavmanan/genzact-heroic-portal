@@ -1,4 +1,3 @@
-
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -19,6 +18,10 @@ import {
   Languages,
   BookOpen
 } from 'lucide-react';
+
+// Define Shield and Lightbulb before they are used
+const Shield = Award; // This is just for demonstration, using Award icon as Shield
+const Lightbulb = Award; // Using Award as placeholder for Lightbulb icon
 
 const About = () => {
   return (
@@ -369,8 +372,5 @@ const advantages = [
     description: "Continuous assistance throughout the hiring process and beyond to ensure successful placements."
   }
 ];
-
-const Shield = Award; // This is just for demonstration, using Award icon as Shield (since we imported Award but not Shield)
-const Lightbulb = Award; // Using Award as placeholder for Lightbulb icon
 
 export default About;
