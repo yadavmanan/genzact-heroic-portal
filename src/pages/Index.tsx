@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { 
@@ -36,6 +37,145 @@ import {
 } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
 import RotatingHeroBackground from '@/components/RotatingHeroBackground';
+
+// Define all arrays at the top of the file
+const services = [
+  {
+    title: "Manpower Consulting",
+    description: "Strategic manpower planning and talent acquisition solutions.",
+    icon: Briefcase
+  },
+  {
+    title: "Payroll Management",
+    description: "Comprehensive payroll processing and compliance services.",
+    icon: Calculator
+  },
+  {
+    title: "IT Technology",
+    description: "Specialized IT staffing solutions for technology roles and projects.",
+    icon: Laptop
+  },
+  {
+    title: "Talent Acquisition",
+    description: "Strategic solutions to help you find and retain top professionals.",
+    icon: Search
+  },
+  {
+    title: "Manpower Off-Shore Projects",
+    description: "Comprehensive offshore staffing for global workforce strategies.",
+    icon: Globe
+  },
+  {
+    title: "IT and Non-IT Staffing in India",
+    description: "Complete staffing solutions across sectors in India.",
+    icon: Building
+  },
+  {
+    title: "On-Call Services",
+    description: "Immediate staffing solutions for urgent industrial requirements.",
+    icon: Factory
+  },
+  {
+    title: "RPO Solutions",
+    description: "End-to-end recruitment process outsourcing for IT and non-IT sectors.",
+    icon: Search
+  }
+];
+
+const benefits = [
+  {
+    title: "Industry Expertise",
+    description: "Our specialists have deep knowledge of various industry sectors, ensuring precise matching of skills."
+  },
+  {
+    title: "Personalized Service",
+    description: "We create custom staffing solutions tailored to your unique business requirements."
+  },
+  {
+    title: "Quality-Focused",
+    description: "Rigorous vetting ensures we only connect you with top-tier talent that meets your standards."
+  },
+  {
+    title: "Timely Delivery",
+    description: "We understand urgency and work efficiently to fill your positions with qualified candidates."
+  }
+];
+
+const workflowSteps = [
+  {
+    title: "Understand Requirements",
+    description: "We thoroughly analyze your needs to understand the specific skills and experience required.",
+    icon: Search,
+    details: [
+      "In-depth consultation with stakeholders",
+      "Job requirement analysis",
+      "Skills and experience mapping",
+      "Cultural fit assessment"
+    ]
+  },
+  {
+    title: "Source Candidates",
+    description: "Our experts use advanced tools and networks to find the perfect candidates.",
+    icon: Users,
+    details: [
+      "Multi-channel sourcing strategy",
+      "Proactive talent identification",
+      "Passive candidate engagement",
+      "Diverse talent pool development"
+    ]
+  },
+  {
+    title: "Evaluate & Screen",
+    description: "Rigorous evaluation ensures only the best candidates move forward.",
+    icon: CheckCircle,
+    details: [
+      "Technical skills assessment",
+      "Behavioral interviews",
+      "Cultural fit evaluation",
+      "Background verification"
+    ]
+  },
+  {
+    title: "Placement & Support",
+    description: "We manage the entire onboarding process and provide ongoing support.",
+    icon: Zap,
+    details: [
+      "Seamless candidate placement",
+      "Comprehensive onboarding assistance",
+      "Regular performance check-ins",
+      "Continuous support and feedback"
+    ]
+  }
+];
+
+const testimonials = [
+  {
+    quote: "Genzact has been instrumental in helping us build our tech team. Their understanding of our requirements and the quality of candidates they provide is exceptional.",
+    name: "Raj Kumar",
+    position: "CTO, Noratel"
+  },
+  {
+    quote: "The dedicated team at Genzact made our recruitment process smooth and efficient. They found us the perfect candidates in record time.",
+    name: "Anita Sharma",
+    position: "HR Manager, Thefirms.in"
+  },
+  {
+    quote: "I've worked with several staffing agencies, but Genzact stands out for their professionalism and attention to detail. They truly understand our company culture.",
+    name: "Vikram Singh",
+    position: "Operations Director, TechSolutions"
+  }
+];
+
+const clientNames = [
+  "TechNova Inc.",
+  "GlobalServe Solutions",
+  "Noratel",
+  "InfraTech Systems",
+  "DataSphere Analytics",
+  "Thefirms.in",
+  "BuildRight Constructions",
+  "EnergySys Corp"
+];
 
 const Index = () => {
   const { toast } = useToast();
@@ -580,125 +720,4 @@ const Index = () => {
   );
 };
 
-const services = [
-  {
-    title: "Manpower Consulting",
-    description: "Strategic manpower planning and talent acquisition solutions.",
-    icon: Briefcase
-  },
-  {
-    title: "Payroll Management",
-    description: "Comprehensive payroll processing and compliance services.",
-    icon: Calculator
-  },
-  {
-    title: "IT Technology",
-    description: "Specialized IT staffing solutions for technology roles and projects.",
-    icon: Laptop
-  },
-  {
-    title: "Talent Acquisition",
-    description: "Strategic solutions to help you find and retain top professionals.",
-    icon: Search
-  },
-  {
-    title: "Manpower Off-Shore Projects",
-    description: "Comprehensive offshore staffing for global workforce strategies.",
-    icon: Globe
-  },
-  {
-    title: "IT and Non-IT Staffing in India",
-    description: "Complete staffing solutions across sectors in India.",
-    icon: Building
-  },
-  {
-    title: "On-Call Services",
-    description: "Immediate staffing solutions for urgent industrial requirements.",
-    icon: Factory
-  },
-  {
-    title: "RPO Solutions",
-    description: "End-to-end recruitment process outsourcing for IT and non-IT sectors.",
-    icon: Search
-  }
-];
-
-const benefits = [
-  {
-    title: "Industry Expertise",
-    description: "Our specialists have deep knowledge of various industry sectors, ensuring precise matching of skills."
-  },
-  {
-    title: "Personalized Service",
-    description: "We create custom staffing solutions tailored to your unique business requirements."
-  },
-  {
-    title: "Quality-Focused",
-    description: "Rigorous vetting ensures we only connect you with top-tier talent that meets your standards."
-  },
-  {
-    title: "Timely Delivery",
-    description: "We understand urgency and work efficiently to fill your positions with qualified candidates."
-  }
-];
-
-const workflowSteps = [
-  {
-    title: "Understand Requirements",
-    description: "We thoroughly analyze your needs to understand the specific skills and experience required.",
-    icon: Search,
-    details: [
-      "In-depth consultation with stakeholders",
-      "Job requirement analysis",
-      "Skills and experience mapping",
-      "Cultural fit assessment"
-    ]
-  },
-  {
-    title: "Source Candidates",
-    description: "Our experts use advanced tools and networks to find the perfect candidates.",
-    icon: Users,
-    details: [
-      "Multi-channel sourcing strategy",
-      "Proactive talent identification",
-      "Passive candidate engagement",
-      "Diverse talent pool development"
-    ]
-  },
-  {
-    title: "Evaluate & Screen",
-    description: "Rigorous evaluation ensures only the best candidates move forward.",
-    icon: CheckCircle,
-    details: [
-      "Technical skills assessment",
-      "Behavioral interviews",
-      "Cultural fit evaluation",
-      "Background verification"
-    ]
-  },
-  {
-    title: "Placement & Support",
-    description: "We manage the entire onboarding process and provide ongoing support.",
-    icon: Zap,
-    details: [
-      "Seamless candidate placement",
-      "Comprehensive onboarding assistance",
-      "Regular performance check-ins",
-      "Continuous support and feedback"
-    ]
-  }
-];
-
-const testimonials = [
-  {
-    quote: "Genzact has been instrumental in helping us build our tech team. Their understanding of our requirements and the quality of candidates they provide is exceptional.",
-    name: "Raj Kumar",
-    position: "CTO, Noratel"
-  },
-  {
-    quote: "The dedicated team at Genzact made our recruitment process smooth and efficient. They found us the perfect candidates in record time.",
-    name: "Anita Sharma",
-    position: "HR Manager, Thefirms.in"
-  },
-  {
-    quote: "I've worked with
+export default Index;
