@@ -17,61 +17,8 @@ import {
   Briefcase,
   GraduationCap,
   Languages,
-  BookOpen,
-  Shield,
-  Lightbulb
+  BookOpen
 } from 'lucide-react';
-
-// Define the arrays before using them
-const coreValues = [
-  {
-    title: "Excellence",
-    description: "We strive for excellence in every interaction, solution, and relationship.",
-    icon: Award
-  },
-  {
-    title: "Integrity",
-    description: "We operate with honesty, transparency, and ethical standards in all our dealings.",
-    icon: Shield
-  },
-  {
-    title: "Innovation",
-    description: "We embrace new ideas and approaches to solve complex staffing challenges.",
-    icon: Lightbulb
-  },
-  {
-    title: "Partnership",
-    description: "We build lasting relationships based on mutual trust and shared success.",
-    icon: Heart
-  }
-];
-
-const advantages = [
-  {
-    title: "Industry Expertise",
-    description: "Specialized knowledge across multiple sectors, ensuring precise skill matching and industry-relevant solutions."
-  },
-  {
-    title: "Customized Approach",
-    description: "Tailored staffing strategies designed specifically for your unique business requirements and challenges."
-  },
-  {
-    title: "Extensive Talent Network",
-    description: "Access to a vast pool of pre-vetted professionals across various industries and specializations."
-  },
-  {
-    title: "Quality Assurance",
-    description: "Rigorous screening processes that ensure only the most qualified candidates are presented."
-  },
-  {
-    title: "Quick Turnaround",
-    description: "Efficient processes that reduce time-to-hire without compromising on quality."
-  },
-  {
-    title: "Ongoing Support",
-    description: "Continuous assistance throughout the hiring process and beyond to ensure successful placements."
-  }
-];
 
 const About = () => {
   return (
@@ -230,7 +177,7 @@ const About = () => {
               
               <div className="order-1 md:order-2 flex justify-center">
                 <img 
-                  src="/lovable-uploads/d42bae71-2a64-4b8d-9a53-b3f3fdd4e3c9.png" 
+                  src="/babu.png" 
                   alt="Babu - Founder & CEO" 
                   className="rounded-xl shadow-md max-w-full h-auto max-h-[400px]" 
                 />
@@ -372,5 +319,58 @@ const About = () => {
     </motion.div>
   );
 };
+
+const coreValues = [
+  {
+    title: "Excellence",
+    description: "We strive for excellence in every interaction, solution, and relationship.",
+    icon: Award
+  },
+  {
+    title: "Integrity",
+    description: "We operate with honesty, transparency, and ethical standards in all our dealings.",
+    icon: Shield
+  },
+  {
+    title: "Innovation",
+    description: "We embrace new ideas and approaches to solve complex staffing challenges.",
+    icon: Lightbulb
+  },
+  {
+    title: "Partnership",
+    description: "We build lasting relationships based on mutual trust and shared success.",
+    icon: Heart
+  }
+];
+
+const advantages = [
+  {
+    title: "Industry Expertise",
+    description: "Specialized knowledge across multiple sectors, ensuring precise skill matching and industry-relevant solutions."
+  },
+  {
+    title: "Customized Approach",
+    description: "Tailored staffing strategies designed specifically for your unique business requirements and challenges."
+  },
+  {
+    title: "Extensive Talent Network",
+    description: "Access to a vast pool of pre-vetted professionals across various industries and specializations."
+  },
+  {
+    title: "Quality Assurance",
+    description: "Rigorous screening processes that ensure only the most qualified candidates are presented."
+  },
+  {
+    title: "Quick Turnaround",
+    description: "Efficient processes that reduce time-to-hire without compromising on quality."
+  },
+  {
+    title: "Ongoing Support",
+    description: "Continuous assistance throughout the hiring process and beyond to ensure successful placements."
+  }
+];
+
+const Shield = Award; // This is just for demonstration, using Award icon as Shield (since we imported Award but not Shield)
+const Lightbulb = Award; // Using Award as placeholder for Lightbulb icon
 
 export default About;
