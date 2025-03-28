@@ -69,11 +69,7 @@ const About = () => {
             transition={{ delay: 0.4 }}
             className="rounded-2xl overflow-hidden shadow-xl"
           >
-            <img 
-              src="https://images.unsplash.com/photo-1664575601711-67174631c8a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80" 
-              alt="Genzact Team" 
-              className="w-full h-auto rounded-2xl transform hover:scale-105 transition-transform duration-500"
-            />
+            {/* Image component removed as requested */}
           </motion.div>
         </div>
         
