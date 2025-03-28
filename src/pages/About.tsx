@@ -1,3 +1,4 @@
+
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -18,18 +19,293 @@ import {
   Languages,
   BookOpen
 } from 'lucide-react';
+import { useIsMobile, useIsDesktop } from '@/hooks/use-mobile';
+import { 
+  Accordion, 
+  AccordionContent, 
+  AccordionItem, 
+  AccordionTrigger 
+} from "@/components/ui/accordion";
 
 // Define Shield and Lightbulb before they are used
 const Shield = Award; // This is just for demonstration, using Award icon as Shield
 const Lightbulb = Award; // Using Award as placeholder for Lightbulb icon
 
-const About = () => {
+// Mobile-specific About component
+const MobileAboutPage = () => {
+  // Function to handle "Contact Us" button click
+  const handleContactClick = () => {
+    // Navigate to the top of the contact page
+    window.scrollTo(0, 0);
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="min-h-screen pt-16 pb-8 bg-white"
+      style={{ position: 'relative' }} // Add position relative to fix framer-motion warning
+    >
+      <div className="px-4">
+        {/* Header */}
+        <h1 className="text-3xl font-bold mb-4 text-gradient">Our Story</h1>
+        <p className="text-sm text-gray-700 mb-6">
+          Genzact was founded with a vision to transform the recruitment landscape by providing exceptional 
+          staffing solutions.
+        </p>
+        
+        {/* Quick Stats */}
+        <div className="flex flex-wrap gap-2 mb-8">
+          <div className="bg-secondary/30 px-4 py-3 rounded-lg text-center flex-1">
+            <span className="block text-xl font-bold text-primary">10+</span>
+            <span className="text-xs">Years</span>
+          </div>
+          <div className="bg-secondary/30 px-4 py-3 rounded-lg text-center flex-1">
+            <span className="block text-xl font-bold text-primary">500+</span>
+            <span className="text-xs">Clients</span>
+          </div>
+          <div className="bg-secondary/30 px-4 py-3 rounded-lg text-center flex-1">
+            <span className="block text-xl font-bold text-primary">10k+</span>
+            <span className="text-xs">Placements</span>
+          </div>
+        </div>
+        
+        {/* Mission & Vision */}
+        <div className="mb-8">
+          <h2 className="text-xl font-bold mb-3">Mission & Vision</h2>
+          <Accordion type="single" collapsible className="w-full">
+            <AccordionItem value="mission" className="border-b border-gray-200">
+              <AccordionTrigger className="py-3 hover:no-underline">
+                <div className="flex items-center">
+                  <div className="bg-primary/10 p-2 rounded-md mr-3">
+                    <Layers className="w-5 h-5 text-primary" />
+                  </div>
+                  <h3 className="font-bold text-left text-base">Our Mission</h3>
+                </div>
+              </AccordionTrigger>
+              <AccordionContent className="px-4 pb-4">
+                <p className="text-sm text-gray-700">
+                  To empower businesses with exceptional talent while providing professionals with meaningful career opportunities.
+                  We strive to create lasting partnerships built on trust, integrity, and mutual success.
+                </p>
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="vision" className="border-b border-gray-200">
+              <AccordionTrigger className="py-3 hover:no-underline">
+                <div className="flex items-center">
+                  <div className="bg-primary/10 p-2 rounded-md mr-3">
+                    <Globe className="w-5 h-5 text-primary" />
+                  </div>
+                  <h3 className="font-bold text-left text-base">Our Vision</h3>
+                </div>
+              </AccordionTrigger>
+              <AccordionContent className="px-4 pb-4">
+                <p className="text-sm text-gray-700">
+                  To be the leading global staffing solutions provider known for innovation, excellence, and transformative 
+                  impact on businesses and careers. We envision a world where every company finds its perfect talent match.
+                </p>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </div>
+        
+        {/* Founder Profile */}
+        <div className="mb-8">
+          <h2 className="text-xl font-bold mb-3">Our Founder</h2>
+          <div className="bg-white border border-gray-100 rounded-lg shadow-sm overflow-hidden">
+            <div className="flex justify-center p-4">
+              <img 
+                src="/lovable-uploads/8fd68a69-a4e7-43b8-96d2-571043d90c07.png" 
+                alt="Babu - Founder & CEO" 
+                className="rounded-lg shadow-sm max-w-full h-auto max-h-[200px]" 
+              />
+            </div>
+            <div className="p-4">
+              <h3 className="text-lg font-bold">Babu</h3>
+              <p className="text-primary text-sm mb-3">Founder & CEO</p>
+              <p className="text-sm text-gray-700 mb-4">
+                With over 15 years of experience in HR and recruitment, Babu founded Genzact with a vision to transform 
+                how businesses approach staffing.
+              </p>
+              
+              <Accordion type="single" collapsible className="w-full">
+                <AccordionItem value="experience" className="border-b border-gray-200">
+                  <AccordionTrigger className="py-2 text-sm hover:no-underline">
+                    Professional Background
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <div className="space-y-3 text-sm">
+                      <div className="flex items-start">
+                        <div className="bg-primary/10 p-1.5 rounded-full mr-2 flex-shrink-0">
+                          <Briefcase className="w-4 h-4 text-primary" />
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-sm">Experience</h4>
+                          <p className="text-xs text-gray-700">15+ years in Recruitment & HR Management</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-start">
+                        <div className="bg-primary/10 p-1.5 rounded-full mr-2 flex-shrink-0">
+                          <GraduationCap className="w-4 h-4 text-primary" />
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-sm">Education</h4>
+                          <p className="text-xs text-gray-700">MBA in Human Resource Management</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-start">
+                        <div className="bg-primary/10 p-1.5 rounded-full mr-2 flex-shrink-0">
+                          <Award className="w-4 h-4 text-primary" />
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-sm">Achievements</h4>
+                          <p className="text-xs text-gray-700">HR Leadership Award, Industry Innovator Recognition</p>
+                        </div>
+                      </div>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+              
+              <div className="mt-4">
+                <Link to="/contact" onClick={handleContactClick}>
+                  <Button className="w-full bg-primary hover:bg-primary/90 text-sm">
+                    Connect with Babu <ArrowRight className="ml-2 w-4 h-4" />
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Values */}
+        <div className="mb-8">
+          <h2 className="text-xl font-bold mb-3">Our Values</h2>
+          <div className="grid grid-cols-2 gap-3">
+            {coreValues.map((value, index) => (
+              <div
+                key={index}
+                className="bg-white border border-gray-100 p-4 rounded-lg shadow-sm flex flex-col items-center text-center"
+              >
+                <div className="bg-primary/10 w-10 h-10 rounded-full flex items-center justify-center mb-2">
+                  <value.icon className="text-primary w-5 h-5" />
+                </div>
+                <h3 className="text-sm font-bold mb-1">{value.title}</h3>
+                <p className="text-xs text-gray-700">{value.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        {/* Advantages */}
+        <div className="mb-8">
+          <h2 className="text-xl font-bold mb-3">Why Choose Us</h2>
+          <div className="space-y-3">
+            {advantages.slice(0, 3).map((advantage, index) => (
+              <div
+                key={index}
+                className="bg-white border border-gray-100 p-3 rounded-lg shadow-sm flex items-start"
+              >
+                <div className="bg-primary/10 p-1.5 rounded-full mr-2 flex-shrink-0">
+                  <Check className="text-primary w-4 h-4" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-bold mb-1">{advantage.title}</h3>
+                  <p className="text-xs text-gray-700">{advantage.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          
+          <Accordion type="single" collapsible className="mt-2">
+            <AccordionItem value="more-advantages">
+              <AccordionTrigger className="text-sm text-primary hover:no-underline">
+                View More Advantages
+              </AccordionTrigger>
+              <AccordionContent>
+                <div className="space-y-3 pt-2">
+                  {advantages.slice(3).map((advantage, index) => (
+                    <div
+                      key={index}
+                      className="bg-white border border-gray-100 p-3 rounded-lg shadow-sm flex items-start"
+                    >
+                      <div className="bg-primary/10 p-1.5 rounded-full mr-2 flex-shrink-0">
+                        <Check className="text-primary w-4 h-4" />
+                      </div>
+                      <div>
+                        <h3 className="text-sm font-bold mb-1">{advantage.title}</h3>
+                        <p className="text-xs text-gray-700">{advantage.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </div>
+        
+        {/* Contact CTA */}
+        <div className="bg-secondary/20 p-5 rounded-lg text-center mb-8">
+          <h2 className="text-lg font-bold mb-2">Ready to Get Started?</h2>
+          <p className="text-sm text-gray-700 mb-4">
+            Connect with our team today to discuss how Genzact can support your staffing needs.
+          </p>
+          <Link to="/contact" onClick={handleContactClick}>
+            <Button className="bg-primary hover:bg-primary/90 text-white">
+              Contact Us Now
+            </Button>
+          </Link>
+        </div>
+        
+        {/* Contact Info */}
+        <div className="grid grid-cols-1 gap-3">
+          <div className="bg-white border border-gray-100 p-4 rounded-lg shadow-sm text-center">
+            <div className="bg-primary/10 w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-2">
+              <MapPin className="text-primary w-5 h-5" />
+            </div>
+            <h3 className="text-sm font-bold mb-1">Our Location</h3>
+            <p className="text-xs text-gray-700">Hyderabad, Telangana, India</p>
+          </div>
+          
+          <div className="grid grid-cols-2 gap-3">
+            <div className="bg-white border border-gray-100 p-4 rounded-lg shadow-sm text-center">
+              <div className="bg-primary/10 w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-2">
+                <Mail className="text-primary w-5 h-5" />
+              </div>
+              <h3 className="text-sm font-bold mb-1">Email Us</h3>
+              <a href="mailto:info@genzact.com" className="text-primary text-xs hover:underline">
+                info@genzact.com
+              </a>
+            </div>
+            
+            <div className="bg-white border border-gray-100 p-4 rounded-lg shadow-sm text-center">
+              <div className="bg-primary/10 w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-2">
+                <Phone className="text-primary w-5 h-5" />
+              </div>
+              <h3 className="text-sm font-bold mb-1">Call Us</h3>
+              <a href="tel:+919666655664" className="text-primary text-xs hover:underline">
+                +91 9666 655 664
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
+// Desktop-specific About component
+const DesktopAboutPage = () => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       className="min-h-screen pt-24 pb-20 px-4 bg-white"
+      style={{ position: 'relative' }} // Add position relative to fix framer-motion warning
     >
       <div className="container mx-auto mt-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
@@ -317,6 +593,13 @@ const About = () => {
       </div>
     </motion.div>
   );
+};
+
+// Main About component that conditionally renders based on screen size
+const About = () => {
+  const isMobile = useIsMobile();
+  
+  return isMobile ? <MobileAboutPage /> : <DesktopAboutPage />;
 };
 
 const coreValues = [
