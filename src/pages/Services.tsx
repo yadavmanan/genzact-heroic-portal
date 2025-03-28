@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { 
   Users, Search, BarChart, Building, Shield, Clock, 
   FileText, Briefcase, Calculator, Database, UserCheck, HeartHandshake,
-  Laptop, Computer, Phone, HardHat, Factory, PhoneCall
+  Laptop, Computer, Phone, HardHat, Factory, PhoneCall, Globe, Network, Workflow
 } from 'lucide-react';
 
 const Services = () => {
@@ -53,11 +53,11 @@ const Services = () => {
           </p>
           <p className="text-xl text-gray-900">
             Whether you're looking for Manpower Consulting, Payroll Management, or comprehensive 
-            RPO solutions, our team is here to help you succeed.
+            staffing solutions, our team is here to help you succeed.
           </p>
         </motion.div>
         
-        {/* Main Services */}
+        {/* Main Services - Updated to match Index.tsx */}
         <h2 className="text-3xl font-bold mb-8 text-gradient">Core Services</h2>
         <motion.div 
           variants={containerVariants}
@@ -116,7 +116,7 @@ const Services = () => {
   );
 };
 
-// Define services data for better organization and consistency
+// Define services data for better organization and consistency - Updated to match Index.tsx
 const coreServices = [
   {
     title: "Manpower Consulting",
@@ -143,28 +143,52 @@ const coreServices = [
     buttonText: "Learn More"
   },
   {
-    title: "RPO Solutions",
-    description: "Our Recruitment Process Outsourcing (RPO) solutions for both IT and non-IT sectors deliver:",
-    icon: Search,
-    features: [
-      { icon: Building, text: "End-to-end recruitment management" },
-      { icon: Users, text: "Industry-specific talent acquisition" },
-      { icon: Clock, text: "Scalable hiring solutions" },
-      { icon: HeartHandshake, text: "Employer branding and candidate experience" }
-    ],
-    buttonText: "Get Started"
-  },
-  {
-    title: "Domestic IT Requirements",
-    description: "Fulfill your IT staffing needs with our specialized recruitment services for technology roles:",
+    title: "IT Technology",
+    description: "Access specialized IT technology solutions and infrastructure support for your business needs:",
     icon: Laptop,
     features: [
-      { icon: Computer, text: "Software Development Professionals" },
-      { icon: Database, text: "Data Science & Analytics Experts" },
-      { icon: Shield, text: "Cybersecurity Specialists" },
-      { icon: Users, text: "IT Project Management Teams" }
+      { icon: Computer, text: "IT Infrastructure Setup & Support" },
+      { icon: Shield, text: "Security Solutions & Implementation" },
+      { icon: Database, text: "Database Management & Optimization" },
+      { icon: Phone, text: "Technical Support & Maintenance" }
     ],
     buttonText: "Get IT Solutions"
+  },
+  {
+    title: "Talent Acquisition",
+    description: "Strategic recruitment and workforce planning solutions to help you build high-performing teams:",
+    icon: Users,
+    features: [
+      { icon: Search, text: "Strategic Talent Search" },
+      { icon: UserCheck, text: "Cultural Fit Assessment" },
+      { icon: Clock, text: "Rapid Talent Deployment" },
+      { icon: HeartHandshake, text: "Long-term Retention Support" }
+    ],
+    buttonText: "Find Talent"
+  },
+  {
+    title: "Manpower Off-Shore Projects",
+    description: "Global staffing solutions to support your international projects and remote teams:",
+    icon: Globe,
+    features: [
+      { icon: Building, text: "Cross-Border Team Building" },
+      { icon: Clock, text: "24/7 Support Across Time Zones" },
+      { icon: Shield, text: "Compliance with International Standards" },
+      { icon: Users, text: "Cultural Integration Management" }
+    ],
+    buttonText: "Explore Global Solutions"
+  },
+  {
+    title: "IT and Non-IT Staffing in India",
+    description: "Comprehensive staffing solutions for all industry sectors across India:",
+    icon: Building,
+    features: [
+      { icon: Computer, text: "Technology Sector Specialists" },
+      { icon: Briefcase, text: "Business Operations Professionals" },
+      { icon: Factory, text: "Manufacturing & Production Experts" },
+      { icon: Database, text: "Administrative & Support Staff" }
+    ],
+    buttonText: "Start Staffing"
   },
   {
     title: "On-Call Services for Industrial Sectors",
@@ -177,6 +201,18 @@ const coreServices = [
       { icon: UserCheck, text: "Specialized Technical Operators" }
     ],
     buttonText: "Request On-Call Staff"
+  },
+  {
+    title: "RPO Solutions",
+    description: "Our Recruitment Process Outsourcing (RPO) solutions for both IT and non-IT sectors deliver:",
+    icon: Search,
+    features: [
+      { icon: Building, text: "End-to-end recruitment management" },
+      { icon: Users, text: "Industry-specific talent acquisition" },
+      { icon: Clock, text: "Scalable hiring solutions" },
+      { icon: HeartHandshake, text: "Employer branding and candidate experience" }
+    ],
+    buttonText: "Get Started"
   }
 ];
 

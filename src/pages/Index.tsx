@@ -19,7 +19,11 @@ import {
   CheckCircle,
   BarChart,
   Globe,
-  CircleUser
+  CircleUser,
+  Building,
+  Workflow,
+  Network,
+  MapPin
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -64,9 +68,9 @@ const Index = () => {
       description: "Discover innovative staffing solutions for your business",
     });
 
-    // Animated counters
+    // Updated animated counters with higher values
     const projectsInterval = setInterval(() => {
-      setProjectsCount(prev => prev < 200 ? prev + 5 : 200);
+      setProjectsCount(prev => prev < 1000 ? prev + 25 : 1000);
     }, 30);
 
     const clientsInterval = setInterval(() => {
@@ -93,7 +97,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-background overflow-hidden">
-      {/* Hero Section with Parallax */}
+      {/* Hero Section with Parallax and Manpower Background */}
       <section ref={heroRef} className="relative h-screen flex items-center justify-center overflow-hidden">
         <motion.div 
           style={{ scale: heroImageScale }}
@@ -108,18 +112,36 @@ const Index = () => {
               backgroundRepeat: 'no-repeat',
               backgroundBlendMode: 'overlay'
             }}
-          ></div>
+          >
+            {/* Added construction worker image overlay */}
+            <div className="absolute inset-0 w-full h-full bg-opacity-20 mix-blend-overlay"
+              style={{
+                backgroundImage: "url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80')",
+                backgroundSize: 'cover',
+                backgroundPosition: 'right center',
+                backgroundRepeat: 'no-repeat',
+                opacity: 0.3
+              }}
+            ></div>
+          </div>
         </motion.div>
         <div className="container relative z-10">
           <motion.div
             style={{ y: heroTextY, opacity: heroOpacity }}
             className="text-center"
           >
+            {/* Company logo added prominently */}
+            <div className="flex justify-center mb-6">
+              <img src="/lovable-uploads/e36a909a-fdd9-4e8e-98ed-249067ebb6e4.png" 
+                alt="Babu - Founder of Genzact" 
+                className="w-24 h-24 rounded-full object-cover border-4 border-white shadow-lg" />
+            </div>
+            
             <h1 className="text-5xl md:text-7xl font-bold mb-6 text-gray-800">
               Solutions That <span className="text-gradient">Matter</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-700 mb-8 max-w-2xl mx-auto backdrop-blur-sm bg-white/60 p-3 rounded-lg">
-              Your trusted partner in Manpower Consulting, Payroll Management, and RPO Services.
+              Your trusted partner in Manpower Consulting, Payroll Management, and Staffing Services.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Link to="/services" onClick={() => window.scrollTo(0, 0)}>
@@ -140,7 +162,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Animated Stats Section */}
+      {/* Animated Stats Section - Updated */}
       <section className="py-12 bg-gradient-to-b from-primary/5 to-background">
         <div className="container">
           <motion.div 
@@ -156,7 +178,8 @@ const Index = () => {
                   <Trophy className="w-8 h-8 text-primary" />
                 </div>
               </div>
-              <h3 className="text-5xl font-bold mb-2 text-primary">{projectsCount}+</h3>
+              {/* Updated to fixed text */}
+              <h3 className="text-4xl font-bold mb-2 text-primary">1000+</h3>
               <p className="text-xl text-gray-600">Successful Placements</p>
             </div>
             
@@ -183,7 +206,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* 3D Carousel Services Section */}
+      {/* 3D Carousel Services Section - Updated with new services */}
       <section className="py-20 bg-gradient-to-b from-background to-secondary/20">
         <div className="container">
           <motion.div
@@ -326,9 +349,16 @@ const Index = () => {
               viewport={{ once: true }}
               className="bg-white p-8 rounded-lg flex flex-col items-center justify-center text-center shadow-md transform transition-all duration-500 hover:shadow-xl hover:-translate-y-2"
             >
-              <div className="mb-6">
-                <Star className="w-16 h-16 text-primary mb-4" />
-                <h3 className="text-2xl font-bold mb-3">Industry Excellence</h3>
+              {/* Added founder image */}
+              <div className="mb-6 relative">
+                <img 
+                  src="/lovable-uploads/e36a909a-fdd9-4e8e-98ed-249067ebb6e4.png" 
+                  alt="Babu - Founder of Genzact" 
+                  className="w-32 h-32 rounded-full object-cover border-4 border-white shadow-lg mb-4" 
+                />
+                <h3 className="text-2xl font-bold mb-1">Babu</h3>
+                <p className="text-gray-600 mb-4">Founder & CEO</p>
+                
                 <p className="text-gray-600 mb-6">
                   With years of experience in the staffing industry, we've built a reputation for excellence
                   and reliability that our clients trust.
@@ -346,7 +376,7 @@ const Index = () => {
                   whileHover={{ scale: 1.05 }}
                   className="bg-secondary/40 p-4 rounded-lg"
                 >
-                  <h4 className="text-4xl font-bold text-primary mb-2">200+</h4>
+                  <h4 className="text-4xl font-bold text-primary mb-2">1000+</h4>
                   <p className="text-sm text-gray-600">Successful Placements</p>
                 </motion.div>
                 <motion.div 
@@ -490,44 +520,36 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Client Logos Section */}
+      {/* Location Section - Updated */}
       <section className="py-16 bg-white">
         <div className="container">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-8"
           >
-            <h2 className="text-2xl font-bold mb-2 text-gradient">Trusted by Leading Companies</h2>
-            <p className="text-gray-600">Our esteemed clients that trust our services</p>
+            <h2 className="text-2xl font-bold mb-4 text-gradient">Our Location</h2>
           </motion.div>
           
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
-            {clientNames.map((client, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 * index }}
-                whileHover={{ 
-                  scale: 1.1,
-                  rotate: [0, 2, 0, -2, 0],
-                  transition: { duration: 0.5 }
-                }}
-                className="bg-white p-6 rounded-lg shadow-md text-center client-logo w-64"
-              >
-                <h3 className="text-xl font-bold text-animate">{client}</h3>
-              </motion.div>
-            ))}
-          </div>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex flex-col items-center justify-center"
+          >
+            <div className="flex items-center mb-4">
+              <MapPin className="text-primary w-6 h-6 mr-2" />
+              <h3 className="text-xl font-bold">Hyderabad, Telangana, India</h3>
+            </div>
+          </motion.div>
         </div>
       </section>
     </div>
   );
 };
 
+// Updated services array with new services and reordered as requested
 const services = [
   {
     title: "Manpower Consulting",
@@ -540,19 +562,34 @@ const services = [
     icon: Calculator
   },
   {
-    title: "RPO Solutions",
-    description: "End-to-end recruitment process outsourcing for IT and non-IT sectors.",
-    icon: Search
+    title: "IT Technology",
+    description: "Specialized IT solutions and technology infrastructure support.",
+    icon: Laptop
   },
   {
-    title: "Domestic IT Requirements",
-    description: "Specialized IT staffing solutions for technology roles and projects.",
-    icon: Laptop
+    title: "Talent Acquisition",
+    description: "Strategic recruitment and workforce planning solutions.",
+    icon: Users
+  },
+  {
+    title: "Manpower Off-Shore Projects",
+    description: "Global staffing solutions for international projects and teams.",
+    icon: Globe
+  },
+  {
+    title: "IT and Non-IT Staffing in India",
+    description: "Comprehensive staffing solutions for all industry sectors across India.",
+    icon: Building
   },
   {
     title: "On-Call Services",
     description: "Immediate staffing solutions for urgent industrial requirements.",
     icon: Factory
+  },
+  {
+    title: "RPO Solutions",
+    description: "End-to-end recruitment process outsourcing for IT and non-IT sectors.",
+    icon: Search
   }
 ];
 

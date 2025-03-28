@@ -2,22 +2,33 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
-// This component scrolls to top when route changes and supports smooth animations
+// Enhanced component for smoother scrolling and page transitions
 const ScrollToTop = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    // Smooth scroll to top with animation
+    // Smooth scroll to top with enhanced animation
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
     });
 
-    // Trigger page transition animations
+    // Improved page transition animations with opacity
     document.body.classList.add('page-transition-active');
+    
+    // Add opacity transition for smoother page changes
+    document.body.style.opacity = "0.95";
+    
     setTimeout(() => {
       document.body.classList.remove('page-transition-active');
-    }, 500);
+      document.body.style.opacity = "1";
+    }, 300);
+
+    // Ensure proper cleanup on unmount
+    return () => {
+      document.body.classList.remove('page-transition-active');
+      document.body.style.opacity = "1";
+    };
   }, [pathname]);
 
   return null;
