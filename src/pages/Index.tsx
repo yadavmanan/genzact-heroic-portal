@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { 
@@ -19,7 +18,11 @@ import {
   CheckCircle,
   BarChart,
   Globe,
-  CircleUser
+  CircleUser,
+  Code,
+  Building,
+  Workflow,
+  Server
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -66,7 +69,7 @@ const Index = () => {
 
     // Animated counters
     const projectsInterval = setInterval(() => {
-      setProjectsCount(prev => prev < 200 ? prev + 5 : 200);
+      setProjectsCount(prev => prev < 1000 ? prev + 25 : 1000);
     }, 30);
 
     const clientsInterval = setInterval(() => {
@@ -540,19 +543,34 @@ const services = [
     icon: Calculator
   },
   {
-    title: "RPO Solutions",
-    description: "End-to-end recruitment process outsourcing for IT and non-IT sectors.",
+    title: "IT Technology",
+    description: "Specialized IT staffing solutions for technology roles and projects.",
+    icon: Laptop
+  },
+  {
+    title: "Talent Acquisition",
+    description: "Strategic solutions to help you find and retain top professionals.",
     icon: Search
   },
   {
-    title: "Domestic IT Requirements",
-    description: "Specialized IT staffing solutions for technology roles and projects.",
-    icon: Laptop
+    title: "Manpower Off-Shore Projects",
+    description: "Comprehensive offshore staffing for global workforce strategies.",
+    icon: Globe
+  },
+  {
+    title: "IT and Non-IT Staffing in India",
+    description: "Complete staffing solutions across sectors in India.",
+    icon: Building
   },
   {
     title: "On-Call Services",
     description: "Immediate staffing solutions for urgent industrial requirements.",
     icon: Factory
+  },
+  {
+    title: "RPO Solutions",
+    description: "End-to-end recruitment process outsourcing for IT and non-IT sectors.",
+    icon: Search
   }
 ];
 

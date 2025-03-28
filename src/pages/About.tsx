@@ -244,6 +244,20 @@ const About = () => {
               </div>
             </motion.div>
             
+            {/* Babu's Photo */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.8 }}
+              className="mb-6 flex justify-center"
+            >
+              <img 
+                src="/babu.jpg" 
+                alt="Babu Karlapudi - CEO & Founder" 
+                className="rounded-lg shadow-lg w-64 h-64 object-cover border-4 border-primary/20"
+              />
+            </motion.div>
+            
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -423,9 +437,7 @@ const About = () => {
           <div className="flex items-start mb-4">
             <MapPin className="w-6 h-6 text-primary mr-3 mt-1" />
             <div>
-              <p className="text-gray-900">Plot no. 43, Sri Singi Reddy Swami Reddynagar,</p>
-              <p className="text-gray-900">ECIL, Hyderabad-500062</p>
-              <p className="text-gray-900">Telangana, India</p>
+              <p className="text-gray-900">Hyderabad, Telangana, India</p>
             </div>
           </div>
           <div className="flex items-center mb-4">

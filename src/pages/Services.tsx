@@ -5,7 +5,8 @@ import { Button } from "@/components/ui/button";
 import { 
   Users, Search, BarChart, Building, Shield, Clock, 
   FileText, Briefcase, Calculator, Database, UserCheck, HeartHandshake,
-  Laptop, Computer, Phone, HardHat, Factory, PhoneCall
+  Laptop, Computer, Phone, HardHat, Factory, PhoneCall,
+  Code, Globe, Workflow, Server
 } from 'lucide-react';
 
 const Services = () => {
@@ -143,28 +144,52 @@ const coreServices = [
     buttonText: "Learn More"
   },
   {
-    title: "RPO Solutions",
-    description: "Our Recruitment Process Outsourcing (RPO) solutions for both IT and non-IT sectors deliver:",
-    icon: Search,
-    features: [
-      { icon: Building, text: "End-to-end recruitment management" },
-      { icon: Users, text: "Industry-specific talent acquisition" },
-      { icon: Clock, text: "Scalable hiring solutions" },
-      { icon: HeartHandshake, text: "Employer branding and candidate experience" }
-    ],
-    buttonText: "Get Started"
-  },
-  {
-    title: "Domestic IT Requirements",
-    description: "Fulfill your IT staffing needs with our specialized recruitment services for technology roles:",
+    title: "IT Technology",
+    description: "Leverage our IT expertise to find specialized technology professionals for your business needs:",
     icon: Laptop,
     features: [
       { icon: Computer, text: "Software Development Professionals" },
       { icon: Database, text: "Data Science & Analytics Experts" },
       { icon: Shield, text: "Cybersecurity Specialists" },
-      { icon: Users, text: "IT Project Management Teams" }
+      { icon: Server, text: "Cloud Infrastructure Engineers" }
     ],
     buttonText: "Get IT Solutions"
+  },
+  {
+    title: "Talent Acquisition",
+    description: "Strategic talent acquisition solutions to help you find and retain top professionals in your industry:",
+    icon: Search,
+    features: [
+      { icon: UserCheck, text: "Executive Search & Recruitment" },
+      { icon: Users, text: "Diversity & Inclusion Hiring" },
+      { icon: Building, text: "Employer Branding Services" },
+      { icon: Clock, text: "Accelerated Hiring Processes" }
+    ],
+    buttonText: "Start Recruiting"
+  },
+  {
+    title: "Manpower Off-Shore Projects",
+    description: "Comprehensive offshore staffing solutions to optimize your global workforce strategy:",
+    icon: Globe,
+    features: [
+      { icon: Code, text: "Remote Development Teams" },
+      { icon: Users, text: "Cross-Border Talent Management" },
+      { icon: Clock, text: "24/7 Operational Support" },
+      { icon: Shield, text: "Compliance with International Standards" }
+    ],
+    buttonText: "Explore Offshore Solutions"
+  },
+  {
+    title: "IT and Non-IT Staffing in India",
+    description: "Complete staffing solutions for both IT and non-IT sectors across India:",
+    icon: Building,
+    features: [
+      { icon: Computer, text: "Technology Professionals" },
+      { icon: Briefcase, text: "Corporate Functions Staffing" },
+      { icon: Factory, text: "Manufacturing & Operations" },
+      { icon: UserCheck, text: "Healthcare & Life Sciences" }
+    ],
+    buttonText: "Find Talent in India"
   },
   {
     title: "On-Call Services for Industrial Sectors",
@@ -177,6 +202,18 @@ const coreServices = [
       { icon: UserCheck, text: "Specialized Technical Operators" }
     ],
     buttonText: "Request On-Call Staff"
+  },
+  {
+    title: "RPO Solutions",
+    description: "Our Recruitment Process Outsourcing (RPO) solutions for both IT and non-IT sectors deliver:",
+    icon: Search,
+    features: [
+      { icon: Building, text: "End-to-end recruitment management" },
+      { icon: Users, text: "Industry-specific talent acquisition" },
+      { icon: Clock, text: "Scalable hiring solutions" },
+      { icon: HeartHandshake, text: "Employer branding and candidate experience" }
+    ],
+    buttonText: "Get Started"
   }
 ];
 
