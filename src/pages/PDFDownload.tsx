@@ -3,9 +3,14 @@ import React, { useEffect } from 'react';
 import BabuPdfProfile from '@/components/BabuPdfProfile';
 import { motion } from 'framer-motion';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { Download } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { useToast } from '@/components/ui/use-toast';
 
-// Mobile-specific component for PDF Download page
+// Mobile-specific component for PDF Download page with new implementation
 const MobilePDFPage = () => {
+  const { toast } = useToast();
+  
   useEffect(() => {
     // Scroll to top when component mounts
     window.scrollTo(0, 0);
@@ -19,20 +24,42 @@ const MobilePDFPage = () => {
     };
   }, []);
 
+  const generatePdfMobile = async () => {
+    const pdfContent = document.getElementById('babu-pdf-content');
+    if (!pdfContent) {
+      toast({
+        title: "Error",
+        description: "Could not find content to generate PDF",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    toast({
+      title: "Generating PDF",
+      description: "Please wait while we prepare your download...",
+    });
+    
+    // We'll let the BabuPdfProfile component handle the actual PDF generation
+    // Just scroll to the profile section to make it visible
+    pdfContent.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: { 
       opacity: 1,
       transition: { 
-        duration: 0.5,
-        staggerChildren: 0.1 
+        duration: 0.6,
+        staggerChildren: 0.15 
       }
     },
-    exit: { opacity: 0 }
+    exit: { opacity: 0, transition: { duration: 0.4 } }
   };
 
   const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
+    hidden: { y: 15, opacity: 0 },
     visible: { 
       y: 0, 
       opacity: 1,
@@ -46,20 +73,27 @@ const MobilePDFPage = () => {
       initial="hidden"
       animate="visible"
       exit="exit"
-      className="min-h-screen pt-16 pb-8"
-      style={{ position: 'relative' }}
+      className="min-h-screen bg-gradient-to-b from-gray-50 to-white pt-16 pb-20"
     >
       <div className="container mx-auto px-4">
-        <motion.div variants={itemVariants}>
-          <h1 className="text-3xl font-bold mb-2 text-gradient">Profile Details</h1>
-          <p className="text-sm text-gray-700 mb-4">
-            Comprehensive information about our founder and expertise.
+        <motion.div variants={itemVariants} className="mb-6">
+          <h1 className="text-3xl font-bold mb-2 text-gradient">Expert Profile</h1>
+          <p className="text-sm text-gray-600 mb-6">
+            Comprehensive information about our founder and expertise
           </p>
+          
+          <Button 
+            onClick={generatePdfMobile} 
+            className="w-full mb-6 bg-primary hover:bg-primary/90 text-white flex items-center justify-center gap-2"
+          >
+            <Download size={18} />
+            Generate PDF Profile
+          </Button>
         </motion.div>
         
         <motion.div 
           variants={itemVariants}
-          className="bg-white rounded-lg shadow-lg overflow-hidden"
+          className="bg-white rounded-xl shadow-lg overflow-hidden p-1"
         >
           <BabuPdfProfile showDownloadButton={true} />
         </motion.div>
@@ -89,7 +123,7 @@ const DesktopPDFPage = () => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       className="min-h-screen"
-      style={{ position: 'relative' }} // Add position relative to fix framer-motion warning
+      style={{ position: 'relative' }}
     >
       <div className="container mx-auto py-20">
         <BabuPdfProfile showDownloadButton={false} />
