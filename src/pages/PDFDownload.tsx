@@ -28,7 +28,7 @@ const PDFDownload = () => {
       exit={{ opacity: 0 }}
       className="min-h-screen"
     >
-      <div className={`container mx-auto ${isMobile ? 'py-16 px-2 mt-4' : 'py-20'}`}>
+      <div className={`container mx-auto ${isMobile ? 'pt-20 px-4 pb-8' : 'py-20'}`}>
         <BabuPdfProfile showDownloadButton={false} />
       </div>
     </motion.div>

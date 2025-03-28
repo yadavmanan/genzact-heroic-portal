@@ -49,41 +49,41 @@ const Services = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="min-h-screen py-16 px-4 bg-white"
+        className="min-h-screen pt-20 px-4 pb-8 bg-white"
       >
-        <div className="container mx-auto mt-16">
-          <h1 className="text-3xl font-bold mb-6 text-gradient">Our Services</h1>
+        <div className="container mx-auto">
+          <h1 className="text-3xl font-bold mb-5 text-gradient">Our Services</h1>
           
           {/* Brief Introduction */}
-          <p className="text-base text-gray-900 mb-8">
+          <p className="text-base text-gray-900 mb-6">
             Comprehensive staffing and recruitment solutions across various industries.
           </p>
           
           {/* Core Services Accordions */}
-          <Accordion type="single" collapsible className="mb-8">
+          <Accordion type="single" collapsible className="mb-6 w-full">
             {coreServices.map((service, index) => (
-              <AccordionItem key={index} value={`service-${index}`}>
-                <AccordionTrigger className="flex items-center">
-                  <div className="flex items-center py-2">
+              <AccordionItem key={index} value={`service-${index}`} className="border-b border-gray-200">
+                <AccordionTrigger className="py-3">
+                  <div className="flex items-center">
                     <service.icon className="w-5 h-5 text-primary mr-3" />
-                    <span className="font-bold">{service.title}</span>
+                    <span className="font-bold text-left">{service.title}</span>
                   </div>
                 </AccordionTrigger>
                 <AccordionContent>
-                  <div className="pl-8 pt-2">
+                  <div className="pl-8 pt-2 pb-1">
                     <p className="text-sm text-gray-900 mb-3">
                       {service.description}
                     </p>
                     <ul className="text-sm text-gray-900 mb-4 space-y-2">
                       {service.features.map((feature, i) => (
                         <li key={i} className="flex items-start">
-                          <feature.icon className="w-4 h-4 text-primary mr-2 mt-1" />
+                          <feature.icon className="w-4 h-4 text-primary mr-2 mt-1 flex-shrink-0" />
                           <span>{feature.text}</span>
                         </li>
                       ))}
                     </ul>
                     <Link to="/contact" onClick={handleContactClick}>
-                      <Button size="sm" className="bg-primary hover:bg-primary/90">{service.buttonText}</Button>
+                      <Button size="sm" className="bg-primary hover:bg-primary/90 mb-2">{service.buttonText}</Button>
                     </Link>
                   </div>
                 </AccordionContent>
@@ -92,15 +92,15 @@ const Services = () => {
           </Accordion>
           
           {/* Industry Accordions */}
-          <h2 className="text-2xl font-bold mb-4 text-gradient">Industries</h2>
-          <Accordion type="single" collapsible className="mb-8">
-            <AccordionItem value="industries">
-              <AccordionTrigger>Industries We Serve</AccordionTrigger>
+          <h2 className="text-2xl font-bold mb-3 text-gradient">Industries</h2>
+          <Accordion type="single" collapsible className="mb-6 w-full">
+            <AccordionItem value="industries" className="border-b border-gray-200">
+              <AccordionTrigger className="py-3">Industries We Serve</AccordionTrigger>
               <AccordionContent>
-                <div className="grid grid-cols-2 gap-3 pl-2 pt-2">
+                <div className="grid grid-cols-2 gap-2 pt-2 pb-1">
                   {industries.map((industry, index) => (
                     <div key={index} className="flex items-center p-2 bg-white rounded-lg shadow-sm">
-                      <industry.icon className="w-4 h-4 text-primary mr-2" />
+                      <industry.icon className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
                       <span className="text-sm">{industry.name}</span>
                     </div>
                   ))}
@@ -110,12 +110,12 @@ const Services = () => {
           </Accordion>
           
           {/* Process Accordion */}
-          <h2 className="text-2xl font-bold mb-4 text-gradient">Our Process</h2>
-          <Accordion type="single" collapsible className="mb-8">
-            <AccordionItem value="process">
-              <AccordionTrigger>Service Process</AccordionTrigger>
+          <h2 className="text-2xl font-bold mb-3 text-gradient">Our Process</h2>
+          <Accordion type="single" collapsible className="mb-6 w-full">
+            <AccordionItem value="process" className="border-b border-gray-200">
+              <AccordionTrigger className="py-3">Service Process</AccordionTrigger>
               <AccordionContent>
-                <div className="space-y-4 pl-2 pt-2">
+                <div className="space-y-4 pt-2 pb-1">
                   {serviceProcess.map((step, index) => (
                     <div key={index} className="flex items-start">
                       <div className="bg-primary text-white w-6 h-6 rounded-full flex items-center justify-center mr-3 flex-shrink-0 text-sm">
@@ -133,20 +133,20 @@ const Services = () => {
           </Accordion>
           
           {/* FAQ Accordion */}
-          <h2 className="text-2xl font-bold mb-4 text-gradient">FAQs</h2>
-          <Accordion type="single" collapsible className="mb-8">
+          <h2 className="text-2xl font-bold mb-3 text-gradient">FAQs</h2>
+          <Accordion type="single" collapsible className="mb-6 w-full">
             {faqs.map((faq, index) => (
-              <AccordionItem key={index} value={`faq-${index}`}>
-                <AccordionTrigger>{faq.question}</AccordionTrigger>
+              <AccordionItem key={index} value={`faq-${index}`} className="border-b border-gray-200">
+                <AccordionTrigger className="py-3">{faq.question}</AccordionTrigger>
                 <AccordionContent>
-                  <p className="text-sm text-gray-700 pl-2">{faq.answer}</p>
+                  <p className="text-sm text-gray-700 pt-2 pb-1">{faq.answer}</p>
                 </AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
           
           {/* Call to Action */}
-          <div className="bg-secondary/50 p-6 rounded-lg text-center mt-8">
+          <div className="bg-secondary/50 p-5 rounded-lg text-center mt-6">
             <h2 className="text-xl font-bold mb-3 text-gradient">Need a Custom Solution?</h2>
             <Link to="/contact" onClick={handleContactClick}>
               <Button className="bg-primary hover:bg-primary/90 text-white">
