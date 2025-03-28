@@ -27,8 +27,8 @@ const Navbar = () => {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white/90 shadow-md py-4' : 'bg-white/70 backdrop-blur-lg py-6'
+      className={`fixed w-full z-50 transition-all duration-300 bg-white ${
+        isScrolled ? 'shadow-md py-4' : 'py-6'
       }`}
     >
       <div className="container mx-auto px-4">
