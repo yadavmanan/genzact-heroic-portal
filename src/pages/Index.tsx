@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { 
@@ -38,145 +37,6 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import RotatingHeroBackground from '@/components/RotatingHeroBackground';
 
-// Define all arrays at the top of the file
-const services = [
-  {
-    title: "Manpower Consulting",
-    description: "Strategic manpower planning and talent acquisition solutions.",
-    icon: Briefcase
-  },
-  {
-    title: "Payroll Management",
-    description: "Comprehensive payroll processing and compliance services.",
-    icon: Calculator
-  },
-  {
-    title: "IT Technology",
-    description: "Specialized IT staffing solutions for technology roles and projects.",
-    icon: Laptop
-  },
-  {
-    title: "Talent Acquisition",
-    description: "Strategic solutions to help you find and retain top professionals.",
-    icon: Search
-  },
-  {
-    title: "Manpower Off-Shore Projects",
-    description: "Comprehensive offshore staffing for global workforce strategies.",
-    icon: Globe
-  },
-  {
-    title: "IT and Non-IT Staffing in India",
-    description: "Complete staffing solutions across sectors in India.",
-    icon: Building
-  },
-  {
-    title: "On-Call Services",
-    description: "Immediate staffing solutions for urgent industrial requirements.",
-    icon: Factory
-  },
-  {
-    title: "RPO Solutions",
-    description: "End-to-end recruitment process outsourcing for IT and non-IT sectors.",
-    icon: Search
-  }
-];
-
-const benefits = [
-  {
-    title: "Industry Expertise",
-    description: "Our specialists have deep knowledge of various industry sectors, ensuring precise matching of skills."
-  },
-  {
-    title: "Personalized Service",
-    description: "We create custom staffing solutions tailored to your unique business requirements."
-  },
-  {
-    title: "Quality-Focused",
-    description: "Rigorous vetting ensures we only connect you with top-tier talent that meets your standards."
-  },
-  {
-    title: "Timely Delivery",
-    description: "We understand urgency and work efficiently to fill your positions with qualified candidates."
-  }
-];
-
-const workflowSteps = [
-  {
-    title: "Understand Requirements",
-    description: "We thoroughly analyze your needs to understand the specific skills and experience required.",
-    icon: Search,
-    details: [
-      "In-depth consultation with stakeholders",
-      "Job requirement analysis",
-      "Skills and experience mapping",
-      "Cultural fit assessment"
-    ]
-  },
-  {
-    title: "Source Candidates",
-    description: "Our experts use advanced tools and networks to find the perfect candidates.",
-    icon: Users,
-    details: [
-      "Multi-channel sourcing strategy",
-      "Proactive talent identification",
-      "Passive candidate engagement",
-      "Diverse talent pool development"
-    ]
-  },
-  {
-    title: "Evaluate & Screen",
-    description: "Rigorous evaluation ensures only the best candidates move forward.",
-    icon: CheckCircle,
-    details: [
-      "Technical skills assessment",
-      "Behavioral interviews",
-      "Cultural fit evaluation",
-      "Background verification"
-    ]
-  },
-  {
-    title: "Placement & Support",
-    description: "We manage the entire onboarding process and provide ongoing support.",
-    icon: Zap,
-    details: [
-      "Seamless candidate placement",
-      "Comprehensive onboarding assistance",
-      "Regular performance check-ins",
-      "Continuous support and feedback"
-    ]
-  }
-];
-
-const testimonials = [
-  {
-    quote: "Genzact has been instrumental in helping us build our tech team. Their understanding of our requirements and the quality of candidates they provide is exceptional.",
-    name: "Raj Kumar",
-    position: "CTO, Noratel"
-  },
-  {
-    quote: "The dedicated team at Genzact made our recruitment process smooth and efficient. They found us the perfect candidates in record time.",
-    name: "Anita Sharma",
-    position: "HR Manager, Thefirms.in"
-  },
-  {
-    quote: "I've worked with several staffing agencies, but Genzact stands out for their professionalism and attention to detail. They truly understand our company culture.",
-    name: "Vikram Singh",
-    position: "Operations Director, TechSolutions"
-  }
-];
-
-const clientNames = [
-  "TechNova Inc.",
-  "GlobalServe Solutions",
-  "Noratel",
-  "InfraTech Systems",
-  "DataSphere Analytics",
-  "Thefirms.in",
-  "BuildRight Constructions",
-  "EnergySys Corp"
-];
-
 const Index = () => {
   const { toast } = useToast();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -190,13 +50,11 @@ const Index = () => {
   const heroTextY = useTransform(scrollYProgress, [0, 1], [0, -100]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
-  // Hero background images - added manpower images
+  // Hero background images
   const heroBackgroundImages = [
     'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80',
     'https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80',
-    'https://images.unsplash.com/photo-1529612700005-e35377bf1415?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80', // Manpower image 1
-    'https://images.unsplash.com/photo-1473621038790-b778b4750efe?ixlib=rb-4.0.3&auto=format&fit=crop&w=2152&q=80', // Manpower image 2
-    'https://images.unsplash.com/photo-1558403194-611308249627?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80', // Construction workers
+    'https://images.unsplash.com/photo-1577401159468-3d457620e15c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80',
     'https://images.unsplash.com/photo-1581094378626-cf434ccf29fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80'
   ];
 
@@ -378,7 +236,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* How We Work Section - Reimagined with Improved Visualization */}
+      {/* How We Work Section - Reimagined */}
       <section className="py-24 bg-white">
         <div className="container">
           <motion.div
@@ -393,10 +251,10 @@ const Index = () => {
             </p>
           </motion.div>
 
-          {/* Improved Process Flow Visualization */}
+          {/* Interactive Process Flow */}
           <div className="relative">
-            {/* Connecting Line - Made more visible */}
-            <div className="hidden lg:block absolute top-1/2 left-0 w-full h-2 bg-primary/30 transform -translate-y-1/2 z-0 rounded-full"></div>
+            {/* Connecting Line */}
+            <div className="hidden lg:block absolute top-1/2 left-0 w-full h-1 bg-primary/20 transform -translate-y-1/2 z-0"></div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-16 gap-x-8 relative z-10">
               {workflowSteps.map((step, index) => (
@@ -412,23 +270,21 @@ const Index = () => {
                   }}
                   className="relative"
                 >
-                  {/* Number Circle with enhanced 3D effect */}
-                  <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 w-20 h-20 rounded-full bg-gradient-to-br from-primary to-primary/70 text-white text-3xl font-bold flex items-center justify-center shadow-lg z-20 border-4 border-white">
+                  {/* Number Circle with 3D effect */}
+                  <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 w-20 h-20 rounded-full bg-gradient-to-br from-primary to-primary/70 text-white text-3xl font-bold flex items-center justify-center shadow-lg z-20">
                     {index + 1}
                   </div>
                   
-                  <div className="bg-white rounded-lg shadow-lg p-8 pt-14 text-center h-full flex flex-col transform transition-all duration-300 hover:-translate-y-2">
+                  <div className="bg-white rounded-lg shadow-md p-8 pt-14 text-center h-full flex flex-col">
                     <step.icon className="w-12 h-12 text-primary mx-auto mb-4" />
                     <h3 className="text-xl font-bold mb-3">{step.title}</h3>
                     <p className="text-gray-600 mb-4">{step.description}</p>
                     
-                    {/* Process Details with enhanced styling */}
+                    {/* Process Details */}
                     <ul className="text-left space-y-2 mt-auto">
                       {step.details.map((detail, i) => (
                         <li key={i} className="flex items-start">
-                          <div className="bg-primary/10 rounded-full p-1 mr-2 mt-0.5">
-                            <Check className="w-4 h-4 text-primary flex-shrink-0" />
-                          </div>
+                          <Check className="w-5 h-5 text-primary mr-2 mt-0.5 flex-shrink-0" />
                           <span className="text-gray-700 text-sm">{detail}</span>
                         </li>
                       ))}
@@ -439,13 +295,13 @@ const Index = () => {
             </div>
           </div>
           
-          {/* Process Metrics with improved styling */}
+          {/* Process Metrics */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.6 }}
-            className="mt-16 bg-gradient-to-r from-secondary/30 to-primary/10 p-8 rounded-lg flex flex-col md:flex-row justify-between items-center"
+            className="mt-16 bg-secondary/30 p-8 rounded-lg flex flex-col md:flex-row justify-between items-center"
           >
             <div className="md:w-1/2 mb-6 md:mb-0">
               <h3 className="text-2xl font-bold mb-4">Our Process Delivers Results</h3>
@@ -455,22 +311,22 @@ const Index = () => {
               </p>
             </div>
             <div className="grid grid-cols-2 gap-4 md:w-1/2">
-              <motion.div whileHover={{ scale: 1.05 }} className="bg-white p-4 rounded-lg text-center shadow-md">
+              <div className="bg-white p-4 rounded-lg text-center shadow-sm">
                 <div className="text-2xl font-bold text-primary mb-1">72 hrs</div>
                 <div className="text-sm text-gray-600">Average Response Time</div>
-              </motion.div>
-              <motion.div whileHover={{ scale: 1.05 }} className="bg-white p-4 rounded-lg text-center shadow-md">
+              </div>
+              <div className="bg-white p-4 rounded-lg text-center shadow-sm">
                 <div className="text-2xl font-bold text-primary mb-1">92%</div>
                 <div className="text-sm text-gray-600">Placement Success Rate</div>
-              </motion.div>
-              <motion.div whileHover={{ scale: 1.05 }} className="bg-white p-4 rounded-lg text-center shadow-md">
+              </div>
+              <div className="bg-white p-4 rounded-lg text-center shadow-sm">
                 <div className="text-2xl font-bold text-primary mb-1">96%</div>
                 <div className="text-sm text-gray-600">Client Satisfaction</div>
-              </motion.div>
-              <motion.div whileHover={{ scale: 1.05 }} className="bg-white p-4 rounded-lg text-center shadow-md">
+              </div>
+              <div className="bg-white p-4 rounded-lg text-center shadow-sm">
                 <div className="text-2xl font-bold text-primary mb-1">8+</div>
                 <div className="text-sm text-gray-600">Years of Excellence</div>
-              </motion.div>
+              </div>
             </div>
           </motion.div>
         </div>
@@ -719,5 +575,134 @@ const Index = () => {
     </div>
   );
 };
+
+const services = [
+  {
+    title: "Manpower Consulting",
+    description: "Strategic manpower planning and talent acquisition solutions.",
+    icon: Briefcase
+  },
+  {
+    title: "Payroll Management",
+    description: "Comprehensive payroll processing and compliance services.",
+    icon: Calculator
+  },
+  {
+    title: "IT Technology",
+    description: "Specialized IT staffing solutions for technology roles and projects.",
+    icon: Laptop
+  },
+  {
+    title: "Talent Acquisition",
+    description: "Strategic solutions to help you find and retain top professionals.",
+    icon: Search
+  },
+  {
+    title: "Manpower Off-Shore Projects",
+    description: "Comprehensive offshore staffing for global workforce strategies.",
+    icon: Globe
+  },
+  {
+    title: "IT and Non-IT Staffing in India",
+    description: "Complete staffing solutions across sectors in India.",
+    icon: Building
+  },
+  {
+    title: "On-Call Services",
+    description: "Immediate staffing solutions for urgent industrial requirements.",
+    icon: Factory
+  },
+  {
+    title: "RPO Solutions",
+    description: "End-to-end recruitment process outsourcing for IT and non-IT sectors.",
+    icon: Search
+  }
+];
+
+const benefits = [
+  {
+    title: "Industry Expertise",
+    description: "Our specialists have deep knowledge of various industry sectors, ensuring precise matching of skills."
+  },
+  {
+    title: "Personalized Service",
+    description: "We create custom staffing solutions tailored to your unique business requirements."
+  },
+  {
+    title: "Quality-Focused",
+    description: "Rigorous vetting ensures we only connect you with top-tier talent that meets your standards."
+  },
+  {
+    title: "Timely Delivery",
+    description: "We understand urgency and work efficiently to fill your positions with qualified candidates."
+  }
+];
+
+const workflowSteps = [
+  {
+    title: "Understand Requirements",
+    description: "We thoroughly analyze your needs to understand the specific skills and experience required.",
+    icon: Search,
+    details: [
+      "In-depth consultation with stakeholders",
+      "Job requirement analysis",
+      "Skills and experience mapping",
+      "Cultural fit assessment"
+    ]
+  },
+  {
+    title: "Source Candidates",
+    description: "Our experts use advanced tools and networks to find the perfect candidates.",
+    icon: Users,
+    details: [
+      "Multi-channel sourcing strategy",
+      "Proactive talent identification",
+      "Passive candidate engagement",
+      "Diverse talent pool development"
+    ]
+  },
+  {
+    title: "Evaluate & Screen",
+    description: "Rigorous evaluation ensures only the best candidates move forward.",
+    icon: CheckCircle,
+    details: [
+      "Technical skills assessment",
+      "Behavioral interviews",
+      "Cultural fit evaluation",
+      "Background verification"
+    ]
+  },
+  {
+    title: "Placement & Support",
+    description: "We manage the entire onboarding process and provide ongoing support.",
+    icon: Zap,
+    details: [
+      "Seamless candidate placement",
+      "Comprehensive onboarding assistance",
+      "Regular performance check-ins",
+      "Continuous support and feedback"
+    ]
+  }
+];
+
+const testimonials = [
+  {
+    quote: "Genzact has been instrumental in helping us build our tech team. Their understanding of our requirements and the quality of candidates they provide is exceptional.",
+    name: "Raj Kumar",
+    position: "CTO, Noratel"
+  },
+  {
+    quote: "The dedicated team at Genzact made our recruitment process smooth and efficient. They found us the perfect candidates in record time.",
+    name: "Anita Sharma",
+    position: "HR Manager, Thefirms.in"
+  },
+  {
+    quote: "I've worked with many staffing agencies, but Genzact stands out for their personalized approach and commitment to finding the right fit for our company.",
+    name: "Vikram Singh",
+    position: "Operations Director, TechSolve"
+  }
+];
+
+const clientNames = ["Noratel", "Thefirms.in", "TechSolve", "InnovateX"];
 
 export default Index;

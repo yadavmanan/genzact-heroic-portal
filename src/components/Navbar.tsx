@@ -1,147 +1,119 @@
 
-import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown, ChevronUp } from "lucide-react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Button } from "@/components/ui/button";
-import PDFDownloadLink from "./PDFDownloadLink";
-import { useIsMobile } from "@/hooks/use-mobile";
+import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { Menu, X, FileText } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const Navbar = () => {
-  const location = useLocation();
+  const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
-  const isMobile = useIsMobile();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+      setIsScrolled(window.scrollY > 20);
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    setMobileMenuOpen(false);
-  }, [location.pathname]);
-
   const handleNavClick = () => {
+    setIsOpen(false);
+    // Scroll to top when navigating to new page
     window.scrollTo(0, 0);
   };
 
-  const toggleMobileMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen);
-  };
-
-  const toggleServicesDropdown = () => {
-    setServicesDropdownOpen(!servicesDropdownOpen);
-  };
-
-  const navLinks = [
-    { title: "Home", path: "/" },
-    { title: "Services", path: "/services" },
-    { title: "About", path: "/about" },
-    { title: "Contact", path: "/contact" },
-  ];
-
-  const isActive = (path: string) => {
-    return location.pathname === path;
-  };
-
   return (
-    <header
-      className={`fixed top-0 w-full z-50 transition-all duration-200 ${
-        isScrolled
-          ? "bg-white shadow-md py-2"
-          : "bg-white/80 backdrop-blur-sm py-4"
+    <motion.nav
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      className={`fixed w-full z-50 transition-all duration-300 ${
+        isScrolled ? 'bg-white/90 shadow-md py-4' : 'bg-white/70 backdrop-blur-lg py-6'
       }`}
     >
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link
-            to="/"
-            onClick={handleNavClick}
-            className="flex items-center space-x-2"
-          >
+        <div className="flex justify-between items-center">
+          <Link to="/" className="flex items-center" onClick={handleNavClick}>
             <img 
-              src="/lovable-uploads/3a8f5221-9365-40f5-82b7-38c281693ae6.png" 
+              src="/logo.png" 
               alt="Genzact Logo" 
-              className="h-10 md:h-12"
+              className="h-10 mr-2" 
             />
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-1">
-            {navLinks.map((link) => (
+          {/* Desktop Menu */}
+          <div className="hidden md:flex space-x-8">
+            {navItems.map((item) => (
               <Link
-                key={link.path}
-                to={link.path}
+                key={item.path}
+                to={item.path}
                 onClick={handleNavClick}
-                className={`px-4 py-2 rounded-md transition-colors duration-200 font-medium text-base ${
-                  isActive(link.path)
-                    ? "bg-primary/10 text-primary"
-                    : "text-gray-700 hover:bg-gray-100"
+                className={`nav-link text-sm font-medium ${
+                  location.pathname === item.path
+                    ? 'text-primary'
+                    : 'text-gray-600 hover:text-primary'
                 }`}
               >
-                {link.title}
+                {item.label}
               </Link>
             ))}
-            <PDFDownloadLink />
-          </nav>
+            <Link
+              to="/profile-pdf"
+              onClick={handleNavClick}
+              className="nav-link text-sm font-medium flex items-center text-primary"
+            >
+              <FileText className="w-4 h-4 mr-1" />
+              See More
+            </Link>
+          </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center">
-            <PDFDownloadLink />
-            <button
-              onClick={toggleMobileMenu}
-              className="ml-2 p-2 rounded-md text-gray-700 hover:bg-gray-100 focus:outline-none"
-              aria-label="Toggle mobile menu"
-            >
-              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
+          <button
+            className="md:hidden text-gray-600"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
 
-        {/* Mobile Navigation */}
-        <AnimatePresence>
-          {mobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-              className="md:hidden mt-2 overflow-hidden"
+        {/* Mobile Menu */}
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="md:hidden absolute top-full left-0 w-full bg-white py-4 shadow-md"
+          >
+            {navItems.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                className="block px-4 py-2 text-gray-600 hover:text-primary hover:bg-gray-50"
+                onClick={handleNavClick}
+              >
+                {item.label}
+              </Link>
+            ))}
+            <Link
+              to="/profile-pdf"
+              className="block px-4 py-2 text-primary hover:bg-gray-50 flex items-center"
+              onClick={handleNavClick}
             >
-              <div className="py-2 space-y-1">
-                {navLinks.map((link) => (
-                  <Link
-                    key={link.path}
-                    to={link.path}
-                    onClick={handleNavClick}
-                    className={`block px-4 py-2 rounded-md transition-colors duration-200 ${
-                      isActive(link.path)
-                        ? "bg-primary/10 text-primary"
-                        : "text-gray-700 hover:bg-gray-100"
-                    }`}
-                  >
-                    {link.title}
-                  </Link>
-                ))}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+              <FileText className="w-4 h-4 mr-2" />
+              See More
+            </Link>
+          </motion.div>
+        )}
       </div>
-    </header>
+    </motion.nav>
   );
 };
+
+const navItems = [
+  { label: 'Home', path: '/' },
+  { label: 'Services', path: '/services' },
+  { label: 'About', path: '/about' },
+  { label: 'Contact', path: '/contact' },
+];
 
 export default Navbar;
