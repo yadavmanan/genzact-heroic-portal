@@ -94,3 +94,46 @@
   animation: gradient-shift 4s linear infinite;
   @apply bg-clip-text text-transparent font-bold;
 }
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+  h1 {
+    @apply text-3xl;
+  }
+  
+  h2 {
+    @apply text-2xl;
+  }
+  
+  h3 {
+    @apply text-xl;
+  }
+  
+  .container {
+    @apply px-4;
+  }
+  
+  .mobile-scroll {
+    @apply overflow-x-auto pb-4;
+  }
+  
+  .mobile-stack {
+    @apply flex-col;
+  }
+  
+  .mobile-reverse {
+    @apply flex-col-reverse;
+  }
+  
+  .mobile-center {
+    @apply text-center flex justify-center items-center;
+  }
+  
+  .mobile-hide {
+    @apply hidden;
+  }
+  
+  .pdf-page .container {
+    @apply px-2 py-12;
+  }
+}

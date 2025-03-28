@@ -3,11 +3,13 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, FileText } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,7 +30,7 @@ const Navbar = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed w-full z-50 transition-all duration-300 bg-white ${
-        isScrolled ? 'shadow-md py-4' : 'py-6'
+        isScrolled ? 'shadow-md py-3' : 'py-4'
       }`}
     >
       <div className="container mx-auto px-4">
@@ -37,7 +39,7 @@ const Navbar = () => {
             <img 
               src="/lovable-uploads/0ac1888e-b1d2-44ca-bb39-7cd8d68fa698.png" 
               alt="Genzact Logo" 
-              className="h-10" 
+              className={isMobile ? "h-8" : "h-10"}
             />
           </Link>
 
@@ -69,8 +71,9 @@ const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-gray-600"
+            className="md:hidden text-gray-600 p-1"
             onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle navigation menu"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -88,7 +91,11 @@ const Navbar = () => {
               <Link
                 key={item.path}
                 to={item.path}
-                className="block px-4 py-2 text-gray-600 hover:text-primary hover:bg-gray-50"
+                className={`block px-4 py-3 text-base ${
+                  location.pathname === item.path
+                    ? 'text-primary bg-gray-50'
+                    : 'text-gray-600 hover:text-primary hover:bg-gray-50'
+                }`}
                 onClick={handleNavClick}
               >
                 {item.label}
@@ -96,7 +103,7 @@ const Navbar = () => {
             ))}
             <Link
               to="/profile-pdf"
-              className="block px-4 py-2 text-primary hover:bg-gray-50 flex items-center"
+              className="block px-4 py-3 text-primary hover:bg-gray-50 flex items-center text-base"
               onClick={handleNavClick}
             >
               <FileText className="w-4 h-4 mr-2" />

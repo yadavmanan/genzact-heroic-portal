@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FileText } from 'lucide-react';
 import { Button } from "@/components/ui/button";
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface PDFDownloadLinkProps {
   className?: string;
@@ -19,14 +20,16 @@ const PDFDownloadLink: React.FC<PDFDownloadLinkProps> = ({
   size = "default",
   variant = "default"
 }) => {
+  const isMobile = useIsMobile();
+  
   return (
     <Link to="/profile-pdf">
       <Button 
         variant={variant}
-        size={size}
-        className={`bg-primary hover:bg-primary/90 text-white font-medium ${className}`} // Added font-medium for better visibility
+        size={isMobile ? "sm" : size}
+        className={`bg-primary hover:bg-primary/90 text-white font-medium ${className}`}
       >
-        {showIcon && <FileText className="w-4 h-4 mr-2" />}
+        {showIcon && <FileText className={`${isMobile ? "w-3 h-3" : "w-4 h-4"} mr-2`} />}
         {text}
       </Button>
     </Link>

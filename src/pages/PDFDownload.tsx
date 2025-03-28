@@ -2,8 +2,11 @@
 import React, { useEffect } from 'react';
 import BabuPdfProfile from '@/components/BabuPdfProfile';
 import { motion } from 'framer-motion';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const PDFDownload = () => {
+  const isMobile = useIsMobile();
+  
   // Use useEffect to scroll to top and avoid navbar overlap
   useEffect(() => {
     // Scroll to top when component mounts
@@ -25,7 +28,7 @@ const PDFDownload = () => {
       exit={{ opacity: 0 }}
       className="min-h-screen"
     >
-      <div className="container mx-auto py-20"> {/* Reduced padding */}
+      <div className={`container mx-auto ${isMobile ? 'py-12 px-4' : 'py-20'}`}>
         <BabuPdfProfile showDownloadButton={false} />
       </div>
     </motion.div>
