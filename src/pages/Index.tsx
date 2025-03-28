@@ -78,7 +78,7 @@ const Index = () => {
       description: "Discover innovative staffing solutions for your business",
     });
 
-    // Animated counters
+    // Animated counters - updated to match the required values
     const projectsInterval = setInterval(() => {
       setProjectsCount(prev => prev < 1000 ? prev + 25 : 1000);
     }, 30);
@@ -88,7 +88,7 @@ const Index = () => {
     }, 60);
 
     const satisfactionInterval = setInterval(() => {
-      setSatisfactionCount(prev => prev < 95 ? prev + 1 : 95);
+      setSatisfactionCount(prev => prev < 96 ? prev + 1 : 96);
     }, 40);
 
     return () => {
@@ -157,7 +157,7 @@ const Index = () => {
                   <Trophy className="w-8 h-8 text-primary" />
                 </div>
               </div>
-              <h3 className="text-5xl font-bold mb-2 text-primary">{projectsCount}+</h3>
+              <h3 className="text-5xl font-bold mb-2 text-primary">1000+</h3>
               <p className="text-xl text-gray-600">Successful Placements</p>
             </div>
             
@@ -167,7 +167,7 @@ const Index = () => {
                   <Users className="w-8 h-8 text-primary" />
                 </div>
               </div>
-              <h3 className="text-5xl font-bold mb-2 text-primary">{clientsCount}+</h3>
+              <h3 className="text-5xl font-bold mb-2 text-primary">50+</h3>
               <p className="text-xl text-gray-600">Happy Clients</p>
             </div>
             
@@ -177,7 +177,7 @@ const Index = () => {
                   <Star className="w-8 h-8 text-primary" />
                 </div>
               </div>
-              <h3 className="text-5xl font-bold mb-2 text-primary">{satisfactionCount}%</h3>
+              <h3 className="text-5xl font-bold mb-2 text-primary">96%</h3>
               <p className="text-xl text-gray-600">Client Satisfaction</p>
             </div>
           </motion.div>
@@ -390,28 +390,28 @@ const Index = () => {
                   whileHover={{ scale: 1.05 }}
                   className="bg-secondary/40 p-4 rounded-lg"
                 >
-                  <h4 className="text-4xl font-bold text-primary mb-2">95%</h4>
+                  <h4 className="text-4xl font-bold text-primary mb-2">96%</h4>
                   <p className="text-sm text-gray-600">Client Satisfaction</p>
                 </motion.div>
                 <motion.div 
                   whileHover={{ scale: 1.05 }}
                   className="bg-secondary/40 p-4 rounded-lg"
                 >
-                  <h4 className="text-4xl font-bold text-primary mb-2">200+</h4>
+                  <h4 className="text-4xl font-bold text-primary mb-2">1000+</h4>
                   <p className="text-sm text-gray-600">Successful Placements</p>
                 </motion.div>
                 <motion.div 
                   whileHover={{ scale: 1.05 }}
                   className="bg-secondary/40 p-4 rounded-lg"
                 >
-                  <h4 className="text-4xl font-bold text-primary mb-2">48h</h4>
+                  <h4 className="text-4xl font-bold text-primary mb-2">72h</h4>
                   <p className="text-sm text-gray-600">Average Response Time</p>
                 </motion.div>
                 <motion.div 
                   whileHover={{ scale: 1.05 }}
                   className="bg-secondary/40 p-4 rounded-lg"
                 >
-                  <h4 className="text-4xl font-bold text-primary mb-2">15+</h4>
+                  <h4 className="text-4xl font-bold text-primary mb-2">8+</h4>
                   <p className="text-sm text-gray-600">Years Experience</p>
                 </motion.div>
               </div>
