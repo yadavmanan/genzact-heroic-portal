@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { 
@@ -54,8 +55,8 @@ const Index = () => {
   const heroBackgroundImages = [
     'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80',
     'https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80',
-    'https://images.unsplash.com/photo-1577401159468-3d457620e15c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80',
-    'https://images.unsplash.com/photo-1581094378626-cf434ccf29fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80'
+    'https://images.unsplash.com/photo-1529939620808-b8446d2a0dcf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80',
+    'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80'
   ];
 
   // Animated counter state
@@ -113,6 +114,13 @@ const Index = () => {
             style={{ y: heroTextY, opacity: heroOpacity }}
             className="text-center"
           >
+            <div className="flex justify-center mb-6">
+              <img 
+                src="/lovable-uploads/fe0ecfc6-08ef-43ba-9b65-5cfd3cf9646e.png" 
+                alt="Genzact Logo" 
+                className="h-24 md:h-28 object-contain" 
+              />
+            </div>
             <h1 className="text-5xl md:text-7xl font-bold mb-6 text-gray-800">
               Solutions That <span className="text-gradient">Matter</span>
             </h1>
