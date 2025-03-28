@@ -1,4 +1,3 @@
-
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -11,8 +10,17 @@ import {
 } from 'lucide-react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { useIsMobile } from '@/hooks/use-mobile';
+import { 
+  Accordion, 
+  AccordionContent, 
+  AccordionItem, 
+  AccordionTrigger 
+} from "@/components/ui/accordion";
 
 const Services = () => {
+  const isMobile = useIsMobile();
+  
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -34,6 +42,124 @@ const Services = () => {
     window.scrollTo(0, 0);
   };
 
+  // Mobile version with accordions
+  if (isMobile) {
+    return (
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="min-h-screen py-16 px-4 bg-white"
+      >
+        <div className="container mx-auto mt-16">
+          <h1 className="text-3xl font-bold mb-6 text-gradient">Our Services</h1>
+          
+          {/* Brief Introduction */}
+          <p className="text-base text-gray-900 mb-8">
+            Comprehensive staffing and recruitment solutions across various industries.
+          </p>
+          
+          {/* Core Services Accordions */}
+          <Accordion type="single" collapsible className="mb-8">
+            {coreServices.map((service, index) => (
+              <AccordionItem key={index} value={`service-${index}`}>
+                <AccordionTrigger className="flex items-center">
+                  <div className="flex items-center py-2">
+                    <service.icon className="w-5 h-5 text-primary mr-3" />
+                    <span className="font-bold">{service.title}</span>
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent>
+                  <div className="pl-8 pt-2">
+                    <p className="text-sm text-gray-900 mb-3">
+                      {service.description}
+                    </p>
+                    <ul className="text-sm text-gray-900 mb-4 space-y-2">
+                      {service.features.map((feature, i) => (
+                        <li key={i} className="flex items-start">
+                          <feature.icon className="w-4 h-4 text-primary mr-2 mt-1" />
+                          <span>{feature.text}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <Link to="/contact" onClick={handleContactClick}>
+                      <Button size="sm" className="bg-primary hover:bg-primary/90">{service.buttonText}</Button>
+                    </Link>
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+          
+          {/* Industry Accordions */}
+          <h2 className="text-2xl font-bold mb-4 text-gradient">Industries</h2>
+          <Accordion type="single" collapsible className="mb-8">
+            <AccordionItem value="industries">
+              <AccordionTrigger>Industries We Serve</AccordionTrigger>
+              <AccordionContent>
+                <div className="grid grid-cols-2 gap-3 pl-2 pt-2">
+                  {industries.map((industry, index) => (
+                    <div key={index} className="flex items-center p-2 bg-white rounded-lg shadow-sm">
+                      <industry.icon className="w-4 h-4 text-primary mr-2" />
+                      <span className="text-sm">{industry.name}</span>
+                    </div>
+                  ))}
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+          
+          {/* Process Accordion */}
+          <h2 className="text-2xl font-bold mb-4 text-gradient">Our Process</h2>
+          <Accordion type="single" collapsible className="mb-8">
+            <AccordionItem value="process">
+              <AccordionTrigger>Service Process</AccordionTrigger>
+              <AccordionContent>
+                <div className="space-y-4 pl-2 pt-2">
+                  {serviceProcess.map((step, index) => (
+                    <div key={index} className="flex items-start">
+                      <div className="bg-primary text-white w-6 h-6 rounded-full flex items-center justify-center mr-3 flex-shrink-0 text-sm">
+                        {index + 1}
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-sm">{step.title}</h3>
+                        <p className="text-xs text-gray-700">{step.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+          
+          {/* FAQ Accordion */}
+          <h2 className="text-2xl font-bold mb-4 text-gradient">FAQs</h2>
+          <Accordion type="single" collapsible className="mb-8">
+            {faqs.map((faq, index) => (
+              <AccordionItem key={index} value={`faq-${index}`}>
+                <AccordionTrigger>{faq.question}</AccordionTrigger>
+                <AccordionContent>
+                  <p className="text-sm text-gray-700 pl-2">{faq.answer}</p>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+          
+          {/* Call to Action */}
+          <div className="bg-secondary/50 p-6 rounded-lg text-center mt-8">
+            <h2 className="text-xl font-bold mb-3 text-gradient">Need a Custom Solution?</h2>
+            <Link to="/contact" onClick={handleContactClick}>
+              <Button className="bg-primary hover:bg-primary/90 text-white">
+                Contact Us Today
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </motion.div>
+    );
+  }
+  
+  // Desktop version - keep original layout
   return (
     <motion.div
       initial={{ opacity: 0 }}
