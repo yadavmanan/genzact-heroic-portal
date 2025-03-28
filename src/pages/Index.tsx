@@ -35,6 +35,7 @@ import {
   CarouselPrevious
 } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
+import RotatingHeroBackground from '@/components/RotatingHeroBackground';
 
 const Index = () => {
   const { toast } = useToast();
@@ -47,8 +48,15 @@ const Index = () => {
   
   // Parallax effect values
   const heroTextY = useTransform(scrollYProgress, [0, 1], [0, -100]);
-  const heroImageScale = useTransform(scrollYProgress, [0, 1], [1, 1.2]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+
+  // Hero background images
+  const heroBackgroundImages = [
+    'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80',
+    'https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80',
+    'https://images.unsplash.com/photo-1577401159468-3d457620e15c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80',
+    'https://images.unsplash.com/photo-1581094378626-cf434ccf29fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80'
+  ];
 
   // Animated counter state
   const [projectsCount, setProjectsCount] = useState(0);
@@ -98,21 +106,8 @@ const Index = () => {
     <div className="min-h-screen flex flex-col bg-background overflow-hidden">
       {/* Hero Section with Parallax */}
       <section ref={heroRef} className="relative h-screen flex items-center justify-center overflow-hidden">
-        <motion.div 
-          style={{ scale: heroImageScale }}
-          className="absolute inset-0 w-full h-full"
-        >
-          <div 
-            className="w-full h-full bg-gray-50 bg-opacity-50"
-            style={{
-              backgroundImage: "url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80')",
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat',
-              backgroundBlendMode: 'overlay'
-            }}
-          ></div>
-        </motion.div>
+        <RotatingHeroBackground images={heroBackgroundImages} />
+        
         <div className="container relative z-10">
           <motion.div
             style={{ y: heroTextY, opacity: heroOpacity }}
@@ -241,7 +236,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* How We Work Section */}
+      {/* How We Work Section - Reimagined */}
       <section className="py-24 bg-white">
         <div className="container">
           <motion.div
@@ -256,34 +251,84 @@ const Index = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
-            {workflowSteps.map((step, index) => (
-              <motion.div
-                key={step.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.15 * index }}
-                className="relative"
-              >
-                {/* Number Circle with 3D effect */}
-                <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 w-20 h-20 rounded-full bg-gradient-to-br from-primary to-primary/70 text-white text-3xl font-bold flex items-center justify-center shadow-lg">
-                  {index + 1}
-                </div>
-                
-                {/* Line connector */}
-                {index < workflowSteps.length - 1 && (
-                  <div className="hidden lg:block absolute top-0 left-[calc(50%+3rem)] w-[calc(100%-2rem)] h-0.5 bg-primary/30"></div>
-                )}
-                
-                <div className="bg-white rounded-lg shadow-md p-8 pt-14 text-center transform transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
-                  <step.icon className="w-12 h-12 text-primary mx-auto mb-4" />
-                  <h3 className="text-xl font-bold mb-3">{step.title}</h3>
-                  <p className="text-gray-600">{step.description}</p>
-                </div>
-              </motion.div>
-            ))}
+          {/* Interactive Process Flow */}
+          <div className="relative">
+            {/* Connecting Line */}
+            <div className="hidden lg:block absolute top-1/2 left-0 w-full h-1 bg-primary/20 transform -translate-y-1/2 z-0"></div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-16 gap-x-8 relative z-10">
+              {workflowSteps.map((step, index) => (
+                <motion.div
+                  key={step.title}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.15 * index }}
+                  whileHover={{ 
+                    scale: 1.05,
+                    boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
+                  }}
+                  className="relative"
+                >
+                  {/* Number Circle with 3D effect */}
+                  <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 w-20 h-20 rounded-full bg-gradient-to-br from-primary to-primary/70 text-white text-3xl font-bold flex items-center justify-center shadow-lg z-20">
+                    {index + 1}
+                  </div>
+                  
+                  <div className="bg-white rounded-lg shadow-md p-8 pt-14 text-center h-full flex flex-col">
+                    <step.icon className="w-12 h-12 text-primary mx-auto mb-4" />
+                    <h3 className="text-xl font-bold mb-3">{step.title}</h3>
+                    <p className="text-gray-600 mb-4">{step.description}</p>
+                    
+                    {/* Process Details */}
+                    <ul className="text-left space-y-2 mt-auto">
+                      {step.details.map((detail, i) => (
+                        <li key={i} className="flex items-start">
+                          <Check className="w-5 h-5 text-primary mr-2 mt-0.5 flex-shrink-0" />
+                          <span className="text-gray-700 text-sm">{detail}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
+          
+          {/* Process Metrics */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.6 }}
+            className="mt-16 bg-secondary/30 p-8 rounded-lg flex flex-col md:flex-row justify-between items-center"
+          >
+            <div className="md:w-1/2 mb-6 md:mb-0">
+              <h3 className="text-2xl font-bold mb-4">Our Process Delivers Results</h3>
+              <p className="text-gray-700">
+                Our methodical approach to talent acquisition has been refined through years of industry experience, 
+                ensuring optimal matches between candidates and companies.
+              </p>
+            </div>
+            <div className="grid grid-cols-2 gap-4 md:w-1/2">
+              <div className="bg-white p-4 rounded-lg text-center shadow-sm">
+                <div className="text-2xl font-bold text-primary mb-1">72 hrs</div>
+                <div className="text-sm text-gray-600">Average Response Time</div>
+              </div>
+              <div className="bg-white p-4 rounded-lg text-center shadow-sm">
+                <div className="text-2xl font-bold text-primary mb-1">92%</div>
+                <div className="text-sm text-gray-600">Placement Success Rate</div>
+              </div>
+              <div className="bg-white p-4 rounded-lg text-center shadow-sm">
+                <div className="text-2xl font-bold text-primary mb-1">96%</div>
+                <div className="text-sm text-gray-600">Client Satisfaction</div>
+              </div>
+              <div className="bg-white p-4 rounded-lg text-center shadow-sm">
+                <div className="text-2xl font-bold text-primary mb-1">8+</div>
+                <div className="text-sm text-gray-600">Years of Excellence</div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -597,22 +642,46 @@ const workflowSteps = [
   {
     title: "Understand Requirements",
     description: "We thoroughly analyze your needs to understand the specific skills and experience required.",
-    icon: Search
+    icon: Search,
+    details: [
+      "In-depth consultation with stakeholders",
+      "Job requirement analysis",
+      "Skills and experience mapping",
+      "Cultural fit assessment"
+    ]
   },
   {
     title: "Source Candidates",
     description: "Our experts use advanced tools and networks to find the perfect candidates.",
-    icon: Users
+    icon: Users,
+    details: [
+      "Multi-channel sourcing strategy",
+      "Proactive talent identification",
+      "Passive candidate engagement",
+      "Diverse talent pool development"
+    ]
   },
   {
     title: "Evaluate & Screen",
     description: "Rigorous evaluation ensures only the best candidates move forward.",
-    icon: CheckCircle
+    icon: CheckCircle,
+    details: [
+      "Technical skills assessment",
+      "Behavioral interviews",
+      "Cultural fit evaluation",
+      "Background verification"
+    ]
   },
   {
     title: "Placement & Support",
     description: "We manage the entire onboarding process and provide ongoing support.",
-    icon: Zap
+    icon: Zap,
+    details: [
+      "Seamless candidate placement",
+      "Comprehensive onboarding assistance",
+      "Regular performance check-ins",
+      "Continuous support and feedback"
+    ]
   }
 ];
 

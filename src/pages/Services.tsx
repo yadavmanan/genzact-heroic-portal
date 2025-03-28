@@ -6,8 +6,11 @@ import {
   Users, Search, BarChart, Building, Shield, Clock, 
   FileText, Briefcase, Calculator, Database, UserCheck, HeartHandshake,
   Laptop, Computer, Phone, HardHat, Factory, PhoneCall,
-  Code, Globe, Workflow, Server
+  Code, Globe, Workflow, Server, CheckCircle, Award, Trophy,
+  GraduationCap, Settings, Lightbulb, Target, Zap
 } from 'lucide-react';
+import { Card, CardContent } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 
 const Services = () => {
   const containerVariants = {
@@ -58,6 +61,44 @@ const Services = () => {
           </p>
         </motion.div>
         
+        {/* Visual Service Overview */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="mb-16"
+        >
+          <h2 className="text-3xl font-bold mb-8 text-gradient text-center">Services at a Glance</h2>
+          <div className="flex flex-wrap justify-center gap-4 mb-8">
+            {serviceHighlights.map((highlight, index) => (
+              <motion.div
+                key={index}
+                whileHover={{ scale: 1.05 }}
+                className="flex items-center bg-white p-3 rounded-lg shadow-sm border border-gray-100"
+              >
+                <highlight.icon className="w-5 h-5 text-primary mr-2" />
+                <span className="font-medium">{highlight.name}</span>
+              </motion.div>
+            ))}
+          </div>
+          <div className="bg-secondary/30 p-8 rounded-lg flex flex-col md:flex-row items-center justify-between">
+            <div className="mb-6 md:mb-0 md:mr-8">
+              <h3 className="text-2xl font-bold mb-3">Your Strategic Partner</h3>
+              <p className="text-gray-800">
+                We don't just fill positions – we build partnerships that help your business grow.
+                With Genzact, you get tailored staffing solutions backed by industry expertise.
+              </p>
+            </div>
+            <div className="flex-shrink-0">
+              <img 
+                src="https://images.unsplash.com/photo-1551836022-d5d88e9218df" 
+                alt="Team Collaboration" 
+                className="w-64 h-48 object-cover rounded-lg shadow-md"
+              />
+            </div>
+          </div>
+        </motion.div>
+        
         {/* Main Services */}
         <h2 className="text-3xl font-bold mb-8 text-gradient">Core Services</h2>
         <motion.div 
@@ -94,6 +135,108 @@ const Services = () => {
           ))}
         </motion.div>
         
+        {/* Service Benefits Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          className="mb-16"
+        >
+          <h2 className="text-3xl font-bold mb-8 text-gradient">Why Our Services Stand Out</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {serviceBenefits.map((benefit, index) => (
+              <motion.div
+                key={index}
+                whileHover={{ y: -10 }}
+                className="bg-white p-6 rounded-lg shadow-md border-t-4 border-primary"
+              >
+                <div className="bg-primary/10 p-3 w-14 h-14 flex items-center justify-center rounded-full mb-4">
+                  <benefit.icon className="w-7 h-7 text-primary" />
+                </div>
+                <h3 className="text-xl font-bold mb-2">{benefit.title}</h3>
+                <p className="text-gray-700">{benefit.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+        
+        {/* Industries We Serve */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="mb-16"
+        >
+          <h2 className="text-3xl font-bold mb-8 text-gradient">Industries We Serve</h2>
+          <div className="bg-gradient-to-br from-secondary/40 to-secondary/10 p-8 rounded-lg">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {industries.map((industry, index) => (
+                <motion.div
+                  key={index}
+                  whileHover={{ scale: 1.05 }}
+                  className="bg-white p-4 rounded-lg shadow-sm text-center"
+                >
+                  <industry.icon className="w-10 h-10 mx-auto mb-3 text-primary" />
+                  <h3 className="font-semibold">{industry.name}</h3>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+        
+        {/* Service Process */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+          className="mb-16"
+        >
+          <h2 className="text-3xl font-bold mb-8 text-gradient">Our Service Process</h2>
+          <div className="relative">
+            <div className="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-gray-200 -translate-y-1/2 z-0"></div>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+              {serviceProcess.map((step, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 * index + 0.5 }}
+                  className="relative z-10 bg-white p-6 rounded-lg shadow-md text-center"
+                >
+                  <div className="bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-4 text-lg font-bold">
+                    {index + 1}
+                  </div>
+                  <h3 className="text-xl font-bold mb-2">{step.title}</h3>
+                  <p className="text-gray-700">{step.description}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+        
+        {/* Success Metrics */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+          className="mb-16 bg-white p-8 rounded-lg shadow-md"
+        >
+          <h2 className="text-3xl font-bold mb-8 text-gradient text-center">Our Success Metrics</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {successMetrics.map((metric, index) => (
+              <motion.div
+                key={index}
+                whileHover={{ scale: 1.05 }}
+                className="text-center"
+              >
+                <div className="text-4xl font-bold text-primary mb-2">{metric.value}</div>
+                <Separator className="w-16 mx-auto mb-3 bg-primary/30" />
+                <div className="text-gray-700">{metric.label}</div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+        
         {/* Call to Action */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -111,6 +254,31 @@ const Services = () => {
               Contact Us Today
             </Button>
           </Link>
+        </motion.div>
+        
+        {/* FAQ Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.7 }}
+          className="mt-16"
+        >
+          <h2 className="text-3xl font-bold mb-8 text-gradient text-center">Frequently Asked Questions</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {faqs.map((faq, index) => (
+              <motion.div
+                key={index}
+                whileHover={{ scale: 1.02 }}
+                className="bg-white p-6 rounded-lg shadow-md"
+              >
+                <h3 className="text-xl font-bold mb-3 flex items-start">
+                  <span className="bg-primary/10 text-primary w-8 h-8 flex items-center justify-center rounded-full mr-3 flex-shrink-0">Q</span>
+                  {faq.question}
+                </h3>
+                <p className="text-gray-700 ml-11">{faq.answer}</p>
+              </motion.div>
+            ))}
+          </div>
         </motion.div>
       </div>
     </motion.div>
@@ -214,6 +382,96 @@ const coreServices = [
       { icon: HeartHandshake, text: "Employer branding and candidate experience" }
     ],
     buttonText: "Get Started"
+  }
+];
+
+const serviceHighlights = [
+  { name: "Manpower Consulting", icon: Briefcase },
+  { name: "Payroll Management", icon: Calculator },
+  { name: "IT Technology", icon: Laptop },
+  { name: "Talent Acquisition", icon: Search },
+  { name: "Offshore Projects", icon: Globe },
+  { name: "India Staffing", icon: Building },
+  { name: "On-Call Services", icon: PhoneCall },
+  { name: "RPO Solutions", icon: Users }
+];
+
+const serviceBenefits = [
+  {
+    title: "Industry Expertise",
+    description: "Specialized knowledge across multiple sectors for precise talent matching",
+    icon: Trophy
+  },
+  {
+    title: "Cost Efficiency",
+    description: "Streamlined processes that save you time and reduce hiring costs",
+    icon: Calculator
+  },
+  {
+    title: "Quality Assurance",
+    description: "Rigorous vetting ensures only top-tier candidates reach you",
+    icon: CheckCircle
+  },
+  {
+    title: "Scalable Solutions",
+    description: "Flexible services that grow and adapt with your business needs",
+    icon: Settings
+  }
+];
+
+const industries = [
+  { name: "Information Technology", icon: Laptop },
+  { name: "Healthcare", icon: Shield },
+  { name: "Manufacturing", icon: Factory },
+  { name: "Financial Services", icon: Database },
+  { name: "Education", icon: GraduationCap },
+  { name: "Construction", icon: HardHat },
+  { name: "Retail", icon: Building },
+  { name: "Telecommunications", icon: Phone }
+];
+
+const serviceProcess = [
+  {
+    title: "Consultation",
+    description: "We assess your requirements and define objectives"
+  },
+  {
+    title: "Solution Design",
+    description: "Develop a tailored staffing strategy for your needs"
+  },
+  {
+    title: "Implementation",
+    description: "Deploy our services seamlessly into your operations"
+  },
+  {
+    title: "Ongoing Support",
+    description: "Continuous optimization and responsive service"
+  }
+];
+
+const successMetrics = [
+  { value: "98%", label: "Client Satisfaction Rate" },
+  { value: "1000+", label: "Placements Completed" },
+  { value: "24h", label: "Average Response Time" },
+  { value: "20+", label: "Industries Served" }
+];
+
+const faqs = [
+  {
+    question: "How quickly can you provide candidates for our open positions?",
+    answer: "Depending on the role complexity, we can typically provide qualified candidates within 48-72 hours for standard positions, and 1-2 weeks for specialized or executive roles."
+  },
+  {
+    question: "What industries do you specialize in?",
+    answer: "We have expertise across multiple sectors including IT, healthcare, manufacturing, finance, education, construction, retail, and telecommunications, with specialized recruiters for each."
+  },
+  {
+    question: "How do you ensure candidate quality?",
+    answer: "We implement a multi-stage screening process including skills assessments, behavioral interviews, reference checks, and background verification to ensure only quality candidates are presented."
+  },
+  {
+    question: "Can you handle international recruitment?",
+    answer: "Yes, our Manpower Off-Shore Projects division specializes in cross-border recruitment and management of international talent pools across multiple geographies."
   }
 ];
 

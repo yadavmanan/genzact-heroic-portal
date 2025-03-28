@@ -33,8 +33,12 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center">
-          <Link to="/" className="text-2xl font-bold text-gradient" onClick={handleNavClick}>
-            Genzact
+          <Link to="/" className="flex items-center" onClick={handleNavClick}>
+            <img 
+              src="/logo.png" 
+              alt="Genzact Logo" 
+              className="h-10 mr-2" 
+            />
           </Link>
 
           {/* Desktop Menu */}
