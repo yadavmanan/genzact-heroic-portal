@@ -35,7 +35,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center">
           <Link to="/" className="flex items-center" onClick={handleNavClick}>
             <img 
-              src="/logo.png" 
+              src="/lovable-uploads/fe0ecfc6-08ef-43ba-9b65-5cfd3cf9646e.png" 
               alt="Genzact Logo" 
               className="h-10 mr-2" 
             />

@@ -1,3 +1,4 @@
+
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -229,7 +230,7 @@ const About = () => {
               
               <div className="order-1 md:order-2 flex justify-center">
                 <img 
-                  src="/babu.png" 
+                  src="/lovable-uploads/d42bae71-2a64-4b8d-9a53-b3f3fdd4e3c9.png" 
                   alt="Babu - Founder & CEO" 
                   className="rounded-xl shadow-md max-w-full h-auto max-h-[400px]" 
                 />
