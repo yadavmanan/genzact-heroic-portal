@@ -19,20 +19,50 @@ const MobilePDFPage = () => {
     };
   }, []);
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1,
+      transition: { 
+        duration: 0.5,
+        staggerChildren: 0.1 
+      }
+    },
+    exit: { opacity: 0 }
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: { 
+      y: 0, 
+      opacity: 1,
+      transition: { duration: 0.5 }
+    }
+  };
+
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
       className="min-h-screen pt-16 pb-8"
-      style={{ position: 'relative' }} // Add position relative to fix framer-motion warning
+      style={{ position: 'relative' }}
     >
       <div className="container mx-auto px-4">
-        <h1 className="text-3xl font-bold mb-4 text-gradient">Profile Details</h1>
-        <p className="text-sm text-gray-700 mb-6">
-          Comprehensive information about our founder and expertise.
-        </p>
-        <BabuPdfProfile showDownloadButton={false} />
+        <motion.div variants={itemVariants}>
+          <h1 className="text-3xl font-bold mb-2 text-gradient">Profile Details</h1>
+          <p className="text-sm text-gray-700 mb-4">
+            Comprehensive information about our founder and expertise.
+          </p>
+        </motion.div>
+        
+        <motion.div 
+          variants={itemVariants}
+          className="bg-white rounded-lg shadow-lg overflow-hidden"
+        >
+          <BabuPdfProfile showDownloadButton={true} />
+        </motion.div>
       </div>
     </motion.div>
   );
