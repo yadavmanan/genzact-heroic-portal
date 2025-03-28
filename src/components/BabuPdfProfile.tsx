@@ -24,9 +24,13 @@ import { Table, TableBody, TableCell, TableHeader, TableHead, TableRow } from "@
 
 interface BabuPdfProfileProps {
   showDownloadButton?: boolean;
+  showHeader?: boolean;
 }
 
-const BabuPdfProfile: React.FC<BabuPdfProfileProps> = ({ showDownloadButton = true }) => {
+const BabuPdfProfile: React.FC<BabuPdfProfileProps> = ({ 
+  showDownloadButton = true,
+  showHeader = true 
+}) => {
   const { toast } = useToast();
 
   const generatePdf = async () => {
@@ -119,18 +123,20 @@ const BabuPdfProfile: React.FC<BabuPdfProfileProps> = ({ showDownloadButton = tr
 
   return (
     <div className="container mx-auto py-8 px-4">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold text-gradient">Babu Karlapudi - Professional Profile</h1>
-        {showDownloadButton && (
-          <Button 
-            onClick={generatePdf} 
-            className="bg-primary hover:bg-primary/90 text-white flex items-center gap-2"
-          >
-            <Download size={16} />
-            Download PDF
-          </Button>
-        )}
-      </div>
+      {showHeader && (
+        <div className="flex justify-between items-center mb-6">
+          <h1 className="text-2xl font-bold text-gradient">Babu Karlapudi - Professional Profile</h1>
+          {showDownloadButton && (
+            <Button 
+              onClick={generatePdf} 
+              className="bg-primary hover:bg-primary/90 text-white flex items-center gap-2"
+            >
+              <Download size={16} />
+              Download PDF
+            </Button>
+          )}
+        </div>
+      )}
 
       <div id="babu-pdf-content" className="bg-white p-6 rounded-lg shadow-lg">
         <div className="flex justify-between items-center mb-4 border-b pb-4">

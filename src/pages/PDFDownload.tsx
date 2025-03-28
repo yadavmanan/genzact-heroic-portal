@@ -27,7 +27,7 @@ const PDFDownload = () => {
       style={{ position: 'relative' }}
     >
       <div className="container mx-auto py-20">
-        <BabuPdfProfile showDownloadButton={true} />
+        <BabuPdfProfile showDownloadButton={false} showHeader={false} />
       </div>
     </motion.div>
   );
