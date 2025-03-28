@@ -185,6 +185,22 @@ const DesktopServicesPage = () => {
     window.scrollTo(0, 0);
   };
   
+  // Define animation variants for this component
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 }
+  };
+  
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -441,21 +457,6 @@ const Services = () => {
   const isMobile = useIsMobile();
   const isDesktop = useIsDesktop();
   
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
-  };
-
   // Render appropriate view based on screen size
   return isMobile ? <MobileServicesPage /> : <DesktopServicesPage />;
 };
