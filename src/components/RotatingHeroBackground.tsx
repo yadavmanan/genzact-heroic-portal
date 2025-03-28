@@ -47,7 +47,7 @@ const RotatingHeroBackground = ({
           <div className="hidden">
             <img src={images[nextImageIndex]} alt="Preload next" />
           </div>
-          <div className="w-full h-full bg-gray-900 bg-opacity-40"></div>
+          <div className="w-full h-full bg-gray-50 bg-opacity-50"></div>
         </motion.div>
       </AnimatePresence>
     </div>
