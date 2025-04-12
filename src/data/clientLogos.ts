@@ -12,8 +12,8 @@ export const clientLogos: ClientLogo[] = [
   },
   {
     name: "Thefirms.in",
-    logoUrl: "/lovable-uploads/281c69ad-7af6-4d69-95a7-7ad65e1b0e77.png",
-    isTextOnly: true
+    logoUrl: "/lovable-uploads/cc9b6c8b-aaf1-45da-9168-793db06f8bf4.png",
+    isTextOnly: false
   },
   {
     name: "Havells",
@@ -21,6 +21,6 @@ export const clientLogos: ClientLogo[] = [
   },
   {
     name: "InnovateX",
-    logoUrl: "/lovable-uploads/943aadfb-a8b3-4591-8cba-128f99dbff77.png"
+    logoUrl: "/lovable-uploads/d0227dd0-611f-423c-99c2-a8320b2783f2.png"
   }
 ];
