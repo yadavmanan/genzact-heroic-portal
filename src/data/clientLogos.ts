@@ -12,7 +12,7 @@ export const clientLogos: ClientLogo[] = [
   },
   {
     name: "Thefirms.in",
-    logoUrl: "/lovable-uploads/cc9b6c8b-aaf1-45da-9168-793db06f8bf4.png",
+    logoUrl: "/lovable-uploads/435d5c4b-4ef8-47b2-a44f-e3d60dabc4a4.png",
     isTextOnly: false
   },
   {
@@ -24,3 +24,4 @@ export const clientLogos: ClientLogo[] = [
     logoUrl: "/lovable-uploads/d0227dd0-611f-423c-99c2-a8320b2783f2.png"
   }
 ];
+
