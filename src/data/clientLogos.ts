@@ -8,7 +8,7 @@ export interface ClientLogo {
 export const clientLogos: ClientLogo[] = [
   {
     name: "Noratel",
-    logoUrl: "/assets/logos/noratel-logo.png"
+    logoUrl: "/lovable-uploads/c73b9331-1744-40ec-81da-752b99b32432.png"
   },
   {
     name: "Thefirms.in",
@@ -21,6 +21,6 @@ export const clientLogos: ClientLogo[] = [
   },
   {
     name: "InnovateX",
-    logoUrl: "/assets/logos/innovatex-logo.jpg"
+    logoUrl: "/lovable-uploads/943aadfb-a8b3-4591-8cba-128f99dbff77.png"
   }
 ];
