@@ -36,6 +36,8 @@ import {
 } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
 import RotatingHeroBackground from '@/components/RotatingHeroBackground';
+import { clientLogos } from '@/data/clientLogos';
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 const Index = () => {
   const { toast } = useToast();
@@ -406,7 +408,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-gradient-to-b from-secondary/30 to-background">
         <div className="container">
           <motion.div
             initial={{ opacity: 0 }}
@@ -539,7 +541,7 @@ const Index = () => {
           </motion.div>
           
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
-            {clientNames.map((client, index) => (
+            {clientLogos.map((client, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0 }}
@@ -551,9 +553,17 @@ const Index = () => {
                   rotate: [0, 2, 0, -2, 0],
                   transition: { duration: 0.5 }
                 }}
-                className="bg-white p-6 rounded-lg shadow-md text-center client-logo w-64"
+                className="bg-white p-6 rounded-lg shadow-md text-center client-logo w-64 h-24 flex items-center justify-center"
               >
-                <h3 className="text-xl font-bold text-animate">{client}</h3>
+                {client.isTextOnly ? (
+                  <h3 className="text-xl font-bold text-animate">{client.name}</h3>
+                ) : (
+                  <img 
+                    src={client.logoUrl} 
+                    alt={`${client.name} logo`} 
+                    className="max-h-full max-w-full object-contain"
+                  />
+                )}
               </motion.div>
             ))}
           </div>
@@ -689,7 +699,5 @@ const testimonials = [
     position: "CEO, Thefirms.in"
   }
 ];
-
-const clientNames = ["Noratel", "Thefirms.in", "TechSolve", "InnovateX"];
 
 export default Index;
