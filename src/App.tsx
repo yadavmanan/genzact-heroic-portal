@@ -15,16 +15,15 @@ import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import PDFDownload from "./pages/PDFDownload";
 
+// Create the query client instance
 const queryClient = new QueryClient();
 
 const App = () => (
   <HelmetProvider>
     <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <ScrollToTop />
+      <BrowserRouter>
+        <ScrollToTop />
+        <TooltipProvider>
           <div className="min-h-screen bg-background">
             <Navbar />
             <AnimatePresence mode="wait">
@@ -38,8 +37,10 @@ const App = () => (
               </Routes>
             </AnimatePresence>
           </div>
-        </BrowserRouter>
-      </TooltipProvider>
+          <Toaster />
+          <Sonner />
+        </TooltipProvider>
+      </BrowserRouter>
     </QueryClientProvider>
   </HelmetProvider>
 );
