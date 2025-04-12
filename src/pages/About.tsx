@@ -1,4 +1,3 @@
-
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -117,15 +116,15 @@ const MobileAboutPage = () => {
             <div className="flex justify-center p-4">
               <img 
                 src="/lovable-uploads/8fd68a69-a4e7-43b8-96d2-571043d90c07.png" 
-                alt="Babu - Founder & CEO" 
+                alt="Babu Karlapudi - Founder & CEO" 
                 className="rounded-lg shadow-sm max-w-full h-auto max-h-[200px]" 
               />
             </div>
             <div className="p-4">
-              <h3 className="text-lg font-bold">Babu</h3>
+              <h3 className="text-lg font-bold">Babu Karlapudi</h3>
               <p className="text-primary text-sm mb-3">Founder & CEO</p>
               <p className="text-sm text-gray-700 mb-4">
-                With over 15 years of experience in HR and recruitment, Babu founded Genzact with a vision to transform 
+                With over 20 years of experience in staffing and ODC operational excellence, Babu founded Genzact with a vision to transform 
                 how businesses approach staffing.
               </p>
               
@@ -142,7 +141,7 @@ const MobileAboutPage = () => {
                         </div>
                         <div>
                           <h4 className="font-semibold text-sm">Experience</h4>
-                          <p className="text-xs text-gray-700">15+ years in Recruitment & HR Management</p>
+                          <p className="text-xs text-gray-700">20+ years in Staffing and ODC Operational Excellence</p>
                         </div>
                       </div>
                       
@@ -152,7 +151,7 @@ const MobileAboutPage = () => {
                         </div>
                         <div>
                           <h4 className="font-semibold text-sm">Education</h4>
-                          <p className="text-xs text-gray-700">MBA in Human Resource Management</p>
+                          <p className="text-xs text-gray-700">MBA in International Business, CIEFL</p>
                         </div>
                       </div>
                       
@@ -162,7 +161,7 @@ const MobileAboutPage = () => {
                         </div>
                         <div>
                           <h4 className="font-semibold text-sm">Achievements</h4>
-                          <p className="text-xs text-gray-700">HR Leadership Award, Industry Innovator Recognition</p>
+                          <p className="text-xs text-gray-700">ODC with 30-140 millions</p>
                         </div>
                       </div>
                     </div>
@@ -403,10 +402,10 @@ const DesktopAboutPage = () => {
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
               <div className="order-2 md:order-1">
-                <h3 className="text-2xl font-bold mb-2">Babu</h3>
+                <h3 className="text-2xl font-bold mb-2">Babu Karlapudi</h3>
                 <p className="text-primary mb-4">Founder & CEO</p>
                 <p className="text-gray-900 mb-6">
-                  With over 15 years of experience in HR and recruitment, Babu founded Genzact with a vision to transform 
+                  With over 20 years of experience in staffing and ODC operational excellence, Babu founded Genzact with a vision to transform 
                   how businesses approach staffing. His innovative strategies and deep industry insights have 
                   established Genzact as a leader in the recruitment sector.
                 </p>
@@ -418,7 +417,7 @@ const DesktopAboutPage = () => {
                     </div>
                     <div>
                       <h4 className="font-semibold">Professional Experience</h4>
-                      <p className="text-sm text-gray-700">15+ years in Recruitment & HR Management</p>
+                      <p className="text-sm text-gray-700">20+ years in Staffing and ODC Operational Excellence</p>
                     </div>
                   </div>
                   
@@ -428,7 +427,7 @@ const DesktopAboutPage = () => {
                     </div>
                     <div>
                       <h4 className="font-semibold">Education</h4>
-                      <p className="text-sm text-gray-700">MBA in Human Resource Management</p>
+                      <p className="text-sm text-gray-700">MBA in International Business, CIEFL</p>
                     </div>
                   </div>
                   
@@ -438,7 +437,7 @@ const DesktopAboutPage = () => {
                     </div>
                     <div>
                       <h4 className="font-semibold">Achievements</h4>
-                      <p className="text-sm text-gray-700">HR Leadership Award, Industry Innovator Recognition</p>
+                      <p className="text-sm text-gray-700">ODC with 30-140 millions</p>
                     </div>
                   </div>
                 </div>
@@ -453,7 +452,7 @@ const DesktopAboutPage = () => {
               <div className="order-1 md:order-2 flex justify-center">
                 <img 
                   src="/lovable-uploads/8fd68a69-a4e7-43b8-96d2-571043d90c07.png" 
-                  alt="Babu - Founder & CEO" 
+                  alt="Babu Karlapudi - Founder & CEO" 
                   className="rounded-xl shadow-md max-w-full h-auto max-h-[400px]" 
                 />
               </div>
