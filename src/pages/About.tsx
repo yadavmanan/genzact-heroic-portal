@@ -117,7 +117,7 @@ const MobileAboutPage = () => {
           <div className="bg-white border border-gray-100 rounded-lg shadow-sm overflow-hidden">
             <div className="flex justify-center p-4">
               <img 
-                src="/lovable-uploads/1JYfi6jTInjssYv3HqcOX7l4dQE_-ywUd.jpg" 
+                src="/lovable-uploads/8fd68a69-a4e7-43b8-96d2-571043d90c07.png" 
                 alt="Babu Karlapudi - Founder & CEO" 
                 className="rounded-lg shadow-sm max-w-full h-auto max-h-[200px]" 
               />
@@ -454,7 +454,7 @@ const DesktopAboutPage = () => {
               
               <div className="order-1 md:order-2 flex justify-center">
                 <img 
-                  src="/lovable-uploads/1JYfi6jTInjssYv3HqcOX7l4dQE_-ywUd.jpg" 
+                  src="/lovable-uploads/8fd68a69-a4e7-43b8-96d2-571043d90c07.png" 
                   alt="Babu Karlapudi - Founder & CEO" 
                   className="rounded-xl shadow-md max-w-full h-auto max-h-[400px]" 
                 />
