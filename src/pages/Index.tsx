@@ -46,11 +46,9 @@ const Index = () => {
     offset: ["start start", "end start"]
   });
   
-  // Parallax effect values
   const heroTextY = useTransform(scrollYProgress, [0, 1], [0, -100]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
-  // Hero background images
   const heroBackgroundImages = [
     'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80',
     'https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80',
@@ -61,7 +59,6 @@ const Index = () => {
     'https://images.unsplash.com/photo-1581094378626-cf434ccf29fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80'
   ];
 
-  // Animated counter state
   const [projectsCount, setProjectsCount] = useState(0);
   const [clientsCount, setClientsCount] = useState(0);
   const [satisfactionCount, setSatisfactionCount] = useState(0);
@@ -78,7 +75,6 @@ const Index = () => {
       description: "Discover innovative staffing solutions for your business",
     });
 
-    // Animated counters - updated to match the required values
     const projectsInterval = setInterval(() => {
       setProjectsCount(prev => prev < 1000 ? prev + 25 : 1000);
     }, 30);
@@ -107,7 +103,6 @@ const Index = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-background overflow-hidden">
-      {/* Hero Section with Parallax */}
       <section ref={heroRef} className="relative h-screen flex items-center justify-center overflow-hidden">
         <RotatingHeroBackground images={heroBackgroundImages} />
         
@@ -141,7 +136,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Animated Stats Section */}
       <section className="py-12 bg-gradient-to-b from-primary/5 to-background">
         <div className="container">
           <motion.div 
@@ -184,7 +178,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* 3D Carousel Services Section */}
       <section className="py-20 bg-gradient-to-b from-background to-secondary/20">
         <div className="container">
           <motion.div
@@ -239,7 +232,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* How We Work Section - Reimagined */}
       <section className="py-24 bg-white">
         <div className="container">
           <motion.div
@@ -254,9 +246,7 @@ const Index = () => {
             </p>
           </motion.div>
 
-          {/* Interactive Process Flow */}
           <div className="relative">
-            {/* Connecting Line */}
             <div className="hidden lg:block absolute top-1/2 left-0 w-full h-1 bg-primary/20 transform -translate-y-1/2 z-0"></div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-16 gap-x-8 relative z-10">
@@ -273,7 +263,6 @@ const Index = () => {
                   }}
                   className="relative"
                 >
-                  {/* Number Circle with 3D effect */}
                   <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 w-20 h-20 rounded-full bg-gradient-to-br from-primary to-primary/70 text-white text-3xl font-bold flex items-center justify-center shadow-lg z-20">
                     {index + 1}
                   </div>
@@ -283,7 +272,6 @@ const Index = () => {
                     <h3 className="text-xl font-bold mb-3">{step.title}</h3>
                     <p className="text-gray-600 mb-4">{step.description}</p>
                     
-                    {/* Process Details */}
                     <ul className="text-left space-y-2 mt-auto">
                       {step.details.map((detail, i) => (
                         <li key={i} className="flex items-start">
@@ -298,7 +286,6 @@ const Index = () => {
             </div>
           </div>
           
-          {/* Process Metrics */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -335,7 +322,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Why Choose Us Section */}
       <section className="py-20 bg-gradient-to-b from-secondary/30 to-background">
         <div className="container">
           <motion.div
@@ -420,7 +406,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Testimonials Section */}
       <section className="py-20 bg-white">
         <div className="container">
           <motion.div
@@ -455,14 +440,19 @@ const Index = () => {
                         className="bg-secondary/30 p-8 rounded-lg text-center relative"
                       >
                         <div className="mb-6 text-6xl text-primary/20 font-serif">"</div>
-                        <p className="text-xl italic text-gray-700 mb-6">{testimonial.quote}</p>
-                        <div className="flex items-center justify-center">
-                          <div className="bg-primary w-12 h-12 rounded-full flex items-center justify-center text-white text-xl font-bold mr-3">
-                            {testimonial.name.charAt(0)}
-                          </div>
-                          <div className="text-left">
-                            <h4 className="font-bold text-gray-900">{testimonial.name}</h4>
-                            <p className="text-gray-600">{testimonial.position}</p>
+                        <p className="text-xl italic text-gray-700 mb-6">{testimonial.text}</p>
+                        <div className="flex flex-col items-center justify-center">
+                          {testimonial.date && (
+                            <p className="text-sm text-gray-600 mb-2">[{testimonial.date}]</p>
+                          )}
+                          <div className="flex items-center">
+                            <div className="bg-primary w-12 h-12 rounded-full flex items-center justify-center text-white text-xl font-bold mr-3">
+                              {testimonial.author ? testimonial.author.charAt(0) : testimonial.position.charAt(0)}
+                            </div>
+                            <div className="text-left">
+                              {testimonial.author && <h4 className="font-bold text-gray-900">{testimonial.author}</h4>}
+                              <p className="text-gray-600">{testimonial.position}</p>
+                            </div>
                           </div>
                         </div>
                       </motion.div>
@@ -479,7 +469,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* CTA Section with 3D Animation */}
       <section className="py-24 bg-gradient-to-b from-secondary/30 to-background overflow-hidden">
         <div className="container relative">
           <motion.div
@@ -492,7 +481,6 @@ const Index = () => {
             }}
             className="bg-white p-12 rounded-lg text-center shadow-md relative z-10"
           >
-            {/* Animated background elements */}
             <motion.div
               animate={{ 
                 rotate: 360,
@@ -541,7 +529,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Client Logos Section */}
       <section className="py-16 bg-white">
         <div className="container">
           <motion.div
@@ -690,19 +677,19 @@ const workflowSteps = [
 
 const testimonials = [
   {
-    quote: "Genzact has been instrumental in helping us build our tech team. Their understanding of our requirements and the quality of candidates they provide is exceptional.",
-    name: "Raj Kumar",
-    position: "CTO, Noratel"
+    text: "Working with Genzact has transformed our hiring process. Their team consistently delivers top talent that perfectly aligns with our company culture and technical requirements.",
+    author: "Pankaj Upadhyay",
+    position: "MD Noratel",
+    date: "13/4/2025"
   },
   {
-    quote: "The dedicated team at Genzact made our recruitment process smooth and efficient. They found us the perfect candidates in record time.",
-    name: "Anita Sharma",
-    position: "HR Manager, Thefirms.in"
+    text: "The dedicated team at Genzact made our recruitment process smooth and efficient. They found us the perfect candidates in record time.",
+    position: "HR Vice President, Havells"
   },
   {
-    quote: "I've worked with many staffing agencies, but Genzact stands out for their personalized approach and commitment to finding the right fit for our company.",
-    name: "Vikram Singh",
-    position: "Operations Director, TechSolve"
+    text: "I've worked with many staffing agencies, but Genzact stands out for their personalized approach and commitment to finding the right fit for our company.",
+    author: "Manan",
+    position: "CEO, Thefirms.in"
   }
 ];
 
