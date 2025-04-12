@@ -442,9 +442,6 @@ const Index = () => {
                         <div className="mb-6 text-6xl text-primary/20 font-serif">"</div>
                         <p className="text-xl italic text-gray-700 mb-6">{testimonial.text}</p>
                         <div className="flex flex-col items-center justify-center">
-                          {testimonial.date && (
-                            <p className="text-sm text-gray-600 mb-2">{testimonial.date}</p>
-                          )}
                           <div className="flex items-center">
                             <div className="bg-primary w-12 h-12 rounded-full flex items-center justify-center text-white text-xl font-bold mr-3">
                               {testimonial.author ? testimonial.author.charAt(0) : testimonial.position.charAt(0)}
