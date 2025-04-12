@@ -25,6 +25,7 @@ import {
   AccordionItem, 
   AccordionTrigger 
 } from "@/components/ui/accordion";
+import { AboutPageSEO } from '@/utils/seo';
 
 // Define Shield and Lightbulb before they are used
 const Shield = Award; // This is just for demonstration, using Award icon as Shield
@@ -46,6 +47,7 @@ const MobileAboutPage = () => {
       className="min-h-screen pt-16 pb-8 bg-white"
       style={{ position: 'relative' }} // Add position relative to fix framer-motion warning
     >
+      <AboutPageSEO />
       <div className="px-4">
         {/* Header */}
         <h1 className="text-3xl font-bold mb-4 text-gradient">Our Story</h1>
@@ -57,7 +59,7 @@ const MobileAboutPage = () => {
         {/* Quick Stats */}
         <div className="flex flex-wrap gap-2 mb-8">
           <div className="bg-secondary/30 px-4 py-3 rounded-lg text-center flex-1">
-            <span className="block text-xl font-bold text-primary">10+</span>
+            <span className="block text-xl font-bold text-primary">8+</span>
             <span className="text-xs">Years</span>
           </div>
           <div className="bg-secondary/30 px-4 py-3 rounded-lg text-center flex-1">
@@ -65,7 +67,7 @@ const MobileAboutPage = () => {
             <span className="text-xs">Clients</span>
           </div>
           <div className="bg-secondary/30 px-4 py-3 rounded-lg text-center flex-1">
-            <span className="block text-xl font-bold text-primary">10k+</span>
+            <span className="block text-xl font-bold text-primary">1000+</span>
             <span className="text-xs">Placements</span>
           </div>
         </div>
@@ -306,6 +308,7 @@ const DesktopAboutPage = () => {
       className="min-h-screen pt-24 pb-20 px-4 bg-white"
       style={{ position: 'relative' }} // Add position relative to fix framer-motion warning
     >
+      <AboutPageSEO />
       <div className="container mx-auto mt-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
           <motion.div
@@ -325,7 +328,7 @@ const DesktopAboutPage = () => {
             </p>
             <div className="flex flex-wrap gap-4 mt-8">
               <div className="bg-secondary/30 px-6 py-4 rounded-lg text-center">
-                <span className="block text-3xl font-bold text-primary">10+</span>
+                <span className="block text-3xl font-bold text-primary">8+</span>
                 <span className="text-gray-900">Years Experience</span>
               </div>
               <div className="bg-secondary/30 px-6 py-4 rounded-lg text-center">
@@ -333,7 +336,7 @@ const DesktopAboutPage = () => {
                 <span className="text-gray-900">Clients</span>
               </div>
               <div className="bg-secondary/30 px-6 py-4 rounded-lg text-center">
-                <span className="block text-3xl font-bold text-primary">10k+</span>
+                <span className="block text-3xl font-bold text-primary">1000+</span>
                 <span className="text-gray-900">Placements</span>
               </div>
             </div>
