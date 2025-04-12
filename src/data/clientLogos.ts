@@ -3,6 +3,8 @@ export interface ClientLogo {
   name: string;
   logoUrl: string;
   isTextOnly?: boolean;
+  isSquare?: boolean;
+  largeDisplay?: boolean;
 }
 
 export const clientLogos: ClientLogo[] = [
@@ -13,7 +15,9 @@ export const clientLogos: ClientLogo[] = [
   {
     name: "Thefirms.in",
     logoUrl: "/lovable-uploads/435d5c4b-4ef8-47b2-a44f-e3d60dabc4a4.png",
-    isTextOnly: false
+    isTextOnly: false,
+    isSquare: true,
+    largeDisplay: true
   },
   {
     name: "Havells",

@@ -553,7 +553,9 @@ const Index = () => {
                   rotate: [0, 2, 0, -2, 0],
                   transition: { duration: 0.5 }
                 }}
-                className="bg-white p-6 rounded-lg shadow-md text-center client-logo w-64 h-24 flex items-center justify-center"
+                className={`bg-white p-6 rounded-lg shadow-md text-center flex items-center justify-center ${
+                  client.isSquare ? 'aspect-square' : 'w-64 h-24'
+                }`}
               >
                 {client.isTextOnly ? (
                   <h3 className="text-xl font-bold text-animate">{client.name}</h3>
@@ -561,7 +563,9 @@ const Index = () => {
                   <img 
                     src={client.logoUrl} 
                     alt={`${client.name} logo`} 
-                    className="max-h-full max-w-full object-contain"
+                    className={`${
+                      client.largeDisplay ? 'max-h-[85%] max-w-[85%]' : 'max-h-full max-w-full'
+                    } object-contain`}
                   />
                 )}
               </motion.div>
